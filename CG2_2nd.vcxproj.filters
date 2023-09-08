@@ -88,6 +88,12 @@
     <Filter Include="ヘッダー ファイル\Base\Math\Struct">
       <UniqueIdentifier>{a7c182a0-aca0-4d06-8bee-c4f0232b529e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\GameObject\Bomb">
+      <UniqueIdentifier>{34bb91fc-d705-44c5-add8-11c30c2f6cd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameObject\Bomb">
+      <UniqueIdentifier>{17333906-a63b-4100-92c9-bd40e4df7167}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -191,6 +197,9 @@
     </ClCompile>
     <ClCompile Include="Base\Audio\Audio.cpp">
       <Filter>ソース ファイル\Base\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Bomb\Bomb.cpp">
+      <Filter>ソース ファイル\GameObject\Bomb</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -334,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="Base\Math\Struct\Vector4.h">
       <Filter>ヘッダー ファイル\Base\Math\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Bomb\Bomb.h">
+      <Filter>ヘッダー ファイル\GameObject\Bomb</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
