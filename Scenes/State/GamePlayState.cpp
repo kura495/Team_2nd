@@ -10,17 +10,21 @@ void GamePlayState::Initialize()
 	textureManager_ = TextureManager::GetInstance();
 	light_ = Light::GetInstance();
 	DirectX_ = DirectXCommon::GetInstance();
+	collisionManager_ = new CollisionManager();
 	//
 	//3Dオブジェクト生成
 	player = new Player();
 	player->Initialize();
 	sphere = new Sphere();
 	sphere->Initialize();
+
+	EnemySpawn(Vector3(10, 10, 0));
 	//
 	//2Dオブジェクト作成
 	sprite = new Sprite();
 	sprite->Initialize(LeftTop[0], LeftBottom[0], RightTop[1], RightBottom[1]);
 	worldTransform_Sprite.Initialize();
+	//
 	//
 	//リソースを作る
 	//テクスチャ
@@ -35,18 +39,18 @@ void GamePlayState::Initialize()
 void GamePlayState::Update()
 {
 #ifdef _DEBUG
-if (input->IspushKey(DIK_LALT)) {
+	if (input->IspushKey(DIK_LALT)) {
 		camera_->DebugCamera(true);
-}
-else {
-	camera_->DebugCamera(false);
-}
+	}
+	else {
+		camera_->DebugCamera(false);
+	}
 #endif // _DEBUG
 	GlobalVariables::GetInstance()->Update();
 
 	ImGui::Begin("Sound");
 	ImGui::SliderInt("Pan", &Pan, 1, -1);
-	ImGui::SliderFloat("Volume",&Volume,0.0f,1.0f);
+	ImGui::SliderFloat("Volume", &Volume, 0.0f, 1.0f);
 	audio->Play(mokugyo, Volume, Pan);
 	ImGui::End();
 	ImGui::Begin("Camera");
@@ -56,7 +60,34 @@ else {
 	viewProjection_.UpdateMatrix();
 	camera_->Update();
 	player->Update();
+
 	input->GetJoystickState(0, JoyState);
+
+	enemys_.remove_if([](Enemy* enemy) {
+		if (enemy->isDead()) {
+			delete enemy;
+			return true;
+		}
+		return false;
+		});
+	for (Enemy* enemy : enemys_) {
+		enemy->Update();
+	}
+
+	//Collision
+	collisionManager_->ClearCollider();
+
+	for (Enemy* enemy : enemys_) {
+		collisionManager_->AddCollider(enemy);
+	}
+	/*for (Bomb* pBomb : player->GetBombs) {
+		collisionManager_->AddCollider(pBomb);
+	}*/
+	//下のをPlayer.hで追加した後、上のコメントアウトを外したら動く
+	//const std::list<Bomb*>& GetBombs() const { return bombs_; }
+
+	collisionManager_->CheckAllCollisions();
+
 	ImGui::Begin("System");
 	if (input->PushAButton(JoyState)) {
 		ImGui::Text("IsPushA");
@@ -76,28 +107,26 @@ else {
 void GamePlayState::Draw()
 {
 	//3Dモデル描画ここから
-	sphere->Draw(worldTransform_,viewProjection_, Texture);
+	sphere->Draw(worldTransform_, viewProjection_, Texture);
 	player->Draw(viewProjection_);
+	for (Enemy* enemy : enemys_) {
+		enemy->Draw(viewProjection_);
+	}
 	//3Dモデル描画ここまで	
 
-	//1. ビット演算を取り回しの良いUtilityクラスにする
-	//2. 三項演算子をつかって、構造がわかりやすいようにする
-	//piplineStatus->GetIsMesh2() ? mesh2->Draw() : ;
-	//piplineStatus->GetIsSprite() ? sprite->Draw() : ;
-	//piplineStatus->SetAllFlags();
-	//void PipelineStatu::SetAllFlags() {
-	//	bit = 0x111111111111.....;
-	//}
-	//void PipelineStatus::ResetAllFlags() {
-		//Ethna
-	//	bit = 0;
-	//}
 
 	//Sprite描画ここから
 	sprite->Draw(worldTransform_Sprite, Texture);
 
 
 	//Sprite描画ここまで
-	
+
 	//描画ここまで
+}
+
+void GamePlayState::EnemySpawn(const Vector3& position) {
+	Enemy* enemy_ = new Enemy();
+	enemy_->Initialize();
+	enemy_->SetPosition(position);
+	enemys_.push_back(enemy_);
 }

@@ -16,9 +16,12 @@
 #pragma comment(lib,"dxguid.lib")
 #include "GameObject/Camera/Camera.h"
 #include "GameObject/Player/Player.h"
+#include "GameObject/Enemy/Enemy.h"
 #include "WorldTransform.h"
 #include "ViewProjection.h"
 #include "Math_Structs.h"
+#include "Utility/CollisionManager.h"
+#include "Utility/CollisionConfig.h"
 
 class GamePlayState :public GameState
 {
@@ -27,6 +30,8 @@ public:
 	void Initialize();
 	void Update();
 	void Draw();
+
+	void EnemySpawn(const Vector3& position);
 
 private:
 	//基本機能ズ
@@ -44,9 +49,13 @@ private:
 	WorldTransform worldTransform_Sprite;
 	ViewProjection viewProjection_;
 
+	//
+	CollisionManager* collisionManager_;
+
 	XINPUT_STATE JoyState;
 	//3Dオブジェクトたち
 	Player* player = nullptr;
+	std::list<Enemy*> enemys_;
 	Sphere* sphere;
 	//2Dオブジェクトたち
 	Sprite* sprite;
