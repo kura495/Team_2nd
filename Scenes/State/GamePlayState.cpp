@@ -74,18 +74,6 @@ void GamePlayState::Draw()
 	player->Draw(viewProjection_);
 	//3Dモデル描画ここまで	
 
-	//1. ビット演算を取り回しの良いUtilityクラスにする
-	//2. 三項演算子をつかって、構造がわかりやすいようにする
-	//piplineStatus->GetIsMesh2() ? mesh2->Draw() : ;
-	//piplineStatus->GetIsSprite() ? sprite->Draw() : ;
-	//piplineStatus->SetAllFlags();
-	//void PipelineStatu::SetAllFlags() {
-	//	bit = 0x111111111111.....;
-	//}
-	//void PipelineStatus::ResetAllFlags() {
-		//Ethna
-	//	bit = 0;
-	//}
 
 	//Sprite描画ここから
 	sprite->Draw(worldTransform_Sprite, Texture);
