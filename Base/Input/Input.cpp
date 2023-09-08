@@ -87,3 +87,19 @@ bool Input::GetJoystickState(int32_t stickNo, XINPUT_STATE& out)
 	return dwResult == ERROR_SUCCESS;
 
 }
+
+bool Input::IsPushLTrigger(XINPUT_STATE& out)
+{
+	if (out.Gamepad.bLeftTrigger < XINPUT_GAMEPAD_TRIGGER_THRESHOLD) {
+		return false;
+	}
+	return true;
+}
+
+bool Input::IsPushRTrigger(XINPUT_STATE& out)
+{
+	if (out.Gamepad.bRightTrigger < XINPUT_GAMEPAD_TRIGGER_THRESHOLD) {
+		return false;
+	}
+	return true;
+}

@@ -44,6 +44,7 @@ private:
 	WorldTransform worldTransform_Sprite;
 	ViewProjection viewProjection_;
 
+	XINPUT_STATE JoyState;
 	//3Dオブジェクトたち
 	Player* player = nullptr;
 	Sphere* sphere;

@@ -40,8 +40,16 @@ public:
 	/// <param name="keyNumber"></param>
 	/// <returns></returns>
 	bool IsTreggerKey(uint8_t keyNumber);
-
+	/// <summary>
+	/// ゲームパッドの状態を取得
+	/// </summary>
+	/// <param name="stickNo"></param>
+	/// <param name="out"></param>
+	/// <returns></returns>
 	bool GetJoystickState(int32_t stickNo, XINPUT_STATE& out);
+
+	bool IsPushLTrigger(XINPUT_STATE& out);
+	bool IsPushRTrigger(XINPUT_STATE& out);
 
 private:
 	Input() = default;
