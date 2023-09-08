@@ -58,11 +58,11 @@ else {
 	player->Update();
 	Input::GetInstance()->GetJoystickState(0, JoyState);
 	ImGui::Begin("System");
-	if (Input::GetInstance()->IsPushLTrigger(JoyState)) {
-		ImGui::Text("IsPushLTrigger");
+	if (Input::GetInstance()->IsPushLSHOULDER(JoyState)) {
+		ImGui::Text("IsPushLB");
 	}
-	if (Input::GetInstance()->IsPushRTrigger(JoyState)) {
-		ImGui::Text("IsPushRTrigger");
+	if (Input::GetInstance()->IsPushRSHOULDER(JoyState)) {
+		ImGui::Text("IsPushRB");
 	}
 	ImGui::End();
 }
