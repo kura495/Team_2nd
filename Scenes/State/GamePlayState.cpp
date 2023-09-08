@@ -56,6 +56,15 @@ else {
 	viewProjection_.UpdateMatrix();
 	camera_->Update();
 	player->Update();
+	Input::GetInstance()->GetJoystickState(0, JoyState);
+	ImGui::Begin("System");
+	if (Input::GetInstance()->IsPushLTrigger(JoyState)) {
+		ImGui::Text("IsPushLTrigger");
+	}
+	if (Input::GetInstance()->IsPushRTrigger(JoyState)) {
+		ImGui::Text("IsPushRTrigger");
+	}
+	ImGui::End();
 }
 
 void GamePlayState::Draw()
