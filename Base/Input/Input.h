@@ -52,25 +52,50 @@ public:
 	/// </summary>
 	/// <param name="out"></param>
 	/// <returns></returns>
-	bool IsPushLTrigger(XINPUT_STATE& out);
+	bool PushLTrigger(XINPUT_STATE& out);
 	/// <summary>
 	/// RTriggerを押している間
 	/// </summary>
 	/// <param name="out"></param>
 	/// <returns></returns>
-	bool IsPushRTrigger(XINPUT_STATE& out);
+	bool PushRTrigger(XINPUT_STATE& out);
 	/// <summary>
 	/// LSHOLDER(LB)を押している間
 	/// </summary>
 	/// <param name="out"></param>
 	/// <returns></returns>
-	bool IsPushLSHOULDER(XINPUT_STATE& out);
+	bool PushLSHOULDER(XINPUT_STATE& out);
 	/// <summary>
 	/// RSHOLDER(RB)を押している間
 	/// </summary>
 	/// <param name="out"></param>
 	/// <returns></returns>
-	bool IsPushRSHOULDER(XINPUT_STATE& out);
+	bool PushRSHOULDER(XINPUT_STATE& out);
+	/// <summary>
+	/// AButtonを押している間
+	/// </summary>
+	/// <param name="out"></param>
+	/// <returns></returns>
+	bool PushAButton(XINPUT_STATE& out);
+	/// <summary>
+	/// BButtonを押している間
+	/// </summary>
+	/// <param name="out"></param>
+	/// <returns></returns>
+	bool PushBButton(XINPUT_STATE& out);
+	/// <summary>
+	/// XButtonを押している間
+	/// </summary>
+	/// <param name="out"></param>
+	/// <returns></returns>
+	bool PushXButton(XINPUT_STATE& out);
+	/// <summary>
+	/// YButtonを押している間
+	/// </summary>
+	/// <param name="out"></param>
+	/// <returns></returns>
+	bool PushYButton(XINPUT_STATE& out);
+
 private:
 	Input() = default;
 	~Input() = default;

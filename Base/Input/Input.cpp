@@ -84,11 +84,22 @@ bool Input::GetJoystickState(int32_t stickNo, XINPUT_STATE& out)
 			out.Gamepad.sThumbLY = 0;
 		}
 	}
+	if (out.Gamepad.sThumbRX < XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE) {
+		if (-XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE < out.Gamepad.sThumbRX) {
+			out.Gamepad.sThumbRX = 0;
+		}
+		
+	}
+	if (out.Gamepad.sThumbRY < XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE) {
+		if (-XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE < out.Gamepad.sThumbRY) {
+			out.Gamepad.sThumbRY = 0;
+		}
+	}
 	return dwResult == ERROR_SUCCESS;
 
 }
 
-bool Input::IsPushLTrigger(XINPUT_STATE& out)
+bool Input::PushLTrigger(XINPUT_STATE& out)
 {
 	if (out.Gamepad.bLeftTrigger > XINPUT_GAMEPAD_TRIGGER_THRESHOLD) {
 		return true;
@@ -96,7 +107,7 @@ bool Input::IsPushLTrigger(XINPUT_STATE& out)
 	return false;
 }
 
-bool Input::IsPushRTrigger(XINPUT_STATE& out)
+bool Input::PushRTrigger(XINPUT_STATE& out)
 {
 	if (out.Gamepad.bRightTrigger > XINPUT_GAMEPAD_TRIGGER_THRESHOLD) {
 		return true;
@@ -104,7 +115,7 @@ bool Input::IsPushRTrigger(XINPUT_STATE& out)
 	return false;
 }
 
-bool Input::IsPushLSHOULDER(XINPUT_STATE& out)
+bool Input::PushLSHOULDER(XINPUT_STATE& out)
 {
 	if (out.Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_SHOULDER) {
 		return true;
@@ -112,9 +123,41 @@ bool Input::IsPushLSHOULDER(XINPUT_STATE& out)
 	return false;
 }
 
-bool Input::IsPushRSHOULDER(XINPUT_STATE& out)
+bool Input::PushRSHOULDER(XINPUT_STATE& out)
 {
 	if (out.Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER) {
+		return true;
+	}
+	return false;
+}
+
+bool Input::PushAButton(XINPUT_STATE& out)
+{
+	if (out.Gamepad.wButtons & XINPUT_GAMEPAD_A) {
+		return true;
+	}
+	return false;
+}
+
+bool Input::PushBButton(XINPUT_STATE& out)
+{
+	if (out.Gamepad.wButtons & XINPUT_GAMEPAD_B) {
+		return true;
+	}
+	return false;
+}
+
+bool Input::PushXButton(XINPUT_STATE& out)
+{
+	if (out.Gamepad.wButtons & XINPUT_GAMEPAD_X) {
+		return true;
+	}
+	return false;
+}
+
+bool Input::PushYButton(XINPUT_STATE& out)
+{
+	if (out.Gamepad.wButtons & XINPUT_GAMEPAD_Y) {
 		return true;
 	}
 	return false;

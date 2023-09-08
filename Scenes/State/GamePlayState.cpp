@@ -61,6 +61,8 @@ void GamePlayState::Update()
 	camera_->Update();
 	player->Update();
 
+	input->GetJoystickState(0, JoyState);
+
 	enemys_.remove_if([](Enemy* enemy) {
 		if (enemy->isDead()) {
 			delete enemy;
@@ -86,13 +88,18 @@ void GamePlayState::Update()
 
 	collisionManager_->CheckAllCollisions();
 
-	Input::GetInstance()->GetJoystickState(0, JoyState);
 	ImGui::Begin("System");
-	if (Input::GetInstance()->IsPushLSHOULDER(JoyState)) {
-		ImGui::Text("IsPushLB");
+	if (input->PushAButton(JoyState)) {
+		ImGui::Text("IsPushA");
 	}
-	if (Input::GetInstance()->IsPushRSHOULDER(JoyState)) {
-		ImGui::Text("IsPushRB");
+	if (input->PushBButton(JoyState)) {
+		ImGui::Text("IsPushB");
+	}
+	if (input->PushXButton(JoyState)) {
+		ImGui::Text("IsPushX");
+	}
+	if (input->PushYButton(JoyState)) {
+		ImGui::Text("IsPushY");
 	}
 	ImGui::End();
 }
