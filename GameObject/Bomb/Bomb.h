@@ -2,8 +2,10 @@
 #include "Model.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
+#include "Utility/Collider.h"
+#include "Utility/CollisionConfig.h"
 
-class Bomb {
+class Bomb : public Collider {
 public:
 	void Initialize();
 
@@ -14,6 +16,10 @@ public:
 	void SetBomb(WorldTransform playerPos);
 
 	void ExplosionBomb();
+
+	Vector3 GetWorldPosition() override;
+
+	void OnCollision() override;
 
 private:
 	WorldTransform worldTransform_;

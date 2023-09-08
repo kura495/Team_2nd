@@ -61,3 +61,13 @@ void Bomb::ExplosionBomb() {
 		worldTransformExplosion_.scale_ = { 0.1f, 0.1f, 0.1f };
 	}
 }
+
+Vector3 Bomb::GetWorldPosition() {
+	Vector3 worldPos;
+	worldPos.x = worldTransform_.matWorld_.m[3][0];
+	worldPos.y = worldTransform_.matWorld_.m[3][1];
+	worldPos.z = worldTransform_.matWorld_.m[3][2];
+	return worldPos;
+}
+
+void Bomb::OnCollision() {}

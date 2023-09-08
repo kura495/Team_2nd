@@ -9,7 +9,7 @@ class Enemy : public Collider {
 public:
 	void Initialize();
 
-	void Updata();
+	void Update();
 
 	void Draw(const ViewProjection& viewProjection);
 

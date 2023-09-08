@@ -1,20 +1,21 @@
 #include "Enemy.h"
 
 void Enemy::Initialize() {
+	worldTransform_.Initialize();
 	worldTransform_.translation_ = { 0.0f,0.0f,0.0f };
 	worldTransform_.rotation_ = { 0.0f,0.0f,0.0f };
 	worldTransform_.scale_ = { 1.0f,1.0f,1.0f };
 
-
 	enemyModel_.reset(Model::CreateModelFromObj("resources", "axis.obj"));
 }
 
-void Enemy::Updata() {
-	worldTransform_.rotation_.x += 0.2;
+void Enemy::Update() {
+	worldTransform_.rotation_.y += 0.2f;
+	worldTransform_.UpdateMatrix();
 }
 
 void Enemy::Draw(const ViewProjection& viewProjection) {
-	if(isDead_ = false){
+	if(isDead_ == false){
 		enemyModel_->Draw(worldTransform_, viewProjection);
 	}
 }
