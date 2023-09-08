@@ -47,10 +47,30 @@ public:
 	/// <param name="out"></param>
 	/// <returns></returns>
 	bool GetJoystickState(int32_t stickNo, XINPUT_STATE& out);
-
+	/// <summary>
+	/// LTriggerを押している間
+	/// </summary>
+	/// <param name="out"></param>
+	/// <returns></returns>
 	bool IsPushLTrigger(XINPUT_STATE& out);
+	/// <summary>
+	/// RTriggerを押している間
+	/// </summary>
+	/// <param name="out"></param>
+	/// <returns></returns>
 	bool IsPushRTrigger(XINPUT_STATE& out);
-
+	/// <summary>
+	/// LSHOLDER(LB)を押している間
+	/// </summary>
+	/// <param name="out"></param>
+	/// <returns></returns>
+	bool IsPushLSHOULDER(XINPUT_STATE& out);
+	/// <summary>
+	/// RSHOLDER(RB)を押している間
+	/// </summary>
+	/// <param name="out"></param>
+	/// <returns></returns>
+	bool IsPushRSHOULDER(XINPUT_STATE& out);
 private:
 	Input() = default;
 	~Input() = default;

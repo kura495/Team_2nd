@@ -90,16 +90,32 @@ bool Input::GetJoystickState(int32_t stickNo, XINPUT_STATE& out)
 
 bool Input::IsPushLTrigger(XINPUT_STATE& out)
 {
-	if (out.Gamepad.bLeftTrigger < XINPUT_GAMEPAD_TRIGGER_THRESHOLD) {
-		return false;
+	if (out.Gamepad.bLeftTrigger > XINPUT_GAMEPAD_TRIGGER_THRESHOLD) {
+		return true;
 	}
-	return true;
+	return false;
 }
 
 bool Input::IsPushRTrigger(XINPUT_STATE& out)
 {
-	if (out.Gamepad.bRightTrigger < XINPUT_GAMEPAD_TRIGGER_THRESHOLD) {
-		return false;
+	if (out.Gamepad.bRightTrigger > XINPUT_GAMEPAD_TRIGGER_THRESHOLD) {
+		return true;
 	}
-	return true;
+	return false;
+}
+
+bool Input::IsPushLSHOULDER(XINPUT_STATE& out)
+{
+	if (out.Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_SHOULDER) {
+		return true;
+	}
+	return false;
+}
+
+bool Input::IsPushRSHOULDER(XINPUT_STATE& out)
+{
+	if (out.Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER) {
+		return true;
+	}
+	return false;
 }
