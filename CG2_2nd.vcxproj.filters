@@ -94,6 +94,12 @@
     <Filter Include="ソース ファイル\GameObject\Bomb">
       <UniqueIdentifier>{17333906-a63b-4100-92c9-bd40e4df7167}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\GameObject\Enemy">
+      <UniqueIdentifier>{68b7b861-b405-4421-a693-e786c5cab2ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameObject\Enemy">
+      <UniqueIdentifier>{a58e1287-bfa2-482f-987f-a3b502367186}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -200,6 +206,9 @@
     </ClCompile>
     <ClCompile Include="GameObject\Bomb\Bomb.cpp">
       <Filter>ソース ファイル\GameObject\Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Enemy\Enemy.cpp">
+      <Filter>ソース ファイル\GameObject\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -346,6 +355,9 @@
     </ClInclude>
     <ClInclude Include="GameObject\Bomb\Bomb.h">
       <Filter>ヘッダー ファイル\GameObject\Bomb</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Enemy\Enemy.h">
+      <Filter>ヘッダー ファイル\GameObject\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -24,6 +24,7 @@ void Bomb::Update() {
 		explosionTimer = 0;
 		worldTransformExplosion_.scale_ = { 0.1f, 0.1f, 0.1f };
 		isExplosionBomb = false;
+		isSetBomb = false;
 	}
 
 	if (isExplosionBomb == true) {
@@ -55,6 +56,8 @@ void Bomb::SetBomb(WorldTransform playerPos) {
 }
 
 void Bomb::ExplosionBomb() {
-	isExplosionBomb = true;
-	worldTransformExplosion_.scale_ = { 0.1f, 0.1f, 0.1f };
+	if (isSetBomb == true) {
+		isExplosionBomb = true;
+		worldTransformExplosion_.scale_ = { 0.1f, 0.1f, 0.1f };
+	}
 }
