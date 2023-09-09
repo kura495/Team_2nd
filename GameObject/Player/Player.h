@@ -15,6 +15,13 @@ public:
 	void Initialize();
 	void Update();
 	void Draw(const ViewProjection& viewProjection);
+
+	/// <summary>
+	/// ゲッター
+	/// </summary>
+	/// <returns>爆弾のリスト</returns>
+	const std::list<Bomb*>& GetBombs() const { return bombs_; }
+
 private:
 	void ApplyGlobalVariables();
 	void ImGui();
@@ -32,6 +39,7 @@ private:
 	GlobalVariables* globalVariables = nullptr;
 	WorldTransform worldTransform_;
 	float speed = 0.0f;
+
 	XINPUT_STATE joyState;
 
 	//Bomb* bomb_ = nullptr;	//爆弾
@@ -40,7 +48,11 @@ private:
 	Bomb* newBomb;
 
 	bool isMove = false;	//プレイヤーが移動しているか　false:移動していない
+	bool xButtonPressed = false;	//xボタンを押したか	//false : 押していない
+
 	const float threshold = 0.7f;	//しきい値
 	float angle_;	//目標角度
+
+
 };
 

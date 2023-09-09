@@ -80,9 +80,9 @@ void GamePlayState::Update()
 	for (Enemy* enemy : enemys_) {
 		collisionManager_->AddCollider(enemy);
 	}
-	/*for (Bomb* pBomb : player->GetBombs) {
+	for (Bomb* pBomb : player->GetBombs()) {
 		collisionManager_->AddCollider(pBomb);
-	}*/
+	}
 	//下のをPlayer.hで追加した後、上のコメントアウトを外したら動く
 	//const std::list<Bomb*>& GetBombs() const { return bombs_; }
 

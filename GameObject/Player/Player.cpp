@@ -150,21 +150,32 @@ void Player::Attack()
 	//コントローラー操作
 	if (Input::GetInstance()->GetJoystickState(0, joyState))
 	{
-
-
 		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_X)
 		{
-			//爆弾の生成と初期化
-			newBomb = new Bomb();
-			newBomb->Initialize();
+			if (!xButtonPressed)
+			{
+				//爆弾の生成と初期化
+				newBomb = new Bomb();
+				newBomb->Initialize();
 
-			//爆弾の設置(プレイヤーと同じ位置に)
-			newBomb->SetBomb(worldTransform_);
+				//爆弾の設置(プレイヤーと同じ位置に)
+				newBomb->SetBomb(worldTransform_);
 
-			//爆弾をリストに登録
-			bombs_.push_back(newBomb);
+				//爆弾をリストに登録
+				bombs_.push_back(newBomb);
 
+
+				//長押しを受け付けない
+				xButtonPressed = true;
+
+			}
 		}
+		else
+		{
+			//xボタンが押されていない場合、フラグをリセット
+			xButtonPressed = false;
+		}
+
 
 		//爆発させる
 		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_B)
