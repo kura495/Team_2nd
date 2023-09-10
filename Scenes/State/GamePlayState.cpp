@@ -114,7 +114,7 @@ void GamePlayState::Draw()
 
 
 	//Sprite描画ここから
-	sprite->Draw(worldTransform_Sprite, Texture);
+	//sprite->Draw(worldTransform_Sprite, Texture);
 
 
 	//Sprite描画ここまで
