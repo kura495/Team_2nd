@@ -59,7 +59,5 @@ private:
 
 	const float threshold = 0.7f;	//しきい値
 	float angle_;	//目標角度
-
-
 };
 

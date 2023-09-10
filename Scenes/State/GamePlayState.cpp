@@ -14,6 +14,7 @@ void GamePlayState::Initialize()
 	light_ = Light::GetInstance();
 	DirectX_ = DirectXCommon::GetInstance();
 	collisionManager_ = new CollisionManager();
+	collisionManagerPlayer_ = new CollisionManager();
 	//
 	//3Dオブジェクト生成
 
@@ -37,6 +38,8 @@ void GamePlayState::Initialize()
 	wall->Initialize();
 	ground = new Ground();
 	ground->Initialize(groundModel);
+	switch_ = new Switch();
+	switch_->Initialize(model, Vector3(0, 0, 0));
 
 	EnemySpawn(Vector3(10, -1, 0));
 
@@ -95,6 +98,7 @@ void GamePlayState::Update()
 	player->Update();
 	wall->Update();
 	ground->Update();
+	switch_->Update();
 
 	input->GetJoystickState(0, JoyState);
 
@@ -111,9 +115,10 @@ void GamePlayState::Update()
 
 	//Collision
 	collisionManager_->ClearCollider();
+	collisionManagerPlayer_->ClearCollider();
 
-	collisionManager_->AddCollider(player);
-	collisionManager_->AddCollider(wall);
+	collisionManagerPlayer_->AddCollider(player);
+	collisionManagerPlayer_->AddCollider(wall);
 
 	for (Enemy* enemy : enemys_) {
 		collisionManager_->AddCollider(enemy);
@@ -123,6 +128,7 @@ void GamePlayState::Update()
 	}
 
 	collisionManager_->CheckAllCollisions();
+	collisionManagerPlayer_->CheckAllCollisions();
 
 	ImGui::Begin("System");
 	if (input->PushAButton(JoyState)) {
@@ -151,6 +157,7 @@ void GamePlayState::Draw()
 	for (Enemy* enemy : enemys_) {
 		enemy->Draw(viewProjection_);
 	}
+	switch_->Draw(viewProjection_);
 	//3Dモデル描画ここまで	
 
 

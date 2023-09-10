@@ -20,6 +20,7 @@
 #include "GameObject/Enemy/Enemy.h"
 #include "GameObject/Wall/Wall.h"
 #include "GameObject/Ground/Ground.h"
+#include "GameObject/Switch/Switch.h"
 #include "WorldTransform.h"
 #include "ViewProjection.h"
 #include "Math_Structs.h"
@@ -57,6 +58,7 @@ private:
 
 	//
 	CollisionManager* collisionManager_;
+	CollisionManager* collisionManagerPlayer_;
 
 	XINPUT_STATE JoyState;
 	//3Dオブジェクトたち
@@ -66,6 +68,7 @@ private:
 	Sphere* sphere;
 	Wall* wall = nullptr;
 	Ground* ground = nullptr;
+	Switch* switch_ = nullptr;
 	//2Dオブジェクトたち
 	Sprite* sprite;
 	//

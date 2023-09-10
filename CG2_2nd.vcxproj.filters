@@ -112,6 +112,12 @@
     <Filter Include="ソース ファイル\GameObject\Ground">
       <UniqueIdentifier>{571868a2-2600-4cc3-9a45-274d5aae9150}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\GameObject\Switch">
+      <UniqueIdentifier>{d0e23dfd-ae47-4c17-b900-2d548e45b914}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameObject\Switch">
+      <UniqueIdentifier>{c0bea3fa-f575-4f0c-8f1a-d438bdc2f477}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -239,6 +245,9 @@
     </ClCompile>
     <ClCompile Include="GameObject\Ground\Ground.cpp">
       <Filter>ソース ファイル\GameObject\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Switch\Switch.cpp">
+      <Filter>ソース ファイル\GameObject\Switch</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -406,6 +415,9 @@
     </ClInclude>
     <ClInclude Include="GameObject\Ground\Ground.h">
       <Filter>ヘッダー ファイル\GameObject\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Switch\Switch.h">
+      <Filter>ヘッダー ファイル\GameObject\Switch</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
