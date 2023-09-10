@@ -6,7 +6,7 @@ void Enemy::Initialize() {
 	worldTransform_.rotation_ = { 0.0f,0.0f,0.0f };
 	worldTransform_.scale_ = { 1.0f,1.0f,1.0f };
 
-	enemyModel_.reset(Model::CreateModelFromObj("resources", "axis.obj"));
+	enemyModel_.reset(Model::CreateModelFromObj("resources", "bunny.obj"));
 }
 
 void Enemy::Update() {

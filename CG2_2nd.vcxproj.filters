@@ -228,6 +228,9 @@
     <ClCompile Include="GameObject\Wall\Wall.cpp">
       <Filter>ソース ファイル\GameObject\Wall</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject\Camera\GameCamera.cpp">
+      <Filter>ソース ファイル\GameObject\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="externals\imgui\imconfig.h">
@@ -388,6 +391,9 @@
     </ClInclude>
     <ClInclude Include="GameObject\Wall\Wall.h">
       <Filter>ヘッダー ファイル\GameObject\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Camera\GameCamera.h">
+      <Filter>ヘッダー ファイル\GameObject\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
