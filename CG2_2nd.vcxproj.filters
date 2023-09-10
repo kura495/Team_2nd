@@ -103,6 +103,9 @@
     <Filter Include="ソース ファイル\GameObject\Wall">
       <UniqueIdentifier>{63395035-a1ff-4cee-b2e1-e3fc1d43d7f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\GameObject\Wall">
+      <UniqueIdentifier>{2eabacbd-11a1-451b-ad12-9b8e3a126d8b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -384,7 +387,7 @@
       <Filter>ヘッダー ファイル\Scenes\State</Filter>
     </ClInclude>
     <ClInclude Include="GameObject\Wall\Wall.h">
-      <Filter>ヘッダー ファイル\GameObject</Filter>
+      <Filter>ヘッダー ファイル\GameObject\Wall</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

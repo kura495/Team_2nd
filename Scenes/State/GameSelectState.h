@@ -1,6 +1,7 @@
 #pragma once
 #include"IgameState.h"
 #include "Input.h"
+#include "VectorCalc.h"
 
 class GameSelectState :public GameState
 {
@@ -18,4 +19,7 @@ private:
 	bool xButtonPressed = false;
 	bool bButtonPressed = false;
 	bool aButtonPressed = true;
+
+	const float threshold = 0.7f;
+	int stickTimer = 10;
 };

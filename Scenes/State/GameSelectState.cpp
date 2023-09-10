@@ -16,6 +16,30 @@ void GameSelectState::Update()
 
 	if (Input::GetInstance()->GetJoystickState(0, joyState))
 	{
+		if (joyState.Gamepad.sThumbLX != 0 || joyState.Gamepad.sThumbLY != 0) {
+			Vector3 move = {
+					(float)joyState.Gamepad.sThumbLX / SHRT_MAX, 0.0f,
+					(float)joyState.Gamepad.sThumbLY / SHRT_MAX };
+
+			if (Length(move) > threshold)
+			{
+				stickTimer--;
+				if (stickTimer <= 0) {
+					if (selectStageNo > 2) {
+						selectStageNo = 1;
+						stickTimer = 10;
+					}
+					else {
+						selectStageNo += 1;
+						stickTimer = 10;
+					}
+				}
+			}
+		}
+		else {
+			stickTimer = 10;
+		}
+
 		//NextStage
 		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_B)
 		{
