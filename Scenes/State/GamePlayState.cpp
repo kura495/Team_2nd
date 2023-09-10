@@ -83,8 +83,6 @@ void GamePlayState::Update()
 	for (Bomb* pBomb : player->GetBombs()) {
 		collisionManager_->AddCollider(pBomb);
 	}
-	//下のをPlayer.hで追加した後、上のコメントアウトを外したら動く
-	//const std::list<Bomb*>& GetBombs() const { return bombs_; }
 
 	collisionManager_->CheckAllCollisions();
 

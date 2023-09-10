@@ -135,6 +135,9 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatFormVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Scenes\Manager\GameManager.cpp" />
     <ClCompile Include="Scenes\State\GameClearState.cpp" />
     <ClCompile Include="Scenes\State\GamePlayState.cpp" />
+    <ClCompile Include="Scenes\State\GamePlayState2.cpp" />
+    <ClCompile Include="Scenes\State\GamePlayState3.cpp" />
+    <ClCompile Include="Scenes\State\GameSelectState.cpp" />
     <ClCompile Include="Scenes\State\GameTitleState.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +188,9 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatFormVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Scenes\Manager\GameManager.h" />
     <ClInclude Include="Scenes\State\GameClearState.h" />
     <ClInclude Include="Scenes\State\GamePlayState.h" />
+    <ClInclude Include="Scenes\State\GamePlayState2.h" />
+    <ClInclude Include="Scenes\State\GamePlayState3.h" />
+    <ClInclude Include="Scenes\State\GameSelectState.h" />
     <ClInclude Include="Scenes\State\GameTitleState.h" />
     <ClInclude Include="Scenes\State\IgameState.h" />
   </ItemGroup>

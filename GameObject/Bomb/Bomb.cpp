@@ -37,6 +37,8 @@ void Bomb::Update() {
 		ImGui::End();
 	}
 
+	SetRadius(worldTransformExplosion_.scale_.x);
+
 	worldTransform_.UpdateMatrix();
 	worldTransformExplosion_.UpdateMatrix();
 }

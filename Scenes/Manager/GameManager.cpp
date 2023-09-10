@@ -34,8 +34,14 @@ void GameManager::Initialize()
 	GlobalVariables::GetInstance()->LoadFiles();
 	//State
 	state[TITLE] = std::make_unique<GameTitleState>();
-	state[PLAY] = std::make_unique<GamePlayState>();
-	state[PLAY]->Initialize();
+	state[SELECT] = std::make_unique<GameSelectState>();
+	state[PLAY_STAGE1] = std::make_unique<GamePlayState>();
+	state[PLAY_STAGE2] = std::make_unique<GamePlayState2>();
+	state[PLAY_STAGE3] = std::make_unique<GamePlayState3>();
+	state[CLEAR] = std::make_unique<GameClearState>();
+	for (int i = 0; i < GameStateMax; i++) {
+		state[i]->Initialize();
+	}
 	GameState::StateNo = TITLE;
 }
 void GameManager::Gameloop()

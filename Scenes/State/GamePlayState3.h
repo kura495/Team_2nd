@@ -1,15 +1,15 @@
 #pragma once
-#include"IgameState.h"
+#include "IgameState.h"
 #include "Input.h"
 
-class GameTitleState :public GameState
+class GamePlayState3 :public GameState
 {
 public:
+
 	void Initialize();
 	void Update();
 	void Draw();
 
 private:
 	Input* input = nullptr;
-	XINPUT_STATE joyState;
 };

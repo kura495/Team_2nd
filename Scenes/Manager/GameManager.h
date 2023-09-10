@@ -7,7 +7,10 @@
 #include"Light.h"
 #include"ImGuiManager.h"
 #include"Scenes/State/GameTitleState.h"
+#include"Scenes/State/GameSelectState.h"
 #include"Scenes/State/GamePlayState.h"
+#include"Scenes/State/GamePlayState2.h"
+#include"Scenes/State/GamePlayState3.h"
 #include"Scenes/State/GameClearState.h"
 #include"Scenes/State/IgameState.h"
 #include"Audio.h"
@@ -19,7 +22,11 @@ class GameManager
 public:
 	enum GameStateNo {
 		TITLE,
-		PLAY,
+		SELECT,
+		PLAY_STAGE1,
+		PLAY_STAGE2,
+		PLAY_STAGE3,
+		CLEAR,
 		GameStateMax
 	};
 

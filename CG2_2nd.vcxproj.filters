@@ -210,6 +210,15 @@
     <ClCompile Include="GameObject\Enemy\Enemy.cpp">
       <Filter>ソース ファイル\GameObject\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\State\GamePlayState2.cpp">
+      <Filter>ソース ファイル\Scenes\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\State\GamePlayState3.cpp">
+      <Filter>ソース ファイル\Scenes\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\State\GameSelectState.cpp">
+      <Filter>ソース ファイル\Scenes\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="externals\imgui\imconfig.h">
@@ -358,6 +367,15 @@
     </ClInclude>
     <ClInclude Include="GameObject\Enemy\Enemy.h">
       <Filter>ヘッダー ファイル\GameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\State\GamePlayState2.h">
+      <Filter>ヘッダー ファイル\Scenes\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\State\GamePlayState3.h">
+      <Filter>ヘッダー ファイル\Scenes\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\State\GameSelectState.h">
+      <Filter>ヘッダー ファイル\Scenes\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

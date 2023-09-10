@@ -2,7 +2,7 @@
 #include"IgameState.h"
 #include "Input.h"
 
-class GameTitleState :public GameState
+class GameSelectState :public GameState
 {
 public:
 	void Initialize();
@@ -12,4 +12,6 @@ public:
 private:
 	Input* input = nullptr;
 	XINPUT_STATE joyState;
+	
+	int selectStageNo = 1;
 };
