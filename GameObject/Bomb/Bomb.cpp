@@ -6,41 +6,39 @@ void Bomb::Initialize(Model* bombModel,Model* explosionModel) {
 	bombModel_ = bombModel;
 	explosionModel_ = explosionModel;
 
-	/*bombModel_.reset(Model::CreateModelFromObj("resources", "Bomb.obj"));
-	explosionModel_.reset(Model::CreateModelFromObj("resources", "ExplosionBomb.obj"));*/
-
 	worldTransform_.Initialize();
 	worldTransform_.scale_ = { 1.0f, 1.0f, 1.0f };
 	worldTransformExplosion_.Initialize();
-	worldTransformExplosion_.scale_ = { 0.1f, 0.1f, 0.1f };
+	worldTransformExplosion_.scale_ = { 0.0f, 0.0f, 0.0f };
 	worldTransform_.UpdateMatrix();
 	worldTransformExplosion_.UpdateMatrix();
 }
 
 void Bomb::Update() {
 	if (explosionTimer <= 120) {
-		worldTransformExplosion_.scale_.x += 0.2f;
-		worldTransformExplosion_.scale_.y += 0.2f;
-		worldTransformExplosion_.scale_.z += 0.2f;
-		worldTransformExplosion_.rotation_.y += 0.1f;
+		if (isExplosionBomb == true) {
+			worldTransformExplosion_.scale_.x += 0.2f;
+			worldTransformExplosion_.scale_.y += 0.2f;
+			worldTransformExplosion_.scale_.z += 0.2f;
+			worldTransformExplosion_.rotation_.y += 0.1f;
+			SetRadius(worldTransformExplosion_.scale_.y);
+		}
 	}
 	else {
 		explosionTimer = 0;
-		worldTransformExplosion_.scale_ = { 0.1f, 0.1f, 0.1f };
+		worldTransformExplosion_.scale_ = { 0.0f, 0.0f, 0.0f };
 		isExplosionBomb = false;
 		isSetBomb = false;
 	}
 
 	if (isExplosionBomb == true) {
 		explosionTimer++;
-
-		ImGui::Begin("Bomb");
-		ImGui::SliderFloat3("ExplosionScale", &worldTransformExplosion_.scale_.x, -360.0f, 360.0f);
-		ImGui::SliderInt("ExplosionTimer", &explosionTimer, 0, 160);
-		ImGui::End();
 	}
 
-	SetRadius(worldTransformExplosion_.scale_.x);
+	ImGui::Begin("Bomb");
+	ImGui::SliderFloat3("ExplosionScale", &worldTransformExplosion_.scale_.x, -360.0f, 360.0f);
+	ImGui::SliderInt("ExplosionTimer", &explosionTimer, 0, 160);
+	ImGui::End();
 
 	worldTransform_.UpdateMatrix();
 	worldTransformExplosion_.UpdateMatrix();
@@ -49,6 +47,7 @@ void Bomb::Update() {
 void Bomb::Draw(const ViewProjection& viewProjection) {
 	if (isSetBomb == true) {
 		bombModel_->Draw(worldTransform_, viewProjection);
+		explosionModel_->Draw(worldTransformExplosion_, viewProjection);
 	}
 	if (isExplosionBomb == true) {
 		explosionModel_->Draw(worldTransformExplosion_, viewProjection);
@@ -64,7 +63,6 @@ void Bomb::SetBomb(WorldTransform playerPos) {
 void Bomb::ExplosionBomb() {
 	if (isSetBomb == true) {
 		isExplosionBomb = true;
-		worldTransformExplosion_.scale_ = { 0.1f, 0.1f, 0.1f };
 	}
 }
 
