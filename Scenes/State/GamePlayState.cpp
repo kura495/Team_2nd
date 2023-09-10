@@ -105,7 +105,9 @@ void GamePlayState::Update()
 void GamePlayState::Draw()
 {
 	//3Dモデル描画ここから
-	sphere->Draw(worldTransform_, viewProjection_, Texture);
+	
+	//sphere->Draw(worldTransform_, viewProjection_, Texture);
+
 	player->Draw(viewProjection_);
 	for (Enemy* enemy : enemys_) {
 		enemy->Draw(viewProjection_);
@@ -114,6 +116,7 @@ void GamePlayState::Draw()
 
 
 	//Sprite描画ここから
+
 	//sprite->Draw(worldTransform_Sprite, Texture);
 
 
