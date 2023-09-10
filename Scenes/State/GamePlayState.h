@@ -62,6 +62,7 @@ private:
 	//3Dオブジェクトたち
 	Player* player = nullptr;
 	std::list<Enemy*> enemys_;
+	Enemy* enemy_;
 	Sphere* sphere;
 	Wall* wall = nullptr;
 	Ground* ground = nullptr;

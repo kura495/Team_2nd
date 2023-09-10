@@ -39,6 +39,10 @@ void GamePlayState::Initialize()
 	ground->Initialize(groundModel);
 
 	EnemySpawn(Vector3(10, -1, 0));
+
+	EnemySpawn(Vector3(20, -1, 12));
+
+	EnemySpawn(Vector3(-12, -1, -10));
 	//
 	//2Dオブジェクト作成
 	sprite = new Sprite();
@@ -161,7 +165,7 @@ void GamePlayState::Draw()
 }
 
 void GamePlayState::EnemySpawn(const Vector3& position) {
-	Enemy* enemy_ = new Enemy();
+	enemy_ = new Enemy();
 	enemy_->Initialize(enemyModel);
 	enemy_->SetPosition(position);
 	enemys_.push_back(enemy_);

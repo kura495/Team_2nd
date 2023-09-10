@@ -35,11 +35,6 @@ void Bomb::Update() {
 		explosionTimer++;
 	}
 
-	ImGui::Begin("Bomb");
-	ImGui::SliderFloat3("ExplosionScale", &worldTransformExplosion_.scale_.x, -360.0f, 360.0f);
-	ImGui::SliderInt("ExplosionTimer", &explosionTimer, 0, 160);
-	ImGui::End();
-
 	worldTransform_.UpdateMatrix();
 	worldTransformExplosion_.UpdateMatrix();
 }

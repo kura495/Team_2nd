@@ -2,7 +2,22 @@
 
 void GameSelectState::Initialize()
 {
+	textureManager_ = TextureManager::GetInstance();
 
+	stage1 = new Sprite();
+	stage1->Initialize(Stage1SpriteLeftTop[0], Stage1SpriteLeftBottom[0], Stage1SpriteRightTop[1], Stage1SpriteRightBottom[1]);
+	worldTransform_Stage1Sprite.Initialize();
+	stage1Tex = textureManager_->LoadTexture("resources/Stage1.png");
+
+	stage2 = new Sprite();
+	stage2->Initialize(Stage2SpriteLeftTop[0], Stage2SpriteLeftBottom[0], Stage2SpriteRightTop[1], Stage2SpriteRightBottom[1]);
+	worldTransform_Stage2Sprite.Initialize();
+	stage2Tex = textureManager_->LoadTexture("resources/Stage2.png");
+
+	stage3 = new Sprite();
+	stage3->Initialize(Stage3SpriteLeftTop[0], Stage3SpriteLeftBottom[0], Stage3SpriteRightTop[1], Stage3SpriteRightBottom[1]);
+	worldTransform_Stage3Sprite.Initialize();
+	stage3Tex = textureManager_->LoadTexture("resources/Stage3.png");
 }
 
 void GameSelectState::Update()
@@ -13,6 +28,12 @@ void GameSelectState::Update()
 	ImGui::Text("ReturnStage : X Button");
 	ImGui::Text("%d", stickTimer);
 	ImGui::End();
+
+	/*ImGui::Begin("Sprite");
+	ImGui::SliderFloat3("Sprite1", &worldTransform_Stage1Sprite.translation_.x, -1280, 1280);
+	ImGui::SliderFloat3("Sprite2", &worldTransform_Stage2Sprite.translation_.x, -1280, 1280);
+	ImGui::SliderFloat3("Sprite3", &worldTransform_Stage3Sprite.translation_.x, -1280, 1280);
+	ImGui::End();*/
 
 	if (Input::GetInstance()->GetJoystickState(0, joyState))
 	{
@@ -72,5 +93,13 @@ void GameSelectState::Update()
 
 void GameSelectState::Draw()
 {
-
+	if (selectStageNo == 1) {
+		stage1->Draw(worldTransform_Stage1Sprite, stage1Tex);
+	}
+	if (selectStageNo == 2) {
+		stage2->Draw(worldTransform_Stage2Sprite, stage2Tex);
+	}
+	if (selectStageNo == 3) {
+		stage3->Draw(worldTransform_Stage3Sprite, stage3Tex);
+	}
 }
