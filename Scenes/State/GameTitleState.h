@@ -12,4 +12,5 @@ public:
 private:
 	Input* input = nullptr;
 	XINPUT_STATE joyState;
+	bool aButtonPressed = false;
 };

@@ -14,7 +14,17 @@ void GameTitleState::Update()
 	{
 		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_A)
 		{
-			StateNo = 1;
+			if (!aButtonPressed)
+			{
+				StateNo = 1;
+				
+				aButtonPressed = true;
+
+			}
+		}
+		else
+		{
+			aButtonPressed = false;
 		}
 	}
 }

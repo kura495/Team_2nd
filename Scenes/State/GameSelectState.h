@@ -14,4 +14,8 @@ private:
 	XINPUT_STATE joyState;
 	
 	int selectStageNo = 1;
+
+	bool xButtonPressed = false;
+	bool bButtonPressed = false;
+	bool aButtonPressed = true;
 };

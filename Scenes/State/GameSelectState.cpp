@@ -9,7 +9,7 @@ void GameSelectState::Update()
 {
 	ImGui::Begin("Info");
 	ImGui::SliderInt("SelectStageNo", &selectStageNo, 1, 3);
-	ImGui::Text("StageDecision : Y Button");
+	ImGui::Text("StageDecision : A Button");
 	ImGui::Text("NextStage : B Button");
 	ImGui::Text("ReturnStage : X Button");
 	ImGui::End();
@@ -19,28 +19,60 @@ void GameSelectState::Update()
 		//NextStage
 		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_B)
 		{
-			if (selectStageNo > 3) {
-				selectStageNo = 1;
-			}
-			else {
-				selectStageNo += 1;
+			if (!bButtonPressed)
+			{
+				if (selectStageNo > 2) {
+					selectStageNo = 1;
+				}
+				else {
+					selectStageNo += 1;
+				}
+
+				bButtonPressed = true;
 			}
 		}
+		else
+		{
+			bButtonPressed = false;
+		}
+
 		//ReturnStage
 		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_X)
 		{
-			if (selectStageNo < 1) {
-				selectStageNo = 3;
-			}
-			else {
-				selectStageNo -= 1;
+			if (!xButtonPressed)
+			{
+				if (selectStageNo < 2) {
+					selectStageNo = 3;
+				}
+				else {
+					selectStageNo -= 1;
+				}
+
+				xButtonPressed = true;
+
 			}
 		}
-		//DecisionStage
-		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_Y)
+		else
 		{
-			StateNo = selectStageNo + 1;
+			xButtonPressed = false;
 		}
+
+		//DecisionStage
+		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_A)
+		{
+			if (!aButtonPressed)
+			{
+				StateNo = selectStageNo + 1;
+
+				aButtonPressed = true;
+
+			}
+		}
+		else
+		{
+			aButtonPressed = false;
+		}
+
 	}
 }
 
