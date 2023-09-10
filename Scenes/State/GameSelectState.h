@@ -16,10 +16,8 @@ private:
 	
 	int selectStageNo = 1;
 
-	bool xButtonPressed = false;
-	bool bButtonPressed = false;
 	bool aButtonPressed = true;
 
 	const float threshold = 0.7f;
-	int stickTimer = 10;
+	int stickTimer = 5;
 };
