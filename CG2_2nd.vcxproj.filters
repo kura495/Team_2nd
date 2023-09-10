@@ -100,6 +100,9 @@
     <Filter Include="ソース ファイル\GameObject\Enemy">
       <UniqueIdentifier>{a58e1287-bfa2-482f-987f-a3b502367186}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\GameObject\Wall">
+      <UniqueIdentifier>{63395035-a1ff-4cee-b2e1-e3fc1d43d7f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -218,6 +221,9 @@
     </ClCompile>
     <ClCompile Include="Scenes\State\GameSelectState.cpp">
       <Filter>ソース ファイル\Scenes\State</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Wall\Wall.cpp">
+      <Filter>ソース ファイル\GameObject\Wall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -376,6 +382,9 @@
     </ClInclude>
     <ClInclude Include="Scenes\State\GameSelectState.h">
       <Filter>ヘッダー ファイル\Scenes\State</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Wall\Wall.h">
+      <Filter>ヘッダー ファイル\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

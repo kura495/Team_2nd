@@ -25,34 +25,50 @@ void Player::Update()
 {
 	if (Input::GetInstance()->GetJoystickState(0, joyState)) {
 		if (joyState.Gamepad.sThumbLX != 0 || joyState.Gamepad.sThumbLY != 0) {
-			// 速さ
-			const float moveSpeed = 0.3f;
-			// 移動量
-			Vector3 move = {
-				(float)joyState.Gamepad.sThumbLX / SHRT_MAX, 0.0f,
-				(float)joyState.Gamepad.sThumbLY / SHRT_MAX };
-
-			if (Length(move) > threshold)
+			if (isTouchObject == false)
 			{
-				isMove = true;
+				// 速さ
+				const float moveSpeed = 0.3f;
+				// 移動量
+				Vector3 move = {
+					(float)joyState.Gamepad.sThumbLX / SHRT_MAX, 0.0f,
+					(float)joyState.Gamepad.sThumbLY / SHRT_MAX };
+
+				if (Length(move) > threshold)
+				{
+					isMove = true;
+				}
+
+				if (isMove == true)
+				{
+					//反映
+					move.x = Normalize(move).x * moveSpeed;
+					move.y = Normalize(move).y * moveSpeed;
+					move.z = Normalize(move).z * moveSpeed;
+
+					//目標角度の算出
+					angle_ = std::atan2(move.x, move.z);
+
+				}
+
+
+				//移動量
+				worldTransform_.translation_.x = worldTransform_.translation_.x + move.x;
+				worldTransform_.translation_.y = worldTransform_.translation_.y + move.y;
+				worldTransform_.translation_.z = worldTransform_.translation_.z + move.z;
 			}
 
-			if (isMove == true)
+			else
 			{
-				//反映
-				move.x = Normalize(move).x * moveSpeed;
-				move.y = Normalize(move).y * moveSpeed;
-				move.z = Normalize(move).z * moveSpeed;
+				////移動量
+				//worldTransform_.translation_.x = worldTransform_.translation_.x + 0.3f;
+				//worldTransform_.translation_.y = worldTransform_.translation_.y;
+				//worldTransform_.translation_.z = worldTransform_.translation_.z + 0.3f;
 
-				//目標角度の算出
-				angle_ = std::atan2(move.x, move.z);
+
+				isTouchObject = false;
 
 			}
-			//移動量
-			worldTransform_.translation_.x = worldTransform_.translation_.x + move.x;
-			worldTransform_.translation_.y = worldTransform_.translation_.y + move.y;
-			worldTransform_.translation_.z = worldTransform_.translation_.z + move.z;
-
 			//// Y軸周り角度(θy)	歩いている方向に顔を向ける
 			//worldTransform_.rotation_.y = LerpShortAngle(worldTransform_.rotation_.y, angle_, 0.1f);
 
@@ -115,6 +131,20 @@ void Player::Draw(const ViewProjection& viewProjection)
 		bomb->Draw(viewProjection);
 	}
 
+}
+
+Vector3 Player::GetWorldPosition()
+{
+	Vector3 worldPos;
+	worldPos.x = worldTransform_.matWorld_.m[3][0];
+	worldPos.y = worldTransform_.matWorld_.m[3][1];
+	worldPos.z = worldTransform_.matWorld_.m[3][2];
+	return worldPos;
+}
+
+void Player::OnCollision()
+{
+	//isTouchObject = true;
 }
 
 void Player::ApplyGlobalVariables()

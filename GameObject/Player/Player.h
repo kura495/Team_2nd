@@ -9,7 +9,7 @@
 
 #include "GameObject/Bomb/Bomb.h"
 
-class Player
+class Player :public Collider
 {
 public:
 	void Initialize(Model* explotionModel, Model* bombModel);
@@ -21,6 +21,9 @@ public:
 	/// </summary>
 	/// <returns>爆弾のリスト</returns>
 	const std::list<Bomb*>& GetBombs() const { return bombs_; }
+
+	Vector3 GetWorldPosition() override;
+	void OnCollision()override;
 
 private:
 	void ApplyGlobalVariables();
@@ -51,6 +54,8 @@ private:
 
 	bool isMove = false;	//プレイヤーが移動しているか　false:移動していない
 	bool xButtonPressed = false;	//xボタンを押したか	//false : 押していない
+	bool isTouchObject = false;	//プレイヤーが他オブジェクトと接触しているか	//false : 接触していない
+
 
 	const float threshold = 0.7f;	//しきい値
 	float angle_;	//目標角度

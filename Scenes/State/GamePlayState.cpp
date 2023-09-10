@@ -27,6 +27,8 @@ void GamePlayState::Initialize()
 	player->Initialize(explosionModel_, bombModel_);
 	sphere = new Sphere();
 	sphere->Initialize();
+	wall = new Wall();
+	wall->Initialize();
 
 	EnemySpawn(Vector3(10, 10, 0));
 	//
@@ -70,6 +72,7 @@ void GamePlayState::Update()
 	viewProjection_.UpdateMatrix();
 	camera_->Update();
 	player->Update();
+	wall->Update();
 
 	input->GetJoystickState(0, JoyState);
 
@@ -86,6 +89,9 @@ void GamePlayState::Update()
 
 	//Collision
 	collisionManager_->ClearCollider();
+
+	collisionManager_->AddCollider(player);
+	collisionManager_->AddCollider(wall);
 
 	for (Enemy* enemy : enemys_) {
 		collisionManager_->AddCollider(enemy);
@@ -117,7 +123,7 @@ void GamePlayState::Draw()
 	//3Dモデル描画ここから
 	
 	//sphere->Draw(worldTransform_, viewProjection_, Texture);
-
+	wall->Draw(viewProjection_);
 	player->Draw(viewProjection_);
 	for (Enemy* enemy : enemys_) {
 		enemy->Draw(viewProjection_);
