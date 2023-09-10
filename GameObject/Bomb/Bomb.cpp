@@ -2,7 +2,7 @@
 #include <cassert>
 #include "ImGuiManager.h"
 
-void Bomb::Initialize(Model bombModel,Model explosionModel) {
+void Bomb::Initialize(Model* bombModel,Model* explosionModel) {
 	bombModel_ = bombModel;
 	explosionModel_ = explosionModel;
 
@@ -48,10 +48,10 @@ void Bomb::Update() {
 
 void Bomb::Draw(const ViewProjection& viewProjection) {
 	if (isSetBomb == true) {
-		bombModel_.Draw(worldTransform_, viewProjection);
+		bombModel_->Draw(worldTransform_, viewProjection);
 	}
 	if (isExplosionBomb == true) {
-		explosionModel_.Draw(worldTransformExplosion_, viewProjection);
+		explosionModel_->Draw(worldTransformExplosion_, viewProjection);
 	}
 }
 

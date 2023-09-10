@@ -7,7 +7,7 @@
 
 class Bomb : public Collider {
 public:
-	void Initialize(Model bombModel, Model explosionModel);
+	void Initialize(Model* bombModel, Model* explosionModel);
 
 	void Update();
 
@@ -25,8 +25,8 @@ private:
 	WorldTransform worldTransform_;
 	WorldTransform worldTransformExplosion_;
 
-	Model bombModel_;
-	Model explosionModel_;
+	Model* bombModel_;
+	Model* explosionModel_;
 
 	bool isSetBomb = false;
 	bool isExplosionBomb = false;

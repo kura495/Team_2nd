@@ -13,8 +13,18 @@ void GamePlayState::Initialize()
 	collisionManager_ = new CollisionManager();
 	//
 	//3Dオブジェクト生成
+
+	Model* bombModel_;
+	Model* explosionModel_;
+
+	model = Model::CreateModelFromObj("resources", "bunny.obj");
+
+	bombModel_ = Model::CreateModelFromObj("resources", "Bomb.obj");
+	explosionModel_ = Model::CreateModelFromObj("resources", "ExplosionBomb.obj");
+
+
 	player = new Player();
-	player->Initialize();
+	player->Initialize(explosionModel_, bombModel_);
 	sphere = new Sphere();
 	sphere->Initialize();
 

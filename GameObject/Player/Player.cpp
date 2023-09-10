@@ -1,8 +1,12 @@
 ﻿#include "Player.h"
 
-void Player::Initialize()
+void Player::Initialize(Model* explotionModel, Model* bombModel)
 {
 	input = Input::GetInstance();
+
+	explotionModel_ = explotionModel;
+	bombModel_ = bombModel;
+
 	model = Model::CreateModelFromObj("resources", "bunny.obj");
 
 	worldTransform_.Initialize();
@@ -136,7 +140,7 @@ void Player::Attack()
 	{
 		//爆弾の生成と初期化
 		newBomb = new Bomb();
-		newBomb->Initialize();
+		newBomb->Initialize(bombModel_, explotionModel_);
 
 		//爆弾の設置(プレイヤーと同じ位置に)
 		newBomb->SetBomb(worldTransform_);
@@ -156,7 +160,7 @@ void Player::Attack()
 			{
 				//爆弾の生成と初期化
 				newBomb = new Bomb();
-				newBomb->Initialize();
+				newBomb->Initialize(bombModel_, explotionModel_);
 
 				//爆弾の設置(プレイヤーと同じ位置に)
 				newBomb->SetBomb(worldTransform_);

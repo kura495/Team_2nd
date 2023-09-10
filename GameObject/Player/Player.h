@@ -12,7 +12,7 @@
 class Player
 {
 public:
-	void Initialize();
+	void Initialize(Model* explotionModel, Model* bombModel);
 	void Update();
 	void Draw(const ViewProjection& viewProjection);
 
@@ -36,6 +36,8 @@ private:
 
 	Input* input = nullptr;
 	Model* model = nullptr;
+	Model* explotionModel_ = {};
+	Model* bombModel_ = {};
 	GlobalVariables* globalVariables = nullptr;
 	WorldTransform worldTransform_;
 	float speed = 0.0f;
