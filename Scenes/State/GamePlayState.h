@@ -15,6 +15,7 @@
 #pragma comment(lib,"dinput8.lib")
 #pragma comment(lib,"dxguid.lib")
 #include "GameObject/Camera/Camera.h"
+#include "GameObject/Camera/GameCamera.h"
 #include "GameObject/Player/Player.h"
 #include "GameObject/Enemy/Enemy.h"
 #include "GameObject/Wall/Wall.h"
@@ -38,6 +39,7 @@ private:
 	//基本機能ズ
 	MyEngine* myEngine = nullptr;
 	Camera* camera_ = nullptr;
+	GameCamera* gameCamera_ = nullptr;
 	TextureManager* textureManager_ = nullptr;	
 	Input* input = nullptr;
 	Audio* audio=nullptr;

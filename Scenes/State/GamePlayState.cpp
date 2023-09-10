@@ -5,6 +5,9 @@ void GamePlayState::Initialize()
 	//基本機能生成
 	camera_ = new Camera();
 	camera_->Initialize(1280, 720);
+	gameCamera_ = new GameCamera();
+	gameCamera_->Initalize();
+
 	input = Input::GetInstance();
 	audio = Audio::GetInstance();
 	textureManager_ = TextureManager::GetInstance();
@@ -30,7 +33,7 @@ void GamePlayState::Initialize()
 	wall = new Wall();
 	wall->Initialize();
 
-	EnemySpawn(Vector3(10, 10, 0));
+	EnemySpawn(Vector3(10, 0, 0));
 	//
 	//2Dオブジェクト作成
 	sprite = new Sprite();
@@ -58,6 +61,15 @@ void GamePlayState::Update()
 		camera_->DebugCamera(false);
 	}
 #endif // _DEBUG
+
+#pragma region GameCamera
+	gameCamera_->Update();
+	viewProjection_.translation_ = gameCamera_->GetViewProjection()->translation_;
+	viewProjection_.rotation_ = gameCamera_->GetViewProjection()->rotation_;
+#pragma endregion
+
+
+
 	GlobalVariables::GetInstance()->Update();
 
 	ImGui::Begin("Sound");
