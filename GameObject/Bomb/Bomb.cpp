@@ -4,7 +4,7 @@
 
 void Bomb::Initialize() {
 	bombModel_.reset(Model::CreateModelFromObj("resources", "Bomb.obj"));
-	explosionModel_.reset(Model::CreateModelFromObj("resources", "Bomb.obj"));
+	explosionModel_.reset(Model::CreateModelFromObj("resources", "ExplosionBomb.obj"));
 
 	worldTransform_.Initialize();
 	worldTransform_.scale_ = { 1.0f, 1.0f, 1.0f };
@@ -19,6 +19,7 @@ void Bomb::Update() {
 		worldTransformExplosion_.scale_.x += 0.2f;
 		worldTransformExplosion_.scale_.y += 0.2f;
 		worldTransformExplosion_.scale_.z += 0.2f;
+		worldTransformExplosion_.rotation_.y += 0.1f;
 	}
 	else {
 		explosionTimer = 0;
