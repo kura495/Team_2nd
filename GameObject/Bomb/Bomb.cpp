@@ -2,9 +2,12 @@
 #include <cassert>
 #include "ImGuiManager.h"
 
-void Bomb::Initialize() {
-	bombModel_.reset(Model::CreateModelFromObj("resources", "Bomb.obj"));
-	explosionModel_.reset(Model::CreateModelFromObj("resources", "ExplosionBomb.obj"));
+void Bomb::Initialize(Model bombModel,Model explosionModel) {
+	bombModel_ = bombModel;
+	explosionModel_ = explosionModel;
+
+	/*bombModel_.reset(Model::CreateModelFromObj("resources", "Bomb.obj"));
+	explosionModel_.reset(Model::CreateModelFromObj("resources", "ExplosionBomb.obj"));*/
 
 	worldTransform_.Initialize();
 	worldTransform_.scale_ = { 1.0f, 1.0f, 1.0f };
@@ -45,10 +48,10 @@ void Bomb::Update() {
 
 void Bomb::Draw(const ViewProjection& viewProjection) {
 	if (isSetBomb == true) {
-		bombModel_->Draw(worldTransform_, viewProjection);
+		bombModel_.Draw(worldTransform_, viewProjection);
 	}
 	if (isExplosionBomb == true) {
-		explosionModel_->Draw(worldTransformExplosion_, viewProjection);
+		explosionModel_.Draw(worldTransformExplosion_, viewProjection);
 	}
 }
 
