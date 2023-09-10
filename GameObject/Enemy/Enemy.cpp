@@ -1,15 +1,18 @@
 #include "Enemy.h"
 
-void Enemy::Initialize() {
+void Enemy::Initialize(Model* enemyModel) {
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = { 0.0f,0.0f,0.0f };
 	worldTransform_.rotation_ = { 0.0f,0.0f,0.0f };
 	worldTransform_.scale_ = { 1.0f,1.0f,1.0f };
-
-	enemyModel_.reset(Model::CreateModelFromObj("resources", "bunny.obj"));
+	enemyModel_ = enemyModel;
 }
 
 void Enemy::Update() {
+	/*ImGui::Begin("Enemy");
+	ImGui::SliderFloat3("translation", &worldTransform_.translation_.x, -20, 20);
+	ImGui::End();*/
+
 	worldTransform_.rotation_.y += 0.2f;
 	worldTransform_.UpdateMatrix();
 }

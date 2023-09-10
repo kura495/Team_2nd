@@ -106,6 +106,12 @@
     <Filter Include="ヘッダー ファイル\GameObject\Wall">
       <UniqueIdentifier>{2eabacbd-11a1-451b-ad12-9b8e3a126d8b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\GameObject\Ground">
+      <UniqueIdentifier>{bdc94636-1686-4d52-acd6-ae6892b88635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameObject\Ground">
+      <UniqueIdentifier>{571868a2-2600-4cc3-9a45-274d5aae9150}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -230,6 +236,9 @@
     </ClCompile>
     <ClCompile Include="GameObject\Camera\GameCamera.cpp">
       <Filter>ソース ファイル\GameObject\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Ground\Ground.cpp">
+      <Filter>ソース ファイル\GameObject\Ground</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -394,6 +403,9 @@
     </ClInclude>
     <ClInclude Include="GameObject\Camera\GameCamera.h">
       <Filter>ヘッダー ファイル\GameObject\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Ground\Ground.h">
+      <Filter>ヘッダー ファイル\GameObject\Ground</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,7 +15,7 @@ void Bomb::Initialize(Model* bombModel,Model* explosionModel) {
 }
 
 void Bomb::Update() {
-	if (explosionTimer <= 120) {
+	if (explosionTimer <= 60) {
 		if (isExplosionBomb == true) {
 			worldTransformExplosion_.scale_.x += 0.2f;
 			worldTransformExplosion_.scale_.y += 0.2f;

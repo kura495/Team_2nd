@@ -7,7 +7,7 @@
 
 class Enemy : public Collider {
 public:
-	void Initialize();
+	void Initialize(Model* enemyModel);
 
 	void Update();
 
@@ -23,7 +23,7 @@ public:
 
 private:
 	WorldTransform worldTransform_;
-	std::unique_ptr<Model> enemyModel_ = nullptr;
+	Model* enemyModel_ = nullptr;
 
 	bool isDead_ = false;
 };

@@ -25,6 +25,9 @@ void GamePlayState::Initialize()
 	bombModel_ = Model::CreateModelFromObj("resources", "Bomb.obj");
 	explosionModel_ = Model::CreateModelFromObj("resources", "ExplosionBomb.obj");
 
+	enemyModel = Model::CreateModelFromObj("resources", "enemy.obj");
+
+	groundModel = Model::CreateModelFromObj("resources", "ground.obj");
 
 	player = new Player();
 	player->Initialize(explosionModel_, bombModel_);
@@ -32,8 +35,10 @@ void GamePlayState::Initialize()
 	sphere->Initialize();
 	wall = new Wall();
 	wall->Initialize();
+	ground = new Ground();
+	ground->Initialize(groundModel);
 
-	EnemySpawn(Vector3(10, 0, 0));
+	EnemySpawn(Vector3(10, -1, 0));
 	//
 	//2Dオブジェクト作成
 	sprite = new Sprite();
@@ -85,6 +90,7 @@ void GamePlayState::Update()
 	camera_->Update();
 	player->Update();
 	wall->Update();
+	ground->Update();
 
 	input->GetJoystickState(0, JoyState);
 
@@ -136,6 +142,7 @@ void GamePlayState::Draw()
 	
 	//sphere->Draw(worldTransform_, viewProjection_, Texture);
 	wall->Draw(viewProjection_);
+	ground->Draw(viewProjection_);
 	player->Draw(viewProjection_);
 	for (Enemy* enemy : enemys_) {
 		enemy->Draw(viewProjection_);
@@ -155,7 +162,7 @@ void GamePlayState::Draw()
 
 void GamePlayState::EnemySpawn(const Vector3& position) {
 	Enemy* enemy_ = new Enemy();
-	enemy_->Initialize();
+	enemy_->Initialize(enemyModel);
 	enemy_->SetPosition(position);
 	enemys_.push_back(enemy_);
 }

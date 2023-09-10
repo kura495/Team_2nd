@@ -19,6 +19,7 @@
 #include "GameObject/Player/Player.h"
 #include "GameObject/Enemy/Enemy.h"
 #include "GameObject/Wall/Wall.h"
+#include "GameObject/Ground/Ground.h"
 #include "WorldTransform.h"
 #include "ViewProjection.h"
 #include "Math_Structs.h"
@@ -47,6 +48,8 @@ private:
 	DirectXCommon* DirectX_ = nullptr;
 	GlobalVariables* globalVariables = nullptr;
 	Model* model = nullptr;
+	Model* groundModel = nullptr;
+	Model* enemyModel;
 	//
 	WorldTransform worldTransform_;
 	WorldTransform worldTransform_Sprite;
@@ -61,6 +64,7 @@ private:
 	std::list<Enemy*> enemys_;
 	Sphere* sphere;
 	Wall* wall = nullptr;
+	Ground* ground = nullptr;
 	//2Dオブジェクトたち
 	Sprite* sprite;
 	//
