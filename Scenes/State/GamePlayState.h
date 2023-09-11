@@ -36,6 +36,7 @@ public:
 	void Draw();
 
 	void EnemySpawn(const Vector3& position);
+	void WallSpawn(const Vector3& position);
 
 private:
 	//基本機能ズ
@@ -51,6 +52,9 @@ private:
 	Model* model = nullptr;
 	Model* groundModel = nullptr;
 	Model* enemyModel;
+	Model* bombModel_;
+	Model* explosionModel_;
+	Model* wallModel_;
 	//
 	WorldTransform worldTransform_;
 	WorldTransform worldTransform_Sprite;
@@ -66,7 +70,8 @@ private:
 	std::list<Enemy*> enemys_;
 	Enemy* enemy_;
 	Sphere* sphere;
-	Wall* wall = nullptr;
+	std::list<Wall*>walls_;
+	Wall* wall_ = nullptr;
 	Ground* ground = nullptr;
 	Switch* switch_ = nullptr;
 	//2Dオブジェクトたち

@@ -1,11 +1,12 @@
 ﻿#include "Player.h"
 
-void Player::Initialize(Model* explotionModel, Model* bombModel)
+void Player::Initialize(Model* explotionModel, Model* bombModel, Wall* wall)
 {
 	input = Input::GetInstance();
 
 	explotionModel_ = explotionModel;
 	bombModel_ = bombModel;
+	wall_ = wall;
 
 	model = Model::CreateModelFromObj("resources", "bunny.obj");
 
@@ -29,6 +30,9 @@ void Player::Update()
 			{
 				// 速さ
 				const float moveSpeed = 0.3f;
+
+				
+
 				// 移動量
 				Vector3 move = {
 					(float)joyState.Gamepad.sThumbLX / SHRT_MAX, 0.0f,
@@ -42,9 +46,9 @@ void Player::Update()
 				if (isMove == true)
 				{
 					//反映
-					move.x = Normalize(move).x * moveSpeed;
-					move.y = Normalize(move).y * moveSpeed;
-					move.z = Normalize(move).z * moveSpeed;
+					move.x = Normalize(move).x * moveSpeed ;
+					move.y = Normalize(move).y * moveSpeed ;
+					move.z = Normalize(move).z * moveSpeed ;
 
 					//目標角度の算出
 					angle_ = std::atan2(move.x, move.z);
@@ -56,19 +60,44 @@ void Player::Update()
 				worldTransform_.translation_.x = worldTransform_.translation_.x + move.x;
 				worldTransform_.translation_.y = worldTransform_.translation_.y + move.y;
 				worldTransform_.translation_.z = worldTransform_.translation_.z + move.z;
+
 			}
 
-			else
+			else if (isTouchObject == true)
 			{
-				////移動量
-				//worldTransform_.translation_.x = worldTransform_.translation_.x + 0.3f;
-				//worldTransform_.translation_.y = worldTransform_.translation_.y;
-				//worldTransform_.translation_.z = worldTransform_.translation_.z + 0.3f;
-
+				
+				collisionDirection = CollisionDirection();
+				
+				if (collisionDirection.x > 0)
+				{
+					//移動量
+					worldTransform_.translation_.x = worldTransform_.translation_.x - 0.1f;
+					isTouchObject = false;
+				}
+				else if (collisionDirection.x < 0)
+				{
+					//移動量
+					worldTransform_.translation_.x = worldTransform_.translation_.x + 0.1f;
+					isTouchObject = false;
+				}
+			
+				else if (collisionDirection.z > 0)
+				{
+					//移動量
+					worldTransform_.translation_.z = worldTransform_.translation_.z - 0.1f;
+					isTouchObject = false;
+				}
+				else if (collisionDirection.z < 0)
+				{
+					//移動量
+					worldTransform_.translation_.z = worldTransform_.translation_.z + 0.1f;
+					isTouchObject = false;
+				}
 
 				isTouchObject = false;
-
 			}
+
+
 			//// Y軸周り角度(θy)	歩いている方向に顔を向ける
 			//worldTransform_.rotation_.y = LerpShortAngle(worldTransform_.rotation_.y, angle_, 0.1f);
 
@@ -77,18 +106,18 @@ void Player::Update()
 		}
 	}
 
-	if (input->IspushKey(DIK_W)) {
-		worldTransform_.translation_.z += 0.5f * speed;
-	}
-	else if (input->IspushKey(DIK_S)) {
-		worldTransform_.translation_.z -= 0.5f * speed;
-	}
-	if (input->IspushKey(DIK_A)) {
-		worldTransform_.translation_.x -= 0.5f * speed;
-	}
-	else if (input->IspushKey(DIK_D)) {
-		worldTransform_.translation_.x += 0.5f * speed;
-	}
+	//if (input->IspushKey(DIK_W)) {
+	//	worldTransform_.translation_.z += 0.5f * speed;
+	//}
+	//else if (input->IspushKey(DIK_S)) {
+	//	worldTransform_.translation_.z -= 0.5f * speed;
+	//}
+	//if (input->IspushKey(DIK_A)) {
+	//	worldTransform_.translation_.x -= 0.5f * speed;
+	//}
+	//else if (input->IspushKey(DIK_D)) {
+	//	worldTransform_.translation_.x += 0.5f * speed;
+	//}
 	//if (input->IspushKey(DIK_Q)) {
 	//	worldTransform_.translation_.z += 0.5f * speed;
 	//}
@@ -144,7 +173,7 @@ Vector3 Player::GetWorldPosition()
 
 void Player::OnCollision()
 {
-	//isTouchObject = true;
+	isTouchObject = true;
 }
 
 void Player::ApplyGlobalVariables()
@@ -159,6 +188,7 @@ void Player::ImGui()
 	ImGui::SliderFloat3("translation", &worldTransform_.translation_.x, -10, 10);
 	ImGui::SliderFloat3("rotation", &worldTransform_.rotation_.x, -10, 10);
 	ImGui::SliderFloat3("scale", &worldTransform_.scale_.x, -10, 10);
+	ImGui::Text("%f,%f,%f", &collisionDirection.x, &collisionDirection.y, &collisionDirection.z);
 	ImGui::End();
 }
 
@@ -222,6 +252,35 @@ void Player::Attack()
 	}
 
 
+}
+
+Vector3 Player::CollisionDirection()
+{
+	Vector3 direction;
+	direction.x = wall_->GetWorldPosition().x - GetWorldPosition().x;
+	direction.y = wall_->GetWorldPosition().y - GetWorldPosition().y;
+	direction.z = wall_->GetWorldPosition().z - GetWorldPosition().z;
+
+	//正規化
+	Vector3 distance = Normalize(direction);
+
+	
+
+	if (distance.x > 0)
+	{
+		direction.x /= distance.x;
+	}
+	if (distance.y > 0)
+	{
+		direction.y /= distance.y;
+	}
+	if (distance.z > 0)
+	{
+		direction.z /= distance.z;
+	}
+
+	return direction;
+	
 }
 
 float Player::Lerp(const float& a, const float& b, float t) {
