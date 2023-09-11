@@ -6,12 +6,13 @@
 #include "Utility/CollisionConfig.h"
 #include "Input.h"
 #include "GameObject/Player/Player.h"
+#include <future>
 
 class Switch : public Collider {
 public:
 	void Initialize(Model* switchModel,Vector3 translation);
 
-	void Update(Player* player);
+	void Update();
 
 	void Draw(const ViewProjection& viewProjection);
 
@@ -26,7 +27,4 @@ private:
 
 	Input* input = nullptr;
 	XINPUT_STATE joyState;
-
-	int timer = 59;
-	bool timerOn = false;
 };

@@ -101,7 +101,7 @@ void GamePlayState::Update()
 	player->Update();
 	
 	ground->Update();
-	switch_->Update(player);
+	switch_->Update();
 
 	input->GetJoystickState(0, JoyState);
 

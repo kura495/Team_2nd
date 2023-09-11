@@ -242,13 +242,13 @@ void Player::Attack()
 
 
 		//爆発させる
-		/*if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_B)
+		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_B)
 		{
 			for (Bomb* bomb : bombs_)
 			{
 				bomb->ExplosionBomb();
 			}
-		}*/
+		}
 	}
 
 
