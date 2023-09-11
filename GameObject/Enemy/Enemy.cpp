@@ -6,6 +6,8 @@ void Enemy::Initialize(Model* enemyModel) {
 	worldTransform_.rotation_ = { 0.0f,0.0f,0.0f };
 	worldTransform_.scale_ = { 1.0f,1.0f,1.0f };
 	enemyModel_ = enemyModel;
+	SetcollisionAttribute(kCollitionAttributeEnemy);
+	SetcollisionMask(~kCollitionAttributeEnemy );
 }
 
 void Enemy::Update() {

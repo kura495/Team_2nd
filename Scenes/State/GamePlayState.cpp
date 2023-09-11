@@ -123,15 +123,14 @@ void GamePlayState::Update()
 
 	//Collision
 	collisionManager_->ClearCollider();
-	collisionManagerPlayer_->ClearCollider();
+	//collisionManagerPlayer_->ClearCollider();
 
-	collisionManagerPlayer_->AddCollider(player);
+	collisionManager_->AddCollider(player);
 	
 
 	for (Wall* wall : walls_) {
-		collisionManagerPlayer_->AddCollider(wall);
+		collisionManager_->AddCollider(wall);
 	}
-
 	for (Enemy* enemy : enemys_) {
 		collisionManager_->AddCollider(enemy);
 	}
@@ -140,7 +139,7 @@ void GamePlayState::Update()
 	}
 
 	collisionManager_->CheckAllCollisions();
-	collisionManagerPlayer_->CheckAllCollisions();
+	//collisionManagerPlayer_->CheckAllCollisions();
 
 	ImGui::Begin("System");
 	if (input->PushAButton(JoyState)) {

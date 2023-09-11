@@ -16,7 +16,7 @@ public:
 	/// 衝突属性
 	/// </summary>
 	/// <param name="collisionAttribute"></param>
-	void SetcollitionAttribute(uint32_t collisionAttribute) {
+	void SetcollisionAttribute(uint32_t collisionAttribute) {
 		collisionAttribute_ = collisionAttribute;
 	}
 	uint32_t GetcollisionMask() const { return collisionMask_; }

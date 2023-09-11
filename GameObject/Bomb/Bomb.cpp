@@ -12,6 +12,8 @@ void Bomb::Initialize(Model* bombModel,Model* explosionModel) {
 	worldTransformExplosion_.scale_ = { 0.0f, 0.0f, 0.0f };
 	worldTransform_.UpdateMatrix();
 	worldTransformExplosion_.UpdateMatrix();
+	SetcollisionAttribute(kCollitionAttributeBomb);
+	SetcollisionMask(~kCollitionAttributeBomb);
 }
 
 void Bomb::Update() {

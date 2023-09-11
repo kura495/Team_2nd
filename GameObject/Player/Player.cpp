@@ -12,14 +12,13 @@ void Player::Initialize(Model* explotionModel, Model* bombModel, Wall* wall)
 
 	worldTransform_.Initialize();
 
-
 	const char* groupName = "Player";
 
 	//GlobalVariables::GetInstance()->CreateGroup(groupName);
 	GlobalVariables::GetInstance()->AddItem(groupName, "speed", speed);
 
-
-
+	SetcollisionAttribute(kCollitionAttributePlayer);
+	SetcollisionMask(~kCollitionAttributePlayer & ~kCollitionAttributeBomb);
 }
 
 void Player::Update()
@@ -30,8 +29,6 @@ void Player::Update()
 			{
 				// 速さ
 				const float moveSpeed = 0.3f;
-
-				
 
 				// 移動量
 				Vector3 move = {
@@ -55,14 +52,12 @@ void Player::Update()
 
 				}
 
-
 				//移動量
 				worldTransform_.translation_.x = worldTransform_.translation_.x + move.x;
 				worldTransform_.translation_.y = worldTransform_.translation_.y + move.y;
 				worldTransform_.translation_.z = worldTransform_.translation_.z + move.z;
 
 			}
-
 			else if (isTouchObject == true)
 			{
 				
@@ -80,7 +75,6 @@ void Player::Update()
 					worldTransform_.translation_.x = worldTransform_.translation_.x + 0.1f;
 					isTouchObject = false;
 				}
-			
 				else if (collisionDirection.z > 0)
 				{
 					//移動量
