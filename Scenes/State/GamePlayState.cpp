@@ -18,24 +18,27 @@ void GamePlayState::Initialize()
 	//
 	//3Dオブジェクト生成
 
-	Model* bombModel_;
-	Model* explosionModel_;
+
 
 	model = Model::CreateModelFromObj("resources", "bunny.obj");
-
 	bombModel_ = Model::CreateModelFromObj("resources", "Bomb.obj");
 	explosionModel_ = Model::CreateModelFromObj("resources", "ExplosionBomb.obj");
-
 	enemyModel = Model::CreateModelFromObj("resources", "enemy.obj");
-
+	wallModel_ = Model::CreateModelFromObj("resources", "cube.obj");
 	groundModel = Model::CreateModelFromObj("resources", "ground.obj");
 
+	
+	WallSpawn(Vector3(6, 0, 0));
+	WallSpawn(Vector3(6, 0, 2));
+
+	WallSpawn(Vector3(-5, 0, 0));
+	WallSpawn(Vector3(-5, 0, 2));
+
+
 	player = new Player();
-	player->Initialize(explosionModel_, bombModel_);
+	player->Initialize(explosionModel_, bombModel_,wall_);
 	sphere = new Sphere();
 	sphere->Initialize();
-	wall = new Wall();
-	wall->Initialize();
 	ground = new Ground();
 	ground->Initialize(groundModel);
 	switch_ = new Switch();
@@ -96,7 +99,7 @@ void GamePlayState::Update()
 	viewProjection_.UpdateMatrix();
 	camera_->Update();
 	player->Update();
-	wall->Update();
+	
 	ground->Update();
 	switch_->Update(player);
 
@@ -113,12 +116,21 @@ void GamePlayState::Update()
 		enemy->Update();
 	}
 
+	
+	for(Wall* wall : walls_) {
+		wall->Update();
+	}
+
 	//Collision
 	collisionManager_->ClearCollider();
 	collisionManagerPlayer_->ClearCollider();
 
 	collisionManagerPlayer_->AddCollider(player);
-	collisionManagerPlayer_->AddCollider(wall);
+	
+
+	for (Wall* wall : walls_) {
+		collisionManagerPlayer_->AddCollider(wall);
+	}
 
 	for (Enemy* enemy : enemys_) {
 		collisionManager_->AddCollider(enemy);
@@ -151,11 +163,14 @@ void GamePlayState::Draw()
 	//3Dモデル描画ここから
 	
 	//sphere->Draw(worldTransform_, viewProjection_, Texture);
-	wall->Draw(viewProjection_);
+	
 	ground->Draw(viewProjection_);
 	player->Draw(viewProjection_);
 	for (Enemy* enemy : enemys_) {
 		enemy->Draw(viewProjection_);
+	}
+	for (Wall* wall : walls_) {
+		wall->Draw(viewProjection_);
 	}
 	switch_->Draw(viewProjection_);
 	//3Dモデル描画ここまで	
@@ -176,4 +191,11 @@ void GamePlayState::EnemySpawn(const Vector3& position) {
 	enemy_->Initialize(enemyModel);
 	enemy_->SetPosition(position);
 	enemys_.push_back(enemy_);
+}
+
+void GamePlayState::WallSpawn(const Vector3& position) {
+	wall_ = new Wall();
+	wall_->Initialize(wallModel_);
+	wall_->SetPosition(position);
+	walls_.push_back(wall_);
 }

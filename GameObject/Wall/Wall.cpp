@@ -1,11 +1,11 @@
 ﻿#include "Wall.h"
 
-void Wall::Initialize()
+void Wall::Initialize(Model* model)
 {
-	model = Model::CreateModelFromObj("resources", "cube.obj");
-
+	model_ = model;
 	worldTransform_.Initialize();
 	worldTransform_.scale_ = { 1.0f,1.0f,1.0f };
+	worldTransform_.rotation_ = { 0.0f,0.0f,0.0f };
 	worldTransform_.translation_ = { 5.0f,0.0f,0.0f };
 
 
@@ -20,7 +20,7 @@ void Wall::Update()
 void Wall::Draw(const ViewProjection& viewProjection)
 {
 	//プレイヤーの描画
-	model->Draw(worldTransform_, viewProjection);
+	model_->Draw(worldTransform_, viewProjection);
 }
 
 Vector3 Wall::GetWorldPosition()
@@ -35,4 +35,9 @@ Vector3 Wall::GetWorldPosition()
 void Wall::OnCollision()
 {
 
+}
+
+void Wall::SetPosition(const Vector3& position) {
+	worldTransform_.translation_ = position;
+	worldTransform_.UpdateMatrix();
 }

@@ -8,11 +8,12 @@
 #include "Base/Math/MatrixCalc.h"
 
 #include "GameObject/Bomb/Bomb.h"
+#include "GameObject/Wall/Wall.h"
 
 class Player :public Collider
 {
 public:
-	void Initialize(Model* explotionModel, Model* bombModel);
+	void Initialize(Model* explotionModel, Model* bombModel, Wall* wall);
 	void Update();
 	void Draw(const ViewProjection& viewProjection);
 
@@ -28,6 +29,8 @@ public:
 private:
 	void ApplyGlobalVariables();
 	void ImGui();
+
+	Vector3 CollisionDirection();
 
 	/// <summary>
 	/// 爆弾の処理
@@ -51,11 +54,13 @@ private:
 
 	std::list<Bomb*>bombs_;	//爆弾
 	Bomb* newBomb;
+	Wall* wall_;
 
 	bool isMove = false;	//プレイヤーが移動しているか　false:移動していない
 	bool xButtonPressed = false;	//xボタンを押したか	//false : 押していない
 	bool isTouchObject = false;	//プレイヤーが他オブジェクトと接触しているか	//false : 接触していない
 
+	Vector3 collisionDirection;	//当たった方向
 
 	const float threshold = 0.7f;	//しきい値
 	float angle_;	//目標角度

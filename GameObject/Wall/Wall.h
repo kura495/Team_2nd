@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Model.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
@@ -8,7 +8,7 @@
 class Wall : public Collider
 {
 public:
-	void Initialize();
+	void Initialize(Model* model);
 	void Update();
 	void Draw(const ViewProjection& viewProjection);
 
@@ -16,10 +16,15 @@ public:
 
 	void OnCollision() override;
 
+	/// <summary>
+	/// 位置の設定
+	/// </summary>
+	void SetPosition(const Vector3& position);
+
 private:
 	WorldTransform worldTransform_;
 
 
-	Model* model = nullptr;
+	Model* model_ = nullptr;
 };
 
