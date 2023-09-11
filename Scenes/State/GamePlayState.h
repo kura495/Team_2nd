@@ -45,7 +45,7 @@ private:
 	GameCamera* gameCamera_ = nullptr;
 	TextureManager* textureManager_ = nullptr;	
 	Input* input = nullptr;
-	Audio* audio=nullptr;
+	Audio* audio = nullptr;
 	Light* light_ = nullptr;
 	DirectXCommon* DirectX_ = nullptr;
 	GlobalVariables* globalVariables = nullptr;
