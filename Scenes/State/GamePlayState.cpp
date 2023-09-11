@@ -98,7 +98,7 @@ void GamePlayState::Update()
 	player->Update();
 	wall->Update();
 	ground->Update();
-	switch_->Update();
+	switch_->Update(player);
 
 	input->GetJoystickState(0, JoyState);
 

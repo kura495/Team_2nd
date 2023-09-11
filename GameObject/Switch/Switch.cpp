@@ -9,8 +9,62 @@ void Switch::Initialize(Model* switchModel, Vector3 translation) {
 	model_ = switchModel;
 }
 
-void Switch::Update() {
+void Switch::Update(Player* player) {
 	worldTransform_.UpdateMatrix();
+
+	if (Input::GetInstance()->GetJoystickState(0, joyState))
+	{
+		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_B)
+		{
+			timerOn = true;
+		}
+	}
+
+	if (timerOn == true) {
+		for (Bomb* pBomb : player->GetBombs()) {
+			pBomb->ExplosionBomb();
+			Sleep(1000 * 1);
+		}
+	}
+	if (timer >= 60) {
+	
+		timer = 0;
+	}
+
+	/*std::list<Bomb*> pBomb;
+	pBomb = player->GetBombs();
+
+	std::list<Bomb*>::iterator itr = pBomb.begin();
+	if (timerOn == true) {
+		timer++;
+	}
+	if (timer >= 60) {
+		*itr = 0;
+		
+		for (; itr != pBomb.end();) {
+			Bomb* bomb = new Bomb;
+			bomb = *itr;
+			bomb->ExplosionBomb();
+			itr++;
+			break;
+		}
+		itr++;
+		timer = 0;
+	}*/
+
+	ImGui::Begin("Switch");
+	ImGui::Text("%d", timer);
+	ImGui::End();
+
+	/*if (timerOn == true) {
+		for (Bomb* pBomb : player->GetBombs()) {
+			for (int i = 0; i <= 60; i++) {
+				if (i <= 60) {
+					pBomb->ExplosionBomb();
+				}
+			}
+		}
+	}*/
 }
 
 void Switch::Draw(const ViewProjection& viewProjection) {

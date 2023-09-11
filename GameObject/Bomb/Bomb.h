@@ -21,6 +21,8 @@ public:
 
 	void OnCollision() override;
 
+	int GetTimer() { return explosionTimer; }
+
 private:
 	WorldTransform worldTransform_;
 	WorldTransform worldTransformExplosion_;
