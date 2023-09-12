@@ -28,15 +28,18 @@ void GamePlayState::Initialize()
 	groundModel = Model::CreateModelFromObj("resources", "ground.obj");
 
 	
-	WallSpawn(Vector3(6, 0, 0));
-	WallSpawn(Vector3(6, 0, 2));
+	WallSpawn(Vector3(8,0, 4));
+	WallSpawn(Vector3(5, 0, -5));
 
-	WallSpawn(Vector3(-5, 0, 0));
-	WallSpawn(Vector3(-5, 0, 2));
+	WallSpawn(Vector3(-2, 0, 5));
+	WallSpawn(Vector3(-5, 0, -5));
 
 
 	player = new Player();
-	player->Initialize(explosionModel_, bombModel_,wall_);
+	player->Initialize(explosionModel_, bombModel_);
+	for (Wall* wall : walls_) {
+		player->SetWall(wall);
+	}
 	sphere = new Sphere();
 	sphere->Initialize();
 	ground = new Ground();
@@ -49,6 +52,8 @@ void GamePlayState::Initialize()
 	EnemySpawn(Vector3(20, -1, 12));
 
 	EnemySpawn(Vector3(-12, -1, -10));
+
+
 	//
 	//2Dオブジェクト作成
 	sprite = new Sprite();

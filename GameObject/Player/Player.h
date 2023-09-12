@@ -13,9 +13,12 @@
 class Player :public Collider
 {
 public:
-	void Initialize(Model* explotionModel, Model* bombModel, Wall* wall);
+	void Initialize(Model* explotionModel, Model* bombModel);
 	void Update();
 	void Draw(const ViewProjection& viewProjection);
+
+	
+	void SetWall(Wall* walls) { walls_.push_back(walls); }
 
 	/// <summary>
 	/// ゲッター
@@ -53,8 +56,9 @@ private:
 	//Bomb* bomb_ = nullptr;	//爆弾
 
 	std::list<Bomb*>bombs_;	//爆弾
+	std::list<Wall*> walls_;
 	Bomb* newBomb;
-	Wall* wall_;
+	
 
 	bool isMove = false;	//プレイヤーが移動しているか　false:移動していない
 	bool xButtonPressed = false;	//xボタンを押したか	//false : 押していない
