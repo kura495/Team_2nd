@@ -103,4 +103,6 @@ private:
 		{ 640.0f,360.0f,0.0f,1.0f }
 	};
 	//
+	int enemyCount = 0;
+	int clearTimer = 0;
 };

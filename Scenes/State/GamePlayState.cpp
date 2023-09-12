@@ -110,8 +110,9 @@ void GamePlayState::Update()
 
 	input->GetJoystickState(0, JoyState);
 
-	enemys_.remove_if([](Enemy* enemy) {
+	enemys_.remove_if([&](Enemy* enemy) {
 		if (enemy->isDead()) {
+			enemyCount -= 1;
 			delete enemy;
 			return true;
 		}
@@ -121,6 +122,21 @@ void GamePlayState::Update()
 		enemy->Update();
 	}
 
+	if (enemyCount <= 0) {
+		clearTimer++;
+	}
+	else {
+		clearTimer = 0;
+	}
+
+	if (clearTimer >= 90) {
+		EnemySpawn(Vector3(10, -1, 0));
+
+		EnemySpawn(Vector3(20, -1, 12));
+
+		EnemySpawn(Vector3(-12, -1, -10));
+		StateNo = 5;
+	}
 	
 	for(Wall* wall : walls_) {
 		wall->Update();
@@ -158,6 +174,7 @@ void GamePlayState::Update()
 	if (input->PushYButton(JoyState)) {
 		ImGui::Text("IsPushY");
 	}
+	ImGui::Text("enemyCount %d", enemyCount);
 	ImGui::End();
 }
 
@@ -190,6 +207,7 @@ void GamePlayState::Draw()
 }
 
 void GamePlayState::EnemySpawn(const Vector3& position) {
+	enemyCount += 1;
 	enemy_ = new Enemy();
 	enemy_->Initialize(enemyModel);
 	enemy_->SetPosition(position);
