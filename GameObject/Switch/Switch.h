@@ -20,6 +20,8 @@ public:
 
 	void OnCollision(const uint32_t& Attribute) override;
 
+	static bool GetIsCollision() { return IsCollision; }
+
 private:
 	WorldTransform worldTransform_;
 
@@ -27,4 +29,7 @@ private:
 
 	Input* input = nullptr;
 	XINPUT_STATE joyState;
+
+	static bool IsCollision;
+	int collisionTimer = 0;
 };

@@ -9,6 +9,7 @@
 
 #include "GameObject/Bomb/Bomb.h"
 #include "GameObject/Wall/Wall.h"
+#include "GameObject/Switch/Switch.h"
 
 class Player :public Collider
 {

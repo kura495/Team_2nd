@@ -47,9 +47,9 @@ void Player::Update()
 				if (isMove == true)
 				{
 					//反映
-					move.x = Normalize(move).x * moveSpeed ;
-					move.y = Normalize(move).y * moveSpeed ;
-					move.z = Normalize(move).z * moveSpeed ;
+					move.x = Normalize(move).x * moveSpeed;
+					move.y = Normalize(move).y * moveSpeed;
+					move.z = Normalize(move).z * moveSpeed;
 
 					//目標角度の算出
 					angle_ = std::atan2(move.x, move.z);
@@ -201,11 +201,17 @@ void Player::Update()
 	Attack();
 
 	//爆弾の更新
+	bombs_.remove_if([](Bomb* bomb) {
+		if (bomb->GetTimer() >= 60) {
+			delete bomb;
+			return true;
+		}
+		return false;
+		});
 	for (Bomb* bomb : bombs_)
 	{
 		bomb->Update();
 	}
-
 
 	ImGui();
 	worldTransform_.UpdateMatrix();
@@ -243,7 +249,7 @@ void Player::OnCollision(const uint32_t& Attribute)
 	else {
 		return;
 	}
-	
+
 }
 
 void Player::ApplyGlobalVariables()
@@ -315,9 +321,11 @@ void Player::Attack()
 		//爆発させる
 		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_B)
 		{
-			for (Bomb* bomb : bombs_)
-			{
-				bomb->ExplosionBomb();
+			if (Switch::GetIsCollision() == true) {
+				for (Bomb* bomb : bombs_)
+				{
+					bomb->ExplosionBomb();
+				}
 			}
 		}
 	}
@@ -339,7 +347,7 @@ Vector3 Player::CollisionDirection()
 	if (direction.x > 0) {
 		direction.x = 1.0f;
 	}
-	else  {
+	else {
 		direction.x = -1.0f;
 	}
 
@@ -347,7 +355,7 @@ Vector3 Player::CollisionDirection()
 	if (direction.y > 0) {
 		direction.y = 1.0f;
 	}
-	else  {
+	else {
 		direction.y = -1.0f;
 	}
 
@@ -355,7 +363,7 @@ Vector3 Player::CollisionDirection()
 	if (direction.z > 0) {
 		direction.z = 1.0f;
 	}
-	else  {
+	else {
 		direction.z = -1.0f;
 	}
 
@@ -367,7 +375,7 @@ Vector3 Player::CollisionDirection()
 	}
 
 	return direction;
-	
+
 }
 
 float Player::Lerp(const float& a, const float& b, float t) {

@@ -62,7 +62,6 @@ private:
 
 	//
 	CollisionManager* collisionManager_;
-	CollisionManager* collisionManagerPlayer_;
 
 	XINPUT_STATE JoyState;
 	//3Dオブジェクトたち

@@ -33,6 +33,10 @@ void Bomb::Update() {
 		isSetBomb = false;
 	}
 
+	ImGui::Begin("bomb");
+	ImGui::Text("timer");
+	ImGui::End();
+
 	if (isExplosionBomb == true) {
 		explosionTimer++;
 	}

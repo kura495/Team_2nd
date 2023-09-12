@@ -14,7 +14,6 @@ void GamePlayState::Initialize()
 	light_ = Light::GetInstance();
 	DirectX_ = DirectXCommon::GetInstance();
 	collisionManager_ = new CollisionManager();
-	collisionManagerPlayer_ = new CollisionManager();
 	//
 	//3Dオブジェクト生成
 
@@ -128,9 +127,9 @@ void GamePlayState::Update()
 
 	//Collision
 	collisionManager_->ClearCollider();
-	//collisionManagerPlayer_->ClearCollider();
 
 	collisionManager_->AddCollider(player);
+	collisionManager_->AddCollider(switch_);
 	
 
 	for (Wall* wall : walls_) {
@@ -144,7 +143,6 @@ void GamePlayState::Update()
 	}
 
 	collisionManager_->CheckAllCollisions();
-	//collisionManagerPlayer_->CheckAllCollisions();
 
 	ImGui::Begin("System");
 	if (input->PushAButton(JoyState)) {

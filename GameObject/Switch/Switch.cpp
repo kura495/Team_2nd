@@ -7,9 +7,19 @@ void Switch::Initialize(Model* switchModel, Vector3 translation) {
 	worldTransform_.translation_ = translation;
 	worldTransform_.scale_ = { 1.0f, 1.0f, 1.0f };
 	model_ = switchModel;
+	SetcollisionAttribute(kCollitionAttributeSwitch);
+	SetcollisionMask(~kCollitionAttributeSwitch);
 }
 
 void Switch::Update() {
+	if (IsCollision == true) {
+		collisionTimer++;
+	}
+	if (collisionTimer >= 10) {
+		IsCollision = false;
+		collisionTimer = 0;
+	}
+
 	worldTransform_.UpdateMatrix();
 }
 
@@ -26,7 +36,12 @@ Vector3 Switch::GetWorldPosition() {
 }
 
 void Switch::OnCollision(const uint32_t& Attribute) {
-	if (Attribute == 0) {
+	if (Attribute == kCollitionAttributePlayer) {
+		IsCollision = true;
+	}
+	else {
 		return;
 	}
 }
+
+bool Switch::IsCollision;
