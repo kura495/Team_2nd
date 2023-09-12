@@ -1,1 +1,1 @@
-class
+#include "Ray.h"
