@@ -38,4 +38,9 @@ void Enemy::SetPosition(const Vector3& position) {
 	worldTransform_.UpdateMatrix();
 }
 
-void Enemy::OnCollision() { isDead_ = true; }
+void Enemy::OnCollision(const uint32_t& Attribute) { 
+	if (Attribute == kCollitionAttributeBomb) {
+		isDead_ = true;
+	}
+	
+}

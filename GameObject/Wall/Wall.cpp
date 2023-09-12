@@ -32,9 +32,11 @@ Vector3 Wall::GetWorldPosition()
 	return worldPos;
 }
 
-void Wall::OnCollision()
+void Wall::OnCollision(const uint32_t& Attribute)
 {
-
+	if (Attribute == 0) {
+		return;
+	}
 }
 
 void Wall::SetPosition(const Vector3& position) {

@@ -71,4 +71,8 @@ Vector3 Bomb::GetWorldPosition() {
 	return worldPos;
 }
 
-void Bomb::OnCollision() {}
+void Bomb::OnCollision(const uint32_t& Attribute) {
+	if (Attribute == 0) {
+		return;
+	}
+}

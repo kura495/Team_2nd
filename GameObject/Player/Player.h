@@ -27,7 +27,7 @@ public:
 	const std::list<Bomb*>& GetBombs() const { return bombs_; }
 
 	Vector3 GetWorldPosition() override;
-	void OnCollision()override;
+	void OnCollision(const uint32_t& Attribute)override;
 
 private:
 	void ApplyGlobalVariables();

@@ -14,7 +14,7 @@ public:
 
 	Vector3 GetWorldPosition() override;
 
-	void OnCollision() override;
+	void OnCollision(const uint32_t& Attribute) override;
 
 	/// <summary>
 	/// 位置の設定

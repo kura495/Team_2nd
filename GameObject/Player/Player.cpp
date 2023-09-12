@@ -235,9 +235,15 @@ Vector3 Player::GetWorldPosition()
 	return worldPos;
 }
 
-void Player::OnCollision()
+void Player::OnCollision(const uint32_t& Attribute)
 {
-	isTouchObject = true;
+	if (Attribute == kCollitionAttributeWall) {
+		isTouchObject = true;
+	}
+	else {
+		return;
+	}
+	
 }
 
 void Player::ApplyGlobalVariables()

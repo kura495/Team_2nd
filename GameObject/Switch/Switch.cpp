@@ -25,4 +25,8 @@ Vector3 Switch::GetWorldPosition() {
 	return worldPos;
 }
 
-void Switch::OnCollision() {}
+void Switch::OnCollision(const uint32_t& Attribute) {
+	if (Attribute == 0) {
+		return;
+	}
+}

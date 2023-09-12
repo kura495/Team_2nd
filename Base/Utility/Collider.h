@@ -9,7 +9,7 @@ public:
 	//半径を設定
 	void SetRadius(float& Radius) { radius_ = Radius; }
 	//衝突時に呼ばれる関数
-	virtual void OnCollision() = 0;
+	virtual void OnCollision(const uint32_t&Attribute) = 0;
 	virtual Vector3 GetWorldPosition()=0;
 	uint32_t GetcollitionAttribute() const { return collisionAttribute_; }
 	/// <summary>

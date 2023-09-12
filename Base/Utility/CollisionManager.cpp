@@ -32,21 +32,21 @@ void CollisionManager::CheckCollisionPair(Collider* colliderA, Collider* collide
 	else if ((colliderA->GetcollitionAttribute() & colliderB->GetcollisionMask()) == 0) {
 		if (Length <= colliderA->GetRadius() + colliderB->GetRadius()) {
 			// コライダーAの衝突時コールバック
-			colliderA->OnCollision();
+			colliderA->OnCollision(colliderB->GetcollitionAttribute());
 		}
 	}
 	else if ((colliderB->GetcollitionAttribute() & colliderA->GetcollisionMask()) == 0) {
 		if (Length <= colliderA->GetRadius() + colliderB->GetRadius()) {
 			// コライダーBの衝突時コールバック
-			colliderB->OnCollision();
+			colliderB->OnCollision(colliderA->GetcollitionAttribute());
 		}
 	}
 	else {
 		if (Length <= colliderA->GetRadius() + colliderB->GetRadius()) {
 			// コライダーAの衝突時コールバック
-			colliderA->OnCollision();
+			colliderA->OnCollision(colliderB->GetcollitionAttribute());
 			// コライダーBの衝突時コールバック
-			colliderB->OnCollision();
+			colliderB->OnCollision(colliderA->GetcollitionAttribute());
 		}
 	}
 }
