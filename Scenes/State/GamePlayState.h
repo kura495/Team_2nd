@@ -55,6 +55,7 @@ private:
 	Model* bombModel_;
 	Model* explosionModel_;
 	Model* wallModel_;
+	Model* switchModel_;
 	//
 	WorldTransform worldTransform_;
 	WorldTransform worldTransform_Sprite;

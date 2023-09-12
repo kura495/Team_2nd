@@ -25,6 +25,7 @@ void GamePlayState::Initialize()
 	enemyModel = Model::CreateModelFromObj("resources", "enemy.obj");
 	wallModel_ = Model::CreateModelFromObj("resources", "cube.obj");
 	groundModel = Model::CreateModelFromObj("resources", "ground.obj");
+	switchModel_ = Model::CreateModelFromObj("resources", "Switch.obj");
 
 	
 	WallSpawn(Vector3(8,0, 4));
@@ -44,7 +45,7 @@ void GamePlayState::Initialize()
 	ground = new Ground();
 	ground->Initialize(groundModel);
 	switch_ = new Switch();
-	switch_->Initialize(model, Vector3(0, 0, 0));
+	switch_->Initialize(switchModel_, Vector3(0, 0, 0));
 
 	EnemySpawn(Vector3(10, -1, 0));
 
