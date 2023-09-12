@@ -9,6 +9,9 @@ void Wall::Initialize(Model* model)
 	worldTransform_.translation_ = { 5.0f,0.0f,0.0f };
 
 
+	SetcollisionAttribute(kCollitionAttributeWall);
+	SetcollisionMask(~kCollitionAttributePlayer);
+
 }
 
 void Wall::Update()

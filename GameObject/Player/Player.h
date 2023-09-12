@@ -18,7 +18,7 @@ public:
 	void Update();
 	void Draw(const ViewProjection& viewProjection);
 
-	
+
 	void SetWall(Wall* walls) { walls_.push_back(walls); }
 
 	/// <summary>
@@ -29,6 +29,8 @@ public:
 
 	Vector3 GetWorldPosition() override;
 	void OnCollision(const uint32_t& Attribute)override;
+
+	void SetPosition(Vector3 position) { worldTransform_.translation_ = position; }
 
 private:
 	void ApplyGlobalVariables();
@@ -59,7 +61,7 @@ private:
 	std::list<Bomb*>bombs_;	//爆弾
 	std::list<Wall*> walls_;
 	Bomb* newBomb;
-	
+
 
 	bool isMove = false;	//プレイヤーが移動しているか　false:移動していない
 	bool xButtonPressed = false;	//xボタンを押したか	//false : 押していない
@@ -69,5 +71,8 @@ private:
 
 	const float threshold = 0.7f;	//しきい値
 	float angle_;	//目標角度
+
+	Vector3 direction;
+
 };
 

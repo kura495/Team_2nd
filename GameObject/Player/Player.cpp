@@ -11,7 +11,6 @@ void Player::Initialize(Model* explotionModel, Model* bombModel)
 	model = Model::CreateModelFromObj("resources", "Player.obj");
 
 	worldTransform_.Initialize();
-	worldTransform_.translation_ = { 0,0,0 };
 
 	const char* groupName = "Player";
 
@@ -26,8 +25,6 @@ void Player::Update()
 {
 	if (Input::GetInstance()->GetJoystickState(0, joyState)) {
 		if (joyState.Gamepad.sThumbLX != 0 || joyState.Gamepad.sThumbLY != 0) {
-
-
 
 			if (isTouchObject == false)
 			{
@@ -66,41 +63,33 @@ void Player::Update()
 
 			else if (isTouchObject == true)
 			{
-				////移動量
-				//worldTransform_.translation_.x = worldTransform_.translation_.x + 0.3f;
-				//worldTransform_.translation_.y = worldTransform_.translation_.y;
-				//worldTransform_.translation_.z = worldTransform_.translation_.z + 0.3f;
-
-
 				collisionDirection = CollisionDirection();
 
-				if (collisionDirection.x > 0)
+				if (collisionDirection.x >= 0)
 				{
 					//移動量
-					worldTransform_.translation_.x = worldTransform_.translation_.x - 0.1f;
+					worldTransform_.translation_.x -= 0.1f;
 					isTouchObject = false;
 				}
-				else if (collisionDirection.x < 0)
+				else
 				{
 					//移動量
-					worldTransform_.translation_.x = worldTransform_.translation_.x + 0.1f;
-					isTouchObject = false;
-				}
-
-				else if (collisionDirection.z > 0)
-				{
-					//移動量
-					worldTransform_.translation_.z = worldTransform_.translation_.z - 0.1f;
-					isTouchObject = false;
-				}
-				else if (collisionDirection.z < 0)
-				{
-					//移動量
-					worldTransform_.translation_.z = worldTransform_.translation_.z + 0.1f;
+					worldTransform_.translation_.x += 0.1f;
 					isTouchObject = false;
 				}
 
-				isTouchObject = false;
+				if (collisionDirection.z >= 0)
+				{
+					//移動量
+					worldTransform_.translation_.z -= 0.1f;
+					isTouchObject = false;
+				}
+				else
+				{
+					//移動量
+					worldTransform_.translation_.z += 0.1f;
+					isTouchObject = false;
+				}
 
 			}
 
@@ -114,20 +103,31 @@ void Player::Update()
 			//	{
 			//		if (GetWorldPosition().z > 0)// z座標が中心より大さい場合&&x座標が中心より大きい場合
 			//		{
-			//			if (collisionDirection.x <= 0 && collisionDirection.z <= 0)
+			//			if (collisionDirection.x <= 0 )
 			//			{
 			//				// 左下から当たっている場合
 			//				worldTransform_.translation_.x -= 0.1f;
-			//				worldTransform_.translation_.z -= 0.1f;
 			//				isTouchObject = false;
 			//			}
 			//			else
 			//			{
 			//				// 右上から当たっている場合
 			//				worldTransform_.translation_.x += 0.1f;
+			//				isTouchObject = false;
+			//			}
+
+			//			if (collisionDirection.z <= 0)
+			//			{
+
+			//				worldTransform_.translation_.z -= 0.1f;
+			//				isTouchObject = false;
+			//			}
+			//			else
+			//			{
 			//				worldTransform_.translation_.z += 0.1f;
 			//				isTouchObject = false;
 			//			}
+
 			//		}
 			//		else //x:プラス && z:マイナス
 			//		{
@@ -151,17 +151,25 @@ void Player::Update()
 			//		if (GetWorldPosition().z > 0)// z座標が中心より小さい場合&&x座標が中心より小さい場合
 			//		{
 			//			//x:マイナス　z:プラス
-			//			if (collisionDirection.x <= 0 && collisionDirection.z <= 0)
+			//			if (collisionDirection.x <= 0 )
 			//			{
 			//				//  右下から当たっている場合
 			//				worldTransform_.translation_.x += 0.1f;
-			//				worldTransform_.translation_.z += 0.1f;
 			//				isTouchObject = false;
 			//			}
 			//			else
 			//			{
 			//				// 左上から当たっている場合
 			//				worldTransform_.translation_.x -= 0.1f;
+			//				isTouchObject = false;
+			//			}
+			//			if (collisionDirection.z <= 0)
+			//			{
+			//				worldTransform_.translation_.z += 0.1f;
+			//				isTouchObject = false;
+			//			}
+			//			else
+			//			{
 			//				worldTransform_.translation_.z -= 0.1f;
 			//				isTouchObject = false;
 			//			}
@@ -169,18 +177,28 @@ void Player::Update()
 			//		else
 			//		{
 			//			//x:マイナス　z:マイナス
-			//			if (collisionDirection.x <= 0 && collisionDirection.z <= 0) {
-			//				// 右下から当たっている場合
+			//			if (collisionDirection.x <= 0 ){
+			//				// 右から当たっている場合
 			//				worldTransform_.translation_.x += 0.1f;
+			//				isTouchObject = false;
+			//			}
+			//			else {
+			//				// 左から当たっている場合
+			//				worldTransform_.translation_.x -= 0.1f;
+			//				isTouchObject = false;
+			//			}
+			//			if (collisionDirection.z <= 0)
+			//			{
+			//				
 			//				worldTransform_.translation_.z += 0.1f;
 			//				isTouchObject = false;
 			//			}
 			//			else {
-			//				// 左上から当たっている場合
-			//				worldTransform_.translation_.x -= 0.1f;
+			//				// 上から当たっている場合
 			//				worldTransform_.translation_.z -= 0.1f;
 			//				isTouchObject = false;
 			//			}
+
 			//		}
 			//	}
 
@@ -266,27 +284,14 @@ void Player::ImGui()
 	ImGui::SliderFloat3("rotation", &worldTransform_.rotation_.x, -10, 10);
 	ImGui::SliderFloat3("scale", &worldTransform_.scale_.x, -10, 10);
 	ImGui::SliderFloat("direction", &collisionDirection.x, -10, 10);
+	ImGui::Text("isTouchObject : %d", &isTouchObject);
+	ImGui::SliderFloat3("direction", &direction.x, -1, 1);
+
 	ImGui::End();
 }
 
 void Player::Attack()
 {
-
-	//キーボード操作
-	if (input->pushKey(DIK_SPACE))
-	{
-		//爆弾の生成と初期化
-		newBomb = new Bomb();
-		newBomb->Initialize(bombModel_, explotionModel_);
-
-		//爆弾の設置(プレイヤーと同じ位置に)
-		newBomb->SetBomb(worldTransform_);
-
-		//爆弾をリストに登録
-		bombs_.push_back(newBomb);
-
-
-	}
 
 	//コントローラー操作
 	if (Input::GetInstance()->GetJoystickState(0, joyState))
@@ -335,44 +340,49 @@ void Player::Attack()
 
 Vector3 Player::CollisionDirection()
 {
-	Vector3 direction;
+
 	for (Wall* wall : walls_) {
-
-
 		direction.x = wall->GetWorldPosition().x - GetWorldPosition().x;
 		direction.y = wall->GetWorldPosition().y - GetWorldPosition().y;
 		direction.z = wall->GetWorldPosition().z - GetWorldPosition().z;
-	}
-	// x軸方向の修正
-	if (direction.x > 0) {
-		direction.x = 1.0f;
-	}
-	else {
-		direction.x = -1.0f;
+
+
+		// x軸方向の修正
+		if (direction.x > 0) {
+			direction.x = 1.0f;
+		}
+		else {
+			direction.x = -1.0f;
+		}
+
+		// y軸方向の修正
+		if (direction.y > 0) {
+			direction.y = 1.0f;
+		}
+		else {
+			direction.y = -1.0f;
+		}
+
+		// z軸方向の修正
+		if (direction.z > 0) {
+			direction.z = 1.0f;
+		}
+		else {
+			direction.z = -1.0f;
+		}
+
+
+
+		float magnitude = sqrt(direction.x * direction.x + direction.y * direction.y + direction.z * direction.z);
+		if (magnitude != 0) {
+			direction.x /= magnitude;
+			direction.y /= magnitude;
+			direction.z /= magnitude;
+		}
+
+
 	}
 
-	// y軸方向の修正
-	if (direction.y > 0) {
-		direction.y = 1.0f;
-	}
-	else {
-		direction.y = -1.0f;
-	}
-
-	// z軸方向の修正
-	if (direction.z > 0) {
-		direction.z = 1.0f;
-	}
-	else {
-		direction.z = -1.0f;
-	}
-
-	float magnitude = sqrt(direction.x * direction.x + direction.y * direction.y + direction.z * direction.z);
-	if (magnitude != 0) {
-		direction.x /= magnitude;
-		direction.y /= magnitude;
-		direction.z /= magnitude;
-	}
 
 	return direction;
 
