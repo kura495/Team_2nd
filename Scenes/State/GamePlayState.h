@@ -104,5 +104,7 @@ private:
 	};
 	//
 	int enemyCount = 0;
+	int enemyCountMax = 0;
 	int clearTimer = 0;
+	int gameoverTimer = 0;
 };

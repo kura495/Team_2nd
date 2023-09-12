@@ -138,6 +138,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatFormVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenes\Manager\GameManager.cpp" />
     <ClCompile Include="Scenes\State\GameClearState.cpp" />
+    <ClCompile Include="Scenes\State\GameOverState.cpp" />
     <ClCompile Include="Scenes\State\GamePlayState.cpp" />
     <ClCompile Include="Scenes\State\GamePlayState2.cpp" />
     <ClCompile Include="Scenes\State\GamePlayState3.cpp" />
@@ -195,6 +196,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatFormVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="GameObject\Wall\Wall.h" />
     <ClInclude Include="Scenes\Manager\GameManager.h" />
     <ClInclude Include="Scenes\State\GameClearState.h" />
+    <ClInclude Include="Scenes\State\GameOverState.h" />
     <ClInclude Include="Scenes\State\GamePlayState.h" />
     <ClInclude Include="Scenes\State\GamePlayState2.h" />
     <ClInclude Include="Scenes\State\GamePlayState3.h" />

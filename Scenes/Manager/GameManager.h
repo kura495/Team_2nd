@@ -12,6 +12,7 @@
 #include"Scenes/State/GamePlayState2.h"
 #include"Scenes/State/GamePlayState3.h"
 #include"Scenes/State/GameClearState.h"
+#include"Scenes/State/GameOverState.h"
 #include"Scenes/State/IgameState.h"
 #include"Audio.h"
 #include"Input.h"
@@ -27,6 +28,7 @@ public:
 		PLAY_STAGE2,
 		PLAY_STAGE3,
 		CLEAR,
+		GAMEOVER,
 		GameStateMax
 	};
 

@@ -27,8 +27,8 @@ void GamePlayState::Initialize()
 	groundModel = Model::CreateModelFromObj("resources", "ground.obj");
 	switchModel_ = Model::CreateModelFromObj("resources", "Switch.obj");
 
-	
-	WallSpawn(Vector3(8,0, 4));
+
+	WallSpawn(Vector3(8, 0, 4));
 	WallSpawn(Vector3(5, 0, -5));
 
 	WallSpawn(Vector3(-2, 0, 5));
@@ -52,6 +52,8 @@ void GamePlayState::Initialize()
 	EnemySpawn(Vector3(20, -1, 12));
 
 	EnemySpawn(Vector3(-12, -1, -10));
+
+	enemyCountMax = enemyCount;
 
 
 	//
@@ -104,7 +106,7 @@ void GamePlayState::Update()
 	viewProjection_.UpdateMatrix();
 	camera_->Update();
 	player->Update();
-	
+
 	ground->Update();
 	switch_->Update();
 
@@ -122,23 +124,7 @@ void GamePlayState::Update()
 		enemy->Update();
 	}
 
-	if (enemyCount <= 0) {
-		clearTimer++;
-	}
-	else {
-		clearTimer = 0;
-	}
-
-	if (clearTimer >= 90) {
-		EnemySpawn(Vector3(10, -1, 0));
-
-		EnemySpawn(Vector3(20, -1, 12));
-
-		EnemySpawn(Vector3(-12, -1, -10));
-		StateNo = 5;
-	}
-	
-	for(Wall* wall : walls_) {
+	for (Wall* wall : walls_) {
 		wall->Update();
 	}
 
@@ -147,7 +133,6 @@ void GamePlayState::Update()
 
 	collisionManager_->AddCollider(player);
 	collisionManager_->AddCollider(switch_);
-	
 
 	for (Wall* wall : walls_) {
 		collisionManager_->AddCollider(wall);
@@ -160,6 +145,40 @@ void GamePlayState::Update()
 	}
 
 	collisionManager_->CheckAllCollisions();
+
+	if (enemyCount <= 0 && gameoverTimer == 0) {
+		clearTimer++;
+	}
+	else if (enemyCountMax > enemyCount && enemyCount > 0) {
+		gameoverTimer++;
+	}
+	else {
+		clearTimer = 0;
+		gameoverTimer = 0;
+	}
+
+	if (clearTimer >= 90) {
+		EnemySpawn(Vector3(10, -1, 0));
+
+		EnemySpawn(Vector3(20, -1, 12));
+
+		EnemySpawn(Vector3(-12, -1, -10));
+		StateNo = 5;//StageClear
+	}
+
+	if (gameoverTimer >= 90) {
+		for (Enemy* enemy : enemys_) {
+			enemy->SetDead(true);
+		}
+
+		EnemySpawn(Vector3(10, -1, 0));
+
+		EnemySpawn(Vector3(20, -1, 12));
+
+		EnemySpawn(Vector3(-12, -1, -10));
+
+		StateNo = 6;//GameOver
+	}
 
 	ImGui::Begin("System");
 	if (input->PushAButton(JoyState)) {
@@ -181,9 +200,9 @@ void GamePlayState::Update()
 void GamePlayState::Draw()
 {
 	//3Dモデル描画ここから
-	
+
 	//sphere->Draw(worldTransform_, viewProjection_, Texture);
-	
+
 	ground->Draw(viewProjection_);
 	player->Draw(viewProjection_);
 	for (Enemy* enemy : enemys_) {

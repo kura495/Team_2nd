@@ -21,6 +21,8 @@ public:
 
 	bool isDead() const { return isDead_; }
 
+	void SetDead(bool isDead) { isDead_ = isDead; }
+
 private:
 	WorldTransform worldTransform_;
 	Model* enemyModel_ = nullptr;

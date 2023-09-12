@@ -39,6 +39,7 @@ void GameManager::Initialize()
 	state[PLAY_STAGE2] = std::make_unique<GamePlayState2>();
 	state[PLAY_STAGE3] = std::make_unique<GamePlayState3>();
 	state[CLEAR] = std::make_unique<GameClearState>();
+	state[GAMEOVER] = std::make_unique<GameOverState>();
 	for (int i = 0; i < GameStateMax; i++) {
 		state[i]->Initialize();
 	}
