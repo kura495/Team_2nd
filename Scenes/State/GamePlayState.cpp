@@ -18,7 +18,7 @@ void GamePlayState::Initialize()
 	sphere = new Sphere();
 	sphere->Initialize();
 
-	EnemySpawn(Vector3(10, 10, 0));
+	EnemySpawn(Vector3(10, 0, 0));
 	//
 	//2Dオブジェクト作成
 	sprite = new Sprite();
@@ -70,21 +70,21 @@ void GamePlayState::Update()
 		}
 		return false;
 		});
+
 	for (Enemy* enemy : enemys_) {
 		enemy->Update();
 	}
 
 	//Collision
 	collisionManager_->ClearCollider();
-
+	collisionManager_->AddCollider(player);
 	for (Enemy* enemy : enemys_) {
 		collisionManager_->AddCollider(enemy);
 	}
-	/*for (Bomb* pBomb : player->GetBombs) {
+	for (Bomb* pBomb : player->GetBombs()) {
 		collisionManager_->AddCollider(pBomb);
-	}*/
-	//下のをPlayer.hで追加した後、上のコメントアウトを外したら動く
-	//const std::list<Bomb*>& GetBombs() const { return bombs_; }
+	}
+
 
 	collisionManager_->CheckAllCollisions();
 
@@ -107,7 +107,7 @@ void GamePlayState::Update()
 void GamePlayState::Draw()
 {
 	//3Dモデル描画ここから
-	sphere->Draw(worldTransform_, viewProjection_, Texture);
+	//sphere->Draw(worldTransform_, viewProjection_, Texture);
 	player->Draw(viewProjection_);
 	for (Enemy* enemy : enemys_) {
 		enemy->Draw(viewProjection_);
@@ -116,7 +116,8 @@ void GamePlayState::Draw()
 
 
 	//Sprite描画ここから
-	sprite->Draw(worldTransform_Sprite, Texture);
+	
+	//sprite->Draw(worldTransform_Sprite, Texture);
 
 
 	//Sprite描画ここまで

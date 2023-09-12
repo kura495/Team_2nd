@@ -19,7 +19,7 @@ public:
 
 	Vector3 GetWorldPosition() override;
 
-	void OnCollision() override;
+	void OnCollision(const uint32_t& collisionAttribute) override;
 
 private:
 	WorldTransform worldTransform_;

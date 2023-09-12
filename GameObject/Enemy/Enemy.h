@@ -17,7 +17,7 @@ public:
 
 	void SetPosition(const Vector3& position);
 
-	void OnCollision() override;
+	void OnCollision(const uint32_t& collisionAttribute) override;
 
 	bool isDead() const { return isDead_; }
 

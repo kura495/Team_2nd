@@ -9,12 +9,16 @@
 
 #include "GameObject/Bomb/Bomb.h"
 
-class Player
+class Player : public Collider
 {
 public:
 	void Initialize();
 	void Update();
 	void Draw(const ViewProjection& viewProjection);
+
+	Vector3 GetWorldPosition()override;
+	void OnCollision(const uint32_t& collisionAttribute)override;
+	const std::list<Bomb*>& GetBombs() const { return bombs_; }
 private:
 	void ApplyGlobalVariables();
 	void ImGui();

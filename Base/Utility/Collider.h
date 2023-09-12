@@ -9,14 +9,14 @@ public:
 	//半径を設定
 	void SetRadius(float& Radius) { radius_ = Radius; }
 	//衝突時に呼ばれる関数
-	virtual void OnCollision() = 0;
+	virtual void OnCollision(const uint32_t&collisionAttribute ) = 0;
 	virtual Vector3 GetWorldPosition()=0;
-	uint32_t GetcollitionAttribute() const { return collisionAttribute_; }
+	uint32_t GetcollisionAttribute() const { return collisionAttribute_; }
 	/// <summary>
 	/// 衝突属性
 	/// </summary>
 	/// <param name="collisionAttribute"></param>
-	void SetcollitionAttribute(uint32_t collisionAttribute) {
+	void SetcollisionAttribute(uint32_t collisionAttribute) {
 		collisionAttribute_ = collisionAttribute;
 	}
 	uint32_t GetcollisionMask() const { return collisionMask_; }

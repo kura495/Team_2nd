@@ -7,6 +7,11 @@ void Enemy::Initialize() {
 	worldTransform_.scale_ = { 1.0f,1.0f,1.0f };
 
 	enemyModel_.reset(Model::CreateModelFromObj("resources", "axis.obj"));
+
+	float Radius = 1.0f;
+	SetRadius(Radius);
+	SetcollisionAttribute(kCollisionAttributeEnemy);
+	SetcollisionMask(~kCollisionAttributeEnemy);
 }
 
 void Enemy::Update() {
@@ -33,4 +38,12 @@ void Enemy::SetPosition(const Vector3& position) {
 	worldTransform_.UpdateMatrix();
 }
 
-void Enemy::OnCollision() { isDead_ = true; }
+void Enemy::OnCollision(const uint32_t& collisionAttribute) {
+	if (collisionAttribute == kCollisionAttributeBomb) {
+		isDead_ = true;
+	}
+	else {
+		return;
+	}
+	
+}

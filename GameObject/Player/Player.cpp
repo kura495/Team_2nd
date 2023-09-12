@@ -13,8 +13,8 @@ void Player::Initialize()
 	//GlobalVariables::GetInstance()->CreateGroup(groupName);
 	GlobalVariables::GetInstance()->AddItem(groupName, "speed", speed);
 
-
-
+	float Radius = 1;
+	SetRadius(Radius);
 }
 
 void Player::Update()
@@ -111,6 +111,27 @@ void Player::Draw(const ViewProjection& viewProjection)
 		bomb->Draw(viewProjection);
 	}
 
+}
+
+Vector3 Player::GetWorldPosition()
+{
+	Vector3 worldPos;
+	worldPos.x = worldTransform_.matWorld_.m[3][0];
+	worldPos.y = worldTransform_.matWorld_.m[3][1];
+	worldPos.z = worldTransform_.matWorld_.m[3][2];
+	return worldPos;
+}
+
+void Player::OnCollision(const uint32_t& collisionAttribute)
+{
+	ImGui::Begin("Player");
+	if (collisionAttribute == kCollisionAttributeEnemy) {
+		ImGui::Text("Player On Enemy");
+	}
+	else if (collisionAttribute == kCollisionAttributeBomb) {
+		ImGui::Text("Player On Bomb");
+	}
+	ImGui::End();
 }
 
 void Player::ApplyGlobalVariables()

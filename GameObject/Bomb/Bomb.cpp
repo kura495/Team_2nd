@@ -12,6 +12,10 @@ void Bomb::Initialize() {
 	worldTransformExplosion_.scale_ = { 0.1f, 0.1f, 0.1f };
 	worldTransform_.UpdateMatrix();
 	worldTransformExplosion_.UpdateMatrix();
+	float Radius = 1.0f;
+	SetRadius(Radius);
+	SetcollisionAttribute(kCollisionAttributeBomb);
+	SetcollisionMask(~kCollisionAttributeBomb & ~kCollisionAttributePlayer);
 }
 
 void Bomb::Update() {
@@ -70,4 +74,8 @@ Vector3 Bomb::GetWorldPosition() {
 	return worldPos;
 }
 
-void Bomb::OnCollision() {}
+void Bomb::OnCollision(const uint32_t& collisionAttribute) {
+	if (collisionAttribute == 0) {
+		return;
+	}
+}

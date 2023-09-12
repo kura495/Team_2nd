@@ -26,27 +26,14 @@ void CollisionManager::CheckCollisionPair(Collider* colliderA, Collider* collide
 	    (posB.x - posA.x) * (posB.x - posA.x) + (posB.y - posA.y) * (posB.y - posA.y) +
 	    (posB.z - posA.z) * (posB.z - posA.z));
 	// コライダーのフィルターの値でビット演算
-	if ((colliderA->GetcollitionAttribute() & colliderB->GetcollisionMask()) == 0 && (colliderB->GetcollitionAttribute() & colliderA->GetcollisionMask()) == 0) {
+	if ((colliderA->GetcollisionAttribute() & colliderB->GetcollisionMask()) == 0 && (colliderB->GetcollisionAttribute() & colliderA->GetcollisionMask()) == 0) {
 		return;
 	}
-	else if ((colliderA->GetcollitionAttribute() & colliderB->GetcollisionMask()) == 0) {
-		if (Length <= colliderA->GetRadius() + colliderB->GetRadius()) {
+	
+	if (Length <= colliderA->GetRadius() + colliderB->GetRadius()) {
 			// コライダーAの衝突時コールバック
-			colliderA->OnCollision();
-		}
-	}
-	else if ((colliderB->GetcollitionAttribute() & colliderA->GetcollisionMask()) == 0) {
-		if (Length <= colliderA->GetRadius() + colliderB->GetRadius()) {
+	colliderA->OnCollision(colliderB->GetcollisionAttribute());
 			// コライダーBの衝突時コールバック
-			colliderB->OnCollision();
-		}
-	}
-	else {
-		if (Length <= colliderA->GetRadius() + colliderB->GetRadius()) {
-			// コライダーAの衝突時コールバック
-			colliderA->OnCollision();
-			// コライダーBの衝突時コールバック
-			colliderB->OnCollision();
-		}
-	}
+	colliderB->OnCollision(colliderA->GetcollisionAttribute());
+}
 }
