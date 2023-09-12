@@ -252,6 +252,9 @@
     <ClCompile Include="Scenes\State\GameTitleState.cpp">
       <Filter>ソース ファイル\Scenes\State</Filter>
     </ClCompile>
+    <ClCompile Include="Ray.cpp">
+      <Filter>ソース ファイル\GameObject\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="externals\imgui\imconfig.h">
