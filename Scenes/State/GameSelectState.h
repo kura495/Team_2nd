@@ -85,4 +85,26 @@ private:
 		{ 360.0f,180.0f,0.0f,1.0f },
 		{ 800.0f,495.0f,0.0f,1.0f }
 	};
+
+	Sprite* sprite;
+	int TextureS1;
+	int TextureS2;
+	int TextureS3;
+	WorldTransform worldTransform_Sprite;
+	Vector4 LeftTop[2] = {
+		{ 0.0f,0.0f,0.0f,1.0f },
+		{ 360.0f,0.0f,0.0f,1.0f }
+	};
+	Vector4 LeftBottom[2] = {
+		{ 0.0f,720.0f,0.0f,1.0f },
+		{ 360.0f,360.0f,0.0f,1.0f }
+	};
+	Vector4 RightTop[2] = {
+		{ 360.0f,0.0f,0.0f,1.0f },
+		{ 1280.0f,0.0f,0.0f,1.0f }
+	};
+	Vector4 RightBottom[2] = {
+		{ 360.0f,180.0f,0.0f,1.0f },
+		{ 1280.0f,720.0f,0.0f,1.0f }
+	};
 };

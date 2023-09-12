@@ -26,6 +26,13 @@ void GameSelectState::Initialize()
 	worldTransform_Stage2Sprite.scale_ = { 0.8f,0.8f,1.0f };
 	worldTransform_Stage3Sprite.scale_ = { 0.8f,0.8f,1.0f };
 
+	sprite = new Sprite();
+	sprite->Initialize(LeftTop[0], LeftBottom[0], RightTop[1], RightBottom[1]);
+	worldTransform_Sprite.Initialize();
+	TextureS1 = textureManager_->LoadTexture("resources/background.png");
+	TextureS2 = textureManager_->LoadTexture("resources/background.png");
+	TextureS3 = textureManager_->LoadTexture("resources/background.png");
+
 	selectStageNo = 1;
 }
 
@@ -129,6 +136,16 @@ void GameSelectState::Update()
 
 void GameSelectState::Draw()
 {
+	if (selectStageNo == 1) {
+		sprite->Draw(worldTransform_Sprite, TextureS1);
+	}
+	if (selectStageNo == 2) {
+		sprite->Draw(worldTransform_Sprite, TextureS2);
+	}
+	if (selectStageNo == 3) {
+		sprite->Draw(worldTransform_Sprite, TextureS3);
+	}
+
 	stage1->Draw(worldTransform_Stage1Sprite, stage1Tex);
 	stage2->Draw(worldTransform_Stage2Sprite, stage2Tex);
 	stage3->Draw(worldTransform_Stage3Sprite, stage3Tex);
