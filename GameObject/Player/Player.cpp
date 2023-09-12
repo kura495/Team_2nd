@@ -8,7 +8,7 @@ void Player::Initialize(Model* explotionModel, Model* bombModel)
 	bombModel_ = bombModel;
 
 
-	model = Model::CreateModelFromObj("resources", "bunny.obj");
+	model = Model::CreateModelFromObj("resources", "Player.obj");
 
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = { 0,0,0 };

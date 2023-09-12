@@ -18,6 +18,15 @@ void GameSelectState::Initialize()
 	stage3->Initialize(Stage3SpriteLeftTop[0], Stage3SpriteLeftBottom[0], Stage3SpriteRightTop[1], Stage3SpriteRightBottom[1]);
 	worldTransform_Stage3Sprite.Initialize();
 	stage3Tex = textureManager_->LoadTexture("resources/Stage3.png");
+
+	worldTransform_Stage1Sprite.translation_ = { 30.0f,0.0f,0.0f };
+	worldTransform_Stage2Sprite.translation_ = { 600.0f,100.0f,0.0f };
+	worldTransform_Stage3Sprite.translation_ = { -300.0f,100.0f,0.0f };
+	worldTransform_Stage1Sprite.scale_ = { 1.0f,1.0f,1.0f };
+	worldTransform_Stage2Sprite.scale_ = { 0.8f,0.8f,1.0f };
+	worldTransform_Stage3Sprite.scale_ = { 0.8f,0.8f,1.0f };
+
+	selectStageNo = 1;
 }
 
 void GameSelectState::Update()
@@ -29,11 +38,15 @@ void GameSelectState::Update()
 	ImGui::Text("%d", stickTimer);
 	ImGui::End();
 
-	/*ImGui::Begin("Sprite");
+	ImGui::Begin("Sprite");
 	ImGui::SliderFloat3("Sprite1", &worldTransform_Stage1Sprite.translation_.x, -1280, 1280);
 	ImGui::SliderFloat3("Sprite2", &worldTransform_Stage2Sprite.translation_.x, -1280, 1280);
 	ImGui::SliderFloat3("Sprite3", &worldTransform_Stage3Sprite.translation_.x, -1280, 1280);
-	ImGui::End();*/
+	ImGui::End();
+
+	worldTransform_Stage1Sprite.UpdateMatrix();
+	worldTransform_Stage2Sprite.UpdateMatrix();
+	worldTransform_Stage3Sprite.UpdateMatrix();
 
 	if (Input::GetInstance()->GetJoystickState(0, joyState))
 	{
@@ -67,6 +80,30 @@ void GameSelectState::Update()
 					}
 				}
 			}
+			if (selectStageNo == 1) {
+				worldTransform_Stage1Sprite.translation_ = { 30.0f,0.0f,0.0f };
+				worldTransform_Stage2Sprite.translation_ = { 600.0f,100.0f,0.0f };
+				worldTransform_Stage3Sprite.translation_ = { -300.0f,100.0f,0.0f };
+				worldTransform_Stage1Sprite.scale_ = { 1.0f,1.0f,1.0f };
+				worldTransform_Stage2Sprite.scale_ = { 0.8f,0.8f,1.0f };
+				worldTransform_Stage3Sprite.scale_ = { 0.8f,0.8f,1.0f };
+			}
+			if (selectStageNo == 2) {
+				worldTransform_Stage1Sprite.translation_ = { -300.0f,100.0f,0.0f };
+				worldTransform_Stage2Sprite.translation_ = { 30.0f,0.0f,0.0f };
+				worldTransform_Stage3Sprite.translation_ = { 600.0f,100.0f,0.0f };
+				worldTransform_Stage1Sprite.scale_ = { 0.8f,0.8f,1.0f };
+				worldTransform_Stage2Sprite.scale_ = { 1.0f,1.0f,1.0f };
+				worldTransform_Stage3Sprite.scale_ = { 0.8f,0.8f,1.0f };
+			}
+			if (selectStageNo == 3) {
+				worldTransform_Stage1Sprite.translation_ = { 600.0f,100.0f,0.0f };
+				worldTransform_Stage2Sprite.translation_ = { -300.0f,100.0f,0.0f };
+				worldTransform_Stage3Sprite.translation_ = { 30.0f,0.0f,0.0f };
+				worldTransform_Stage1Sprite.scale_ = { 0.8f,0.8f,1.0f };
+				worldTransform_Stage2Sprite.scale_ = { 0.8f,0.8f,1.0f };
+				worldTransform_Stage3Sprite.scale_ = { 1.0f,1.0f,1.0f };
+			}
 		}
 		else {
 			stickTimer = 5;
@@ -87,19 +124,12 @@ void GameSelectState::Update()
 		{
 			aButtonPressed = false;
 		}
-
 	}
 }
 
 void GameSelectState::Draw()
 {
-	if (selectStageNo == 1) {
-		stage1->Draw(worldTransform_Stage1Sprite, stage1Tex);
-	}
-	if (selectStageNo == 2) {
-		stage2->Draw(worldTransform_Stage2Sprite, stage2Tex);
-	}
-	if (selectStageNo == 3) {
-		stage3->Draw(worldTransform_Stage3Sprite, stage3Tex);
-	}
+	stage1->Draw(worldTransform_Stage1Sprite, stage1Tex);
+	stage2->Draw(worldTransform_Stage2Sprite, stage2Tex);
+	stage3->Draw(worldTransform_Stage3Sprite, stage3Tex);
 }
