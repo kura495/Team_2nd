@@ -8,6 +8,8 @@ void Wall::Initialize(Model* model)
 	worldTransform_.rotation_ = { 0.0f,0.0f,0.0f };
 	worldTransform_.translation_ = { 5.0f,0.0f,0.0f };
 
+	SetcollisionAttribute(kCollitionAttributeWall);
+	SetcollisionMask(~kCollitionAttributePlayer);
 
 }
 

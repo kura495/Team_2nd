@@ -37,6 +37,7 @@ void GamePlayState::Initialize()
 
 	player = new Player();
 	player->Initialize(explosionModel_, bombModel_);
+	
 	for (Wall* wall : walls_) {
 		player->SetWall(wall);
 	}

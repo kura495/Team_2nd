@@ -30,6 +30,8 @@ public:
 	Vector3 GetWorldPosition() override;
 	void OnCollision(const uint32_t& Attribute)override;
 
+	void SetPosition(Vector3 position) { worldTransform_.translation_ = position; }
+
 private:
 	void ApplyGlobalVariables();
 	void ImGui();
@@ -69,5 +71,8 @@ private:
 
 	const float threshold = 0.7f;	//しきい値
 	float angle_;	//目標角度
+
+	Vector3 direction;
+
 };
 
