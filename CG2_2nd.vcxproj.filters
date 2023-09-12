@@ -253,6 +253,7 @@
       <Filter>ソース ファイル\Scenes\State</Filter>
     </ClCompile>
     <ClCompile Include="Ray.cpp">
+    <ClCompile Include="GameObject\Enemy\Ray.cpp">
       <Filter>ソース ファイル\GameObject\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
@@ -427,6 +428,11 @@
     </ClInclude>
     <ClInclude Include="Scenes\State\GameOverState.h">
       <Filter>ヘッダー ファイル\Scenes\State</Filter>
+    <ClInclude Include="FanCollider.h">
+      <Filter>ヘッダー ファイル\Base\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Enemy\Ray.h">
+      <Filter>ヘッダー ファイル\GameObject\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -131,12 +131,12 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatFormVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="GameObject\Camera\Camera.cpp" />
     <ClCompile Include="GameObject\Camera\GameCamera.cpp" />
     <ClCompile Include="GameObject\Enemy\Enemy.cpp" />
+    <ClCompile Include="GameObject\Enemy\Ray.cpp" />
     <ClCompile Include="GameObject\Ground\Ground.cpp" />
     <ClCompile Include="GameObject\Player\Player.cpp" />
     <ClCompile Include="GameObject\Switch\Switch.cpp" />
     <ClCompile Include="GameObject\Wall\Wall.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Scenes\Manager\GameManager.cpp" />
     <ClCompile Include="Scenes\State\GameClearState.cpp" />
     <ClCompile Include="Scenes\State\GameOverState.cpp" />
@@ -192,11 +192,11 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatFormVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="GameObject\Camera\Camera.h" />
     <ClInclude Include="GameObject\Camera\GameCamera.h" />
     <ClInclude Include="GameObject\Enemy\Enemy.h" />
+    <ClInclude Include="GameObject\Enemy\Ray.h" />
     <ClInclude Include="GameObject\Ground\Ground.h" />
     <ClInclude Include="GameObject\Player\Player.h" />
     <ClInclude Include="GameObject\Switch\Switch.h" />
     <ClInclude Include="GameObject\Wall\Wall.h" />
-    <ClInclude Include="Ray.h" />
     <ClInclude Include="Scenes\Manager\GameManager.h" />
     <ClInclude Include="Scenes\State\GameClearState.h" />
     <ClInclude Include="Scenes\State\GameOverState.h" />
