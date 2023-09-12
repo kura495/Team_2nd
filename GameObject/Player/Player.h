@@ -32,6 +32,11 @@ public:
 
 	void SetPosition(Vector3 position) { worldTransform_.translation_ = position; }
 
+	/// <summary>
+	/// ゲームのループが終わった時に元に戻したい処理
+	/// </summary>
+	void Reset();
+
 private:
 	void ApplyGlobalVariables();
 	void ImGui();
@@ -72,7 +77,11 @@ private:
 	const float threshold = 0.7f;	//しきい値
 	float angle_;	//目標角度
 
+	const int MaxBomb_ = 5;
+	int BombNum_ = 0;
 	Vector3 direction;
+
+	Vector3 move;
 
 };
 

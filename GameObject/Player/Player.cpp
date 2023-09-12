@@ -17,6 +17,8 @@ void Player::Initialize(Model* explotionModel, Model* bombModel)
 	//GlobalVariables::GetInstance()->CreateGroup(groupName);
 	GlobalVariables::GetInstance()->AddItem(groupName, "speed", speed);
 
+	BombNum_ = 0;
+
 	SetcollisionAttribute(kCollitionAttributePlayer);
 	SetcollisionMask(~kCollitionAttributePlayer & ~kCollitionAttributeBomb);
 }
@@ -32,7 +34,7 @@ void Player::Update()
 				const float moveSpeed = 0.3f;
 
 				// 移動量
-				Vector3 move = {
+				move = {
 					(float)joyState.Gamepad.sThumbLX / SHRT_MAX, 0.0f,
 					(float)joyState.Gamepad.sThumbLY / SHRT_MAX };
 
@@ -248,7 +250,11 @@ void Player::Draw(const ViewProjection& viewProjection)
 
 }
 
+void Player::Reset()
+{
+	BombNum_ = 0;
 
+}
 
 Vector3 Player::GetWorldPosition()
 {
@@ -290,6 +296,8 @@ void Player::ImGui()
 	ImGui::End();
 }
 
+
+
 void Player::Attack()
 {
 
@@ -301,19 +309,22 @@ void Player::Attack()
 			if (!xButtonPressed)
 			{
 				//爆弾の生成と初期化
-				newBomb = new Bomb();
-				newBomb->Initialize(bombModel_, explotionModel_);
+				if (BombNum_ < MaxBomb_)	//設置する個数は五個まで
+				{
+					newBomb = new Bomb();
+					newBomb->Initialize(bombModel_, explotionModel_);
 
-				//爆弾の設置(プレイヤーと同じ位置に)
-				newBomb->SetBomb(worldTransform_);
+					//爆弾の設置(プレイヤーと同じ位置に)
+					newBomb->SetBomb(worldTransform_);
 
-				//爆弾をリストに登録
-				bombs_.push_back(newBomb);
+					//爆弾をリストに登録
+					bombs_.push_back(newBomb);
 
+					BombNum_++;
 
-				//長押しを受け付けない
-				xButtonPressed = true;
-
+					//長押しを受け付けない
+					xButtonPressed = true;
+				}
 			}
 		}
 		else

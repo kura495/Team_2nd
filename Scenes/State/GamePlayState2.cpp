@@ -178,6 +178,8 @@ void GamePlayState2::Update()
 		EnemySpawn(Vector3(-5, 0, 0));
 		EnemySpawn(Vector3(-5, 0, -14));
 
+		player->Reset();
+
 		StateNo = 5;//StageClear
 	}
 
@@ -194,6 +196,7 @@ void GamePlayState2::Update()
 		EnemySpawn(Vector3(-5, 0, 0));
 		EnemySpawn(Vector3(-5, 0, -14));
 
+		player->Reset();
 
 		StateNo = 6;//GameOver
 	}
