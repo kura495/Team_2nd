@@ -252,6 +252,9 @@
     <ClCompile Include="Scenes\State\GameTitleState.cpp">
       <Filter>ソース ファイル\Scenes\State</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject\Enemy\Circle.cpp">
+      <Filter>ソース ファイル\GameObject\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="externals\imgui\imconfig.h">
@@ -427,6 +430,9 @@
     </ClInclude>
     <ClInclude Include="Base\Utility\FanCollider.h">
       <Filter>ヘッダー ファイル\Base\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Enemy\Circle.h">
+      <Filter>ヘッダー ファイル\GameObject\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
