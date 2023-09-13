@@ -10,6 +10,8 @@ void Enemy::Initialize(Model* enemyModel,int moveMode, Vector3 moveSpeed) {
 	moveSpeed_ = moveSpeed;
 	SetcollisionAttribute(kCollitionAttributeEnemy);
 	SetcollisionMask(~kCollitionAttributeEnemy & ~kCollitionAttributeBomb);
+	circle = new Circle();
+	circle->Initalize(worldTransform_);
 }
 
 void Enemy::Update() {
@@ -53,6 +55,7 @@ void Enemy::Update() {
 void Enemy::Draw(const ViewProjection& viewProjection) {
 	if(isDead_ == false){
 		enemyModel_->Draw(worldTransform_, viewProjection);
+		circle->Draw(viewProjection);
 	}
 }
 
