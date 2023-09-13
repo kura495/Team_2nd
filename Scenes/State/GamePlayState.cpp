@@ -105,19 +105,6 @@ void GamePlayState::Update()
 	viewProjection_.rotation_ = gameCamera_->GetViewProjection()->rotation_;
 #pragma endregion
 
-
-
-	GlobalVariables::GetInstance()->Update();
-
-	ImGui::Begin("Sound");
-	ImGui::SliderInt("Pan", &Pan, 1, -1);
-	ImGui::SliderFloat("Volume", &Volume, 0.0f, 1.0f);
-	audio->Play(mokugyo, Volume, Pan);
-	ImGui::End();
-	ImGui::Begin("Camera");
-	ImGui::SliderFloat3("transform", &viewProjection_.translation_.x, 10.0f, -10.0f);
-	audio->Play(mokugyo, Volume, Pan);
-	ImGui::End();
 	viewProjection_.UpdateMatrix();
 	camera_->Update();
 	player->Update();
@@ -200,22 +187,6 @@ void GamePlayState::Update()
 
 	//2D
 
-
-	ImGui::Begin("System");
-	if (input->PushAButton(JoyState)) {
-		ImGui::Text("IsPushA");
-	}
-	if (input->PushBButton(JoyState)) {
-		ImGui::Text("IsPushB");
-	}
-	if (input->PushXButton(JoyState)) {
-		ImGui::Text("IsPushX");
-	}
-	if (input->PushYButton(JoyState)) {
-		ImGui::Text("IsPushY");
-	}
-	ImGui::Text("enemyCount %d", enemyCount);
-	ImGui::End();
 }
 
 void GamePlayState::Draw()

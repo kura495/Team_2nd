@@ -38,18 +38,6 @@ void GameSelectState::Initialize()
 
 void GameSelectState::Update()
 {
-	ImGui::Begin("Info");
-	ImGui::SliderInt("SelectStageNo", &selectStageNo, 1, 3);
-	ImGui::Text("StageSelect : LeftJoyStick");
-	ImGui::Text("ReturnStage : X Button");
-	ImGui::Text("%d", stickTimer);
-	ImGui::End();
-
-	ImGui::Begin("Sprite");
-	ImGui::SliderFloat3("Sprite1", &worldTransform_Stage1Sprite.translation_.x, -1280, 1280);
-	ImGui::SliderFloat3("Sprite2", &worldTransform_Stage2Sprite.translation_.x, -1280, 1280);
-	ImGui::SliderFloat3("Sprite3", &worldTransform_Stage3Sprite.translation_.x, -1280, 1280);
-	ImGui::End();
 
 	worldTransform_Stage1Sprite.UpdateMatrix();
 	worldTransform_Stage2Sprite.UpdateMatrix();

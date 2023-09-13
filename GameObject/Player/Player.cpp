@@ -115,10 +115,7 @@ Input::GetInstance()->GetJoystickState(0,joyState);
 	{
 		bomb->Update();
 	}
-
-	ImGui();
 	worldTransform_.UpdateMatrix();
-	ApplyGlobalVariables();
 }
 
 void Player::Draw(const ViewProjection& viewProjection)

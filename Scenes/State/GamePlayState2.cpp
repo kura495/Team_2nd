@@ -16,9 +16,6 @@ void GamePlayState2::Initialize()
 	collisionManager_ = new CollisionManager();
 	//
 	//3Dオブジェクト生成
-
-
-
 	model = Model::CreateModelFromObj("resources", "bunny.obj");
 	bombModel_ = Model::CreateModelFromObj("resources", "Bomb.obj");
 	explosionModel_ = Model::CreateModelFromObj("resources", "ExplosionBomb.obj");
@@ -26,7 +23,6 @@ void GamePlayState2::Initialize()
 	wallModel_ = Model::CreateModelFromObj("resources", "cube.obj");
 	groundModel = Model::CreateModelFromObj("resources", "ground.obj");
 	switchModel_ = Model::CreateModelFromObj("resources", "Switch.obj");
-
 
 	WallSpawn(Vector3(-35, 0, -8));
 	WallSpawn(Vector3(-33, 0, -8));
@@ -42,7 +38,6 @@ void GamePlayState2::Initialize()
 	WallSpawn(Vector3(-19, 0, 4));
 	WallSpawn(Vector3(-17, 0, 4));
 
-
 	player = new Player();
 	player->Initialize(explosionModel_, bombModel_);
 	for (Wall* wall : walls_) {
@@ -55,16 +50,12 @@ void GamePlayState2::Initialize()
 	switch_ = new Switch();
 	switch_->Initialize(switchModel_, Vector3(26, 0, -12));
 
-
 	EnemySpawn(Vector3(-20, 0, -12), 1, Vector3{ 0.1f,0.0f,0.1f });
 	EnemySpawn(Vector3(-31, 0, -4), 0, Vector3{ 0.0f,0.0f,0.0f });
 	EnemySpawn(Vector3(8, 0, 7), 1, Vector3{ 0.1f,0.0f,0.1f });
 	EnemySpawn(Vector3(0, 0, 14), 2, Vector3{ 0.1f,0.0f,0.1f });
 
-
-
 	enemyCountMax = enemyCount;
-
 
 	//
 	//2Dオブジェクト作成
@@ -100,19 +91,6 @@ void GamePlayState2::Update()
 	viewProjection_.rotation_ = gameCamera_->GetViewProjection()->rotation_;
 #pragma endregion
 
-
-
-	GlobalVariables::GetInstance()->Update();
-
-	ImGui::Begin("Sound");
-	ImGui::SliderInt("Pan", &Pan, 1, -1);
-	ImGui::SliderFloat("Volume", &Volume, 0.0f, 1.0f);
-	audio->Play(mokugyo, Volume, Pan);
-	ImGui::End();
-	ImGui::Begin("Camera");
-	ImGui::SliderFloat3("transform", &viewProjection_.translation_.x, 10.0f, -10.0f);
-	audio->Play(mokugyo, Volume, Pan);
-	ImGui::End();
 	viewProjection_.UpdateMatrix();
 	camera_->Update();
 	player->Update();
@@ -195,22 +173,6 @@ void GamePlayState2::Update()
 
 		StateNo = 6;//GameOver
 	}
-
-	ImGui::Begin("System");
-	if (input->PushAButton(JoyState)) {
-		ImGui::Text("IsPushA");
-	}
-	if (input->PushBButton(JoyState)) {
-		ImGui::Text("IsPushB");
-	}
-	if (input->PushXButton(JoyState)) {
-		ImGui::Text("IsPushX");
-	}
-	if (input->PushYButton(JoyState)) {
-		ImGui::Text("IsPushY");
-	}
-	ImGui::Text("enemyCount %d", enemyCount);
-	ImGui::End();
 }
 
 void GamePlayState2::Draw()

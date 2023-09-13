@@ -12,9 +12,5 @@ void GameCamera::Initalize()
 
 void GameCamera::Update()
 {
-	ImGui::Begin("GameCamera");
-	ImGui::SliderFloat("rotation",&viewProjection_.rotation_.x,-20,20);
-	ImGui::SliderFloat3("rotation",&viewProjection_.translation_.x,-20,20);
-	ImGui::End();
 	viewProjection_.UpdateMatrix();
 }
