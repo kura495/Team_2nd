@@ -53,15 +53,14 @@ void GamePlayState2::Initialize()
 	ground = new Ground();
 	ground->Initialize(groundModel);
 	switch_ = new Switch();
-	switch_->Initialize(switchModel_, Vector3(0, 0, 0));
+	switch_->Initialize(switchModel_, Vector3(26, 0, -12));
 
 
 	EnemySpawn(Vector3(-20, 0, -12), 1, Vector3{ 0.1f,0.0f,0.1f });
-	EnemySpawn(Vector3(-31, 0, -4), 1, Vector3{ 0.1f,0.0f,0.1f });
-	EnemySpawn(Vector3(-21, 0, 7), 1, Vector3{ 0.1f,0.0f,0.1f });
+	EnemySpawn(Vector3(-31, 0, -4), 0, Vector3{ 0.0f,0.0f,0.0f });
+	EnemySpawn(Vector3(8, 0, 7), 1, Vector3{ 0.1f,0.0f,0.1f });
 	EnemySpawn(Vector3(0, 0, 14), 2, Vector3{ 0.1f,0.0f,0.1f });
-	EnemySpawn(Vector3(-5, 0, 0), 2, Vector3{ 0.1f,0.0f,0.1f });
-	EnemySpawn(Vector3(-5, 0, -14), 2, Vector3{ 0.1f,0.0f,0.1f });
+
 
 
 	enemyCountMax = enemyCount;
@@ -172,11 +171,9 @@ void GamePlayState2::Update()
 
 
 		EnemySpawn(Vector3(-20, 0, -12), 1, Vector3{ 0.1f,0.0f,0.1f });
-		EnemySpawn(Vector3(-31, 0, -4), 1, Vector3{ 0.1f,0.0f,0.1f });
-		EnemySpawn(Vector3(-21, 0, 7), 1, Vector3{ 0.1f,0.0f,0.1f });
+		EnemySpawn(Vector3(-31, 0, -4), 0, Vector3{ 0.0f,0.0f,0.0f });
+		EnemySpawn(Vector3(8, 0, 7), 1, Vector3{ 0.1f,0.0f,0.1f });
 		EnemySpawn(Vector3(0, 0, 14), 2, Vector3{ 0.1f,0.0f,0.1f });
-		EnemySpawn(Vector3(-5, 0, 0), 2, Vector3{ 0.1f,0.0f,0.1f });
-		EnemySpawn(Vector3(-5, 0, -14), 2, Vector3{ 0.1f,0.0f,0.1f });
 
 		player->Reset();
 
@@ -190,11 +187,9 @@ void GamePlayState2::Update()
 
 
 		EnemySpawn(Vector3(-20, 0, -12), 1, Vector3{ 0.1f,0.0f,0.1f });
-		EnemySpawn(Vector3(-31, 0, -4), 1, Vector3{ 0.1f,0.0f,0.1f });
-		EnemySpawn(Vector3(-21, 0, 7), 1, Vector3{ 0.1f,0.0f,0.1f });
+		EnemySpawn(Vector3(-31, 0, -4), 0, Vector3{ 0.0f,0.0f,0.0f });
+		EnemySpawn(Vector3(8, 0, 7), 1, Vector3{ 0.1f,0.0f,0.1f });
 		EnemySpawn(Vector3(0, 0, 14), 2, Vector3{ 0.1f,0.0f,0.1f });
-		EnemySpawn(Vector3(-5, 0, 0), 2, Vector3{ 0.1f,0.0f,0.1f });
-		EnemySpawn(Vector3(-5, 0, -14), 2, Vector3{ 0.1f,0.0f,0.1f });
 
 		player->Reset();
 

@@ -71,7 +71,7 @@ private:
 	bool xButtonPressed = false;	//xボタンを押したか	//false : 押していない
 	bool isTouchObject = false;	//プレイヤーが他オブジェクトと接触しているか	//false : 接触していない
 
-	const float threshold = 0.7f;	//しきい値
+	const float threshold = 0.0f;	//しきい値
 	float angle_;	//目標角度
 
 	const int MaxBomb_ = 5;
