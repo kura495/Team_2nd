@@ -130,8 +130,15 @@ void GamePlayState::Update()
 
 	//Collision
 	collisionManager_->ClearCollider();
+	for (Enemy* enemy : enemys_) {
+		enemy->GetViewPoint()->AddCollider(player);
+		for (Wall* wall : walls_) {
+			enemy->GetViewPoint()->AddCollider(wall);
+		}
+	}
 
 	collisionManager_->AddCollider(player);
+	
 	collisionManager_->AddCollider(switch_);
 
 	for (Wall* wall : walls_) {

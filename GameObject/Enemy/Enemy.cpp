@@ -6,15 +6,19 @@ void Enemy::Initialize(Model* enemyModel) {
 	worldTransform_.rotation_ = { 0.0f,0.0f,0.0f };
 	worldTransform_.scale_ = { 1.0f,1.0f,1.0f };
 	enemyModel_ = enemyModel;
+	viewPoint_ = new ViewPoint();
+	viewPoint_->Initalize(worldTransform_);
 	SetcollisionAttribute(kCollitionAttributeEnemy);
 	SetcollisionMask(~kCollitionAttributeEnemy );
+	float Radius = 3.0f;
+	viewPoint_->SetRadius(Radius);
 }
 
 void Enemy::Update() {
 	/*ImGui::Begin("Enemy");
 	ImGui::SliderFloat3("translation", &worldTransform_.translation_.x, -20, 20);
 	ImGui::End();*/
-
+	viewPoint_->Update();
 	worldTransform_.rotation_.y += 0.2f;
 	worldTransform_.UpdateMatrix();
 }

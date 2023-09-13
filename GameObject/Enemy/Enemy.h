@@ -4,6 +4,7 @@
 #include "WorldTransform.h"
 #include "Utility/Collider.h"
 #include "Utility/CollisionConfig.h"
+#include "ViewPoint.h"
 
 class Enemy : public Collider {
 public:
@@ -23,9 +24,11 @@ public:
 
 	void SetDead(bool isDead) { isDead_ = isDead; }
 
+	ViewPoint* GetViewPoint() { return viewPoint_; }
+
 private:
 	WorldTransform worldTransform_;
 	Model* enemyModel_ = nullptr;
-
+	ViewPoint* viewPoint_ = nullptr;
 	bool isDead_ = false;
 };
