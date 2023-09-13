@@ -171,6 +171,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatFormVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Base\Utility\Collider.h" />
     <ClInclude Include="Base\Utility\CollisionConfig.h" />
     <ClInclude Include="Base\Utility\CollisionManager.h" />
+    <ClInclude Include="Base\Utility\FanCollider.h" />
     <ClInclude Include="Base\Utility\GlobalVariables.h" />
     <ClInclude Include="Base\Utility\ImGuiManager.h" />
     <ClInclude Include="Base\Utility\LoadCSV.h" />

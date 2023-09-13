@@ -425,6 +425,9 @@
     <ClInclude Include="Scenes\State\GameOverState.h">
       <Filter>ヘッダー ファイル\Scenes\State</Filter>
     </ClInclude>
+    <ClInclude Include="Base\Utility\FanCollider.h">
+      <Filter>ヘッダー ファイル\Base\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Object3d.VS.hlsl" />
