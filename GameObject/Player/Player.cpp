@@ -165,30 +165,32 @@ void Player::OnCollision(const uint32_t& Attribute)
 					{
 						if (wallA->GetWorldPosition().z - wallA->GetRadius() <= GetWorldPosition().z + GetRadius() && GetWorldPosition().z - GetRadius() <= wallA->GetWorldPosition().z + wallA->GetRadius())
 						{
+							
+								//向き
+								if (wallA->GetWorldPosition().x >= savePosition.x)
+								{
+									worldTransform_.translation_.x = savePosition.x - 0.3f;
+									isTouchObject = false;
+								}
+								else if (wallA->GetWorldPosition().x < savePosition.x)
+								{
+									worldTransform_.translation_.x = savePosition.x + 0.3f;
+									isTouchObject = false;
+								}
+							
 
-							//向き
-							if (wallA->GetWorldPosition().x > savePosition.x)
-							{
-								worldTransform_.translation_.x = savePosition.x - 0.3f;
-								isTouchObject = false;
-							}
-							else if (wallA->GetWorldPosition().x < savePosition.x)
-							{
-								worldTransform_.translation_.x = savePosition.x + 0.3f;
-								isTouchObject = false;
-							}
 
-							if (wallA->GetWorldPosition().z > savePosition.z)
-							{
-								worldTransform_.translation_.z = savePosition.z - 0.3f;
-								isTouchObject = false;
-							}
-							else if (wallA->GetWorldPosition().z < savePosition.z)
-							{
-								worldTransform_.translation_.z = savePosition.z + 0.3f;
-								isTouchObject = false;
-							}
-
+								if (wallA->GetWorldPosition().z > savePosition.z)
+								{
+									worldTransform_.translation_.z = savePosition.z - 0.3f;
+									isTouchObject = false;
+								}
+								else if (wallA->GetWorldPosition().z < savePosition.z)
+								{
+									worldTransform_.translation_.z = savePosition.z + 0.3f;
+									isTouchObject = false;
+								}
+							
 
 						}
 					}
