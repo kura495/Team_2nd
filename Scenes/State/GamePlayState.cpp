@@ -199,8 +199,6 @@ void GamePlayState::Update()
 
 	//2D
 
-	worldTransform_EnemySprite.translation_ = { 600,40,0 };
-
 
 	ImGui::Begin("System");
 	if (input->PushAButton(JoyState)) {
