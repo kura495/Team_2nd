@@ -61,15 +61,15 @@ void GamePlayState::Initialize()
 	worldTransform_EnemySprite.Initialize();
 	enemySayTexture = textureManager_->LoadTexture("resources/enemySay.png");
 
-	//stage2 = new Sprite();
-	//stage2->Initialize(Stage2SpriteLeftTop[0], Stage2SpriteLeftBottom[0], Stage2SpriteRightTop[1], Stage2SpriteRightBottom[1]);
-	//worldTransform_Stage2Sprite.Initialize();
-	//stage2Tex = textureManager_->LoadTexture("resources/Stage2.png");
+	playerSay = new Sprite();
+	playerSay->Initialize(Stage2SpriteLeftTop[0], Stage2SpriteLeftBottom[0], Stage2SpriteRightTop[1], Stage2SpriteRightBottom[1]);
+	worldTransform_PlayerSprite.Initialize();
+	playerSayTexture = textureManager_->LoadTexture("resources/playerSay.png");
 
-	//stage3 = new Sprite();
-	//stage3->Initialize(Stage3SpriteLeftTop[0], Stage3SpriteLeftBottom[0], Stage3SpriteRightTop[1], Stage3SpriteRightBottom[1]);
-	//worldTransform_Stage3Sprite.Initialize();
-	//stage3Tex = textureManager_->LoadTexture("resources/Stage3.png");
+	switchSay = new Sprite();
+	switchSay->Initialize(Stage3SpriteLeftTop[0], Stage3SpriteLeftBottom[0], Stage3SpriteRightTop[1], Stage3SpriteRightBottom[1]);
+	worldTransform_Stage3Sprite.Initialize();
+	switchTexture = textureManager_->LoadTexture("resources/switchSay.png");
 
 	/*sprite = new Sprite();
 	sprite->Initialize(LeftTop[0], LeftBottom[0], RightTop[1], RightBottom[1]);
@@ -239,6 +239,8 @@ void GamePlayState::Draw()
 	//Sprite描画ここから
 
 	enemySay->Draw(worldTransform_EnemySprite, enemySayTexture);
+	playerSay->Draw(worldTransform_PlayerSprite, playerSayTexture);
+	switchSay->Draw(worldTransform_Stage3Sprite, switchTexture);
 
 	//sprite->Draw(worldTransform_Sprite, Texture);
 

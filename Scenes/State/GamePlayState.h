@@ -96,60 +96,62 @@ private:
 	int enemySayTexture;
 	WorldTransform worldTransform_EnemySprite;
 	Vector4 EnemySpriteLeftTop[2] = {
-		{ 400.0f,225.0f,0.0f,1.0f },
-		{ 360.0f,0.0f,0.0f,1.0f }
+		{ 600.0f,500.0f,0.0f,1.0f },
+		{ 360.0f,960.0f,0.0f,1.0f }
 	};
 	Vector4 EnemySpriteLeftBottom[2] = {
-		{ 400.0f,265.0f,0.0f,1.0f },
+		{ 600.0f,540.0f,0.0f,1.0f },
 		{ 360.0f,360.0f,0.0f,1.0f }
 	};
 	Vector4 EnemySpriteRightTop[2] = {
-		{ 360.0f,0.0f,0.0f,1.0f },
-		{ 800.0f,225.0f,0.0f,1.0f }
+		{ 360.0f,960.0f,0.0f,1.0f },
+		{ 960.0f,500.0f,0.0f,1.0f }
 	};
 	Vector4 EnemySpriteRightBottom[2] = {
 		{ 360.0f,170.0f,0.0f,1.0f },
-		{ 800.0f,265.0f,0.0f,1.0f }
+		{ 960.0f,540.0f,0.0f,1.0f }
 	};
 
-	Sprite* stage2;
-	int stage2Tex;
-	WorldTransform worldTransform_Stage2Sprite;
+	
+
+	Sprite* playerSay;
+	int playerSayTexture;
+	WorldTransform worldTransform_PlayerSprite;
 	Vector4 Stage2SpriteLeftTop[2] = {
-		{ 400.0f,225.0f,0.0f,1.0f },
-		{ 360.0f,0.0f,0.0f,1.0f }
+		{ 0.0f,0.0f,0.0f,1.0f },
+		{ 360.0f,960.0f,0.0f,1.0f }
 	};
 	Vector4 Stage2SpriteLeftBottom[2] = {
-		{ 400.0f,495.0f,0.0f,1.0f },
+		{ 0.0f,40.0f,0.0f,1.0f },
 		{ 360.0f,360.0f,0.0f,1.0f }
 	};
 	Vector4 Stage2SpriteRightTop[2] = {
-		{ 360.0f,0.0f,0.0f,1.0f },
-		{ 800.0f,225.0f,0.0f,1.0f }
+		{ 360.0f,200.0f,0.0f,1.0f },
+		{ 200.0f,0.0f,0.0f,1.0f }
 	};
 	Vector4 Stage2SpriteRightBottom[2] = {
-		{ 360.0f,180.0f,0.0f,1.0f },
-		{ 800.0f,495.0f,0.0f,1.0f }
+		{ 360.0f,170.0f,0.0f,1.0f },
+		{ 200.0f,40.0f,0.0f,1.0f }
 	};
 
-	Sprite* stage3;
-	int stage3Tex;
+	Sprite* switchSay;
+	int switchTexture;
 	WorldTransform worldTransform_Stage3Sprite;
 	Vector4 Stage3SpriteLeftTop[2] = {
-		{ 400.0f,225.0f,0.0f,1.0f },
-		{ 360.0f,0.0f,0.0f,1.0f }
+		{ 900.0f,0.0f,0.0f,1.0f },
+		{ 360.0f,960.0f,0.0f,1.0f }
 	};
 	Vector4 Stage3SpriteLeftBottom[2] = {
-		{ 400.0f,495.0f,0.0f,1.0f },
+		{ 900.0f,40.0f,0.0f,1.0f },
 		{ 360.0f,360.0f,0.0f,1.0f }
 	};
 	Vector4 Stage3SpriteRightTop[2] = {
-		{ 360.0f,0.0f,0.0f,1.0f },
-		{ 800.0f,225.0f,0.0f,1.0f }
+		{ 360.0f,200.0f,0.0f,1.0f },
+		{ 1000.0f,0.0f,0.0f,1.0f }
 	};
 	Vector4 Stage3SpriteRightBottom[2] = {
-		{ 360.0f,180.0f,0.0f,1.0f },
-		{ 800.0f,495.0f,0.0f,1.0f }
+		{ 360.0f,170.0f,0.0f,1.0f },
+		{ 1000.0f,40.0f,0.0f,1.0f }
 	};
 
 	//
