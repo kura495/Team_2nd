@@ -43,9 +43,9 @@ void GamePlayState::Initialize()
 	switch_ = new Switch();
 	switch_->Initialize(switchModel_, Vector3(26, 0, -12));
 
-	EnemySpawn(Vector3(8, -1, 10),0,Vector3{0.0f,0.0f,0.0f});
+	EnemySpawn(Vector3(8, -1, 2),0,Vector3{0.0f,0.0f,0.0f});
 
-	EnemySpawn(Vector3(-10, -1, -8), 0, Vector3{ 0.0f,0.0f,0.0f });
+	EnemySpawn(Vector3(-10, -1, 0), 0, Vector3{ 0.0f,0.0f,0.0f });
 
 	EnemySpawn(Vector3(-12, -1, 16), 0, Vector3{ 0.0f,0.0f,0.0f });
 
@@ -173,9 +173,9 @@ void GamePlayState::Update()
 	}
 
 	if (clearTimer >= 90) {
-		EnemySpawn(Vector3(8, -1, 10), 0, Vector3{ 0.0f,0.0f,0.0f });
+		EnemySpawn(Vector3(8, -1, 2), 0, Vector3{ 0.0f,0.0f,0.0f });
 
-		EnemySpawn(Vector3(-10, -1, -8), 0, Vector3{ 0.0f,0.0f,0.0f });
+		EnemySpawn(Vector3(-10, -1, 0), 0, Vector3{ 0.0f,0.0f,0.0f });
 
 		EnemySpawn(Vector3(-12, -1, 16), 0, Vector3{ 0.0f,0.0f,0.0f });
 		player->Reset();
@@ -188,12 +188,11 @@ void GamePlayState::Update()
 			enemy->SetDead(true);
 		}
 
-		EnemySpawn(Vector3(8, -1, 10), 0, Vector3{ 0.0f,0.0f,0.0f });
+		EnemySpawn(Vector3(8, -1, 2), 0, Vector3{ 0.0f,0.0f,0.0f });
 
-		EnemySpawn(Vector3(-10, -1, -8), 0, Vector3{ 0.0f,0.0f,0.0f });
+		EnemySpawn(Vector3(-10, -1, 0), 0, Vector3{ 0.0f,0.0f,0.0f });
 
 		EnemySpawn(Vector3(-12, -1, 16), 0, Vector3{ 0.0f,0.0f,0.0f });
-		
 		player->Reset();
 		StateNo = 6;//GameOver
 		gameoverTimer = 0;
