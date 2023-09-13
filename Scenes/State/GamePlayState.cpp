@@ -158,7 +158,7 @@ void GamePlayState::Update()
 
 		EnemySpawn(Vector3(-10, -1, -8));
 
-		EnemySpawn(Vector3(-30, -1, 20));
+		EnemySpawn(Vector3(-26, -1, 16));
 		player->Reset();
 		StateNo = 5;//StageClear
 	}
@@ -172,7 +172,8 @@ void GamePlayState::Update()
 
 		EnemySpawn(Vector3(-10, -1, -8));
 
-		EnemySpawn(Vector3(-30, -1, 20));
+		EnemySpawn(Vector3(-26, -1, 16));
+		
 		player->Reset();
 		StateNo = 6;//GameOver
 	}

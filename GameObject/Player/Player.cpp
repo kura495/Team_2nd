@@ -239,7 +239,7 @@ void Player::Update()
 
 	//爆弾の更新
 	bombs_.remove_if([](Bomb* bomb) {
-		if (bomb->GetTimer() >= 60) {
+		if (bomb->GetTimer() >= 40) {
 			delete bomb;
 			return true;
 		}
