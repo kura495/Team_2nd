@@ -11,9 +11,8 @@ void GameClearState::Initialize()
 
 void GameClearState::Update()
 {
-	if (Input::GetInstance()->GetJoystickState(0, joyState))
-	{
-		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_A)
+	Input::GetInstance()->GetJoystickState(0, joyState);
+		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_A || Input::GetInstance()->IsTreggerKey(DIK_SPACE))
 		{
 			if (!aButtonPressed)
 			{
@@ -27,7 +26,6 @@ void GameClearState::Update()
 		{
 			aButtonPressed = false;
 		}
-	}
 }
 
 void GameClearState::Draw()

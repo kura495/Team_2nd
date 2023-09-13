@@ -11,9 +11,9 @@ void GameTitleState::Initialize()
 
 void GameTitleState::Update()
 {
-	if (Input::GetInstance()->GetJoystickState(0, joyState))
-	{
-		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_A)
+	Input::GetInstance()->GetJoystickState(0, joyState);
+	
+		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_A||Input::GetInstance()->IsTreggerKey(DIK_SPACE))
 		{
 			if (!aButtonPressed)
 			{
@@ -27,7 +27,7 @@ void GameTitleState::Update()
 		{
 			aButtonPressed = false;
 		}
-	}
+	
 }
 
 void GameTitleState::Draw()

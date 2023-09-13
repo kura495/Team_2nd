@@ -11,9 +11,8 @@ void GameOverState::Initialize()
 
 void GameOverState::Update()
 {
-	if (Input::GetInstance()->GetJoystickState(0, joyState))
-	{
-		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_A)
+	Input::GetInstance()->GetJoystickState(0, joyState);
+		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_A || Input::GetInstance()->IsTreggerKey(DIK_SPACE))
 		{
 			if (!aButtonPressed)
 			{
@@ -27,7 +26,6 @@ void GameOverState::Update()
 		{
 			aButtonPressed = false;
 		}
-	}
 }
 
 void GameOverState::Draw()

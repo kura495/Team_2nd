@@ -47,7 +47,7 @@ void GamePlayState::Initialize()
 
 	EnemySpawn(Vector3(-10, -1, -8), 0, Vector3{ 0.0f,0.0f,0.0f });
 
-	EnemySpawn(Vector3(-26, -1, 16), 0, Vector3{ 0.0f,0.0f,0.0f });
+	EnemySpawn(Vector3(-12, -1, 16), 0, Vector3{ 0.0f,0.0f,0.0f });
 
 	enemyCountMax = enemyCount;
 
@@ -177,7 +177,7 @@ void GamePlayState::Update()
 
 		EnemySpawn(Vector3(-10, -1, -8), 0, Vector3{ 0.0f,0.0f,0.0f });
 
-		EnemySpawn(Vector3(-26, -1, 16), 0, Vector3{ 0.0f,0.0f,0.0f });
+		EnemySpawn(Vector3(-12, -1, 16), 0, Vector3{ 0.0f,0.0f,0.0f });
 		player->Reset();
 		StateNo = 5;//StageClear
 		clearTimer = 0;
@@ -192,7 +192,7 @@ void GamePlayState::Update()
 
 		EnemySpawn(Vector3(-10, -1, -8), 0, Vector3{ 0.0f,0.0f,0.0f });
 
-		EnemySpawn(Vector3(-26, -1, 16), 0, Vector3{ 0.0f,0.0f,0.0f });
+		EnemySpawn(Vector3(-12, -1, 16), 0, Vector3{ 0.0f,0.0f,0.0f });
 		
 		player->Reset();
 		StateNo = 6;//GameOver

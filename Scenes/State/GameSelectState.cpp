@@ -55,82 +55,98 @@ void GameSelectState::Update()
 	worldTransform_Stage2Sprite.UpdateMatrix();
 	worldTransform_Stage3Sprite.UpdateMatrix();
 
-	if (Input::GetInstance()->GetJoystickState(0, joyState))
-	{
-		if (joyState.Gamepad.sThumbLX != 0 || joyState.Gamepad.sThumbLY != 0) {
+	Input::GetInstance()->GetJoystickState(0, joyState);
+	if (Input::GetInstance()->IsTreggerKey(DIK_A)) {
+		
+		if (selectStageNo < 2) {
+			selectStageNo = 3;
+		}
+		else {
+			selectStageNo -= 1;
+		}
+	}
+	else if (Input::GetInstance()->IsTreggerKey(DIK_D)) {
+		if (selectStageNo > 2) {
+			selectStageNo = 1;
+		}
+		else {
+			selectStageNo += 1;
+		}
+	}
 
-			//StageSelect
-			if ((float)joyState.Gamepad.sThumbLX / SHRT_MAX > threshold)
-			{
-				stickTimer--;
-				if (stickTimer <= 0) {
-					if (selectStageNo > 2) {
-						selectStageNo = 1;
-						stickTimer = 10;
-					}
-					else {
-						selectStageNo += 1;
-						stickTimer = 10;
-					}
+	if (joyState.Gamepad.sThumbLX != 0 ||joyState.Gamepad.sThumbLY != 0) {
+
+		//StageSelect
+		if ((float)joyState.Gamepad.sThumbLX / SHRT_MAX >threshold)
+		{
+			stickTimer--;
+			if (stickTimer <= 0) {
+				if (selectStageNo > 2) {
+					selectStageNo = 1;
+					stickTimer = 10;
 				}
-			}
-			else {
-				stickTimer--;
-				if (stickTimer <= 0) {
-					if (selectStageNo < 2) {
-						selectStageNo = 3;
-						stickTimer = 10;
-					}
-					else {
-						selectStageNo -= 1;
-						stickTimer = 10;
-					}
+				else {
+					selectStageNo += 1;
+					stickTimer = 10;
 				}
-			}
-			if (selectStageNo == 1) {
-				worldTransform_Stage1Sprite.translation_ = { 30.0f,0.0f,0.0f };
-				worldTransform_Stage2Sprite.translation_ = { 600.0f,100.0f,0.0f };
-				worldTransform_Stage3Sprite.translation_ = { -300.0f,100.0f,0.0f };
-				worldTransform_Stage1Sprite.scale_ = { 1.0f,1.0f,1.0f };
-				worldTransform_Stage2Sprite.scale_ = { 0.8f,0.8f,1.0f };
-				worldTransform_Stage3Sprite.scale_ = { 0.8f,0.8f,1.0f };
-			}
-			if (selectStageNo == 2) {
-				worldTransform_Stage1Sprite.translation_ = { -300.0f,100.0f,0.0f };
-				worldTransform_Stage2Sprite.translation_ = { 30.0f,0.0f,0.0f };
-				worldTransform_Stage3Sprite.translation_ = { 600.0f,100.0f,0.0f };
-				worldTransform_Stage1Sprite.scale_ = { 0.8f,0.8f,1.0f };
-				worldTransform_Stage2Sprite.scale_ = { 1.0f,1.0f,1.0f };
-				worldTransform_Stage3Sprite.scale_ = { 0.8f,0.8f,1.0f };
-			}
-			if (selectStageNo == 3) {
-				worldTransform_Stage1Sprite.translation_ = { 600.0f,100.0f,0.0f };
-				worldTransform_Stage2Sprite.translation_ = { -300.0f,100.0f,0.0f };
-				worldTransform_Stage3Sprite.translation_ = { 30.0f,0.0f,0.0f };
-				worldTransform_Stage1Sprite.scale_ = { 0.8f,0.8f,1.0f };
-				worldTransform_Stage2Sprite.scale_ = { 0.8f,0.8f,1.0f };
-				worldTransform_Stage3Sprite.scale_ = { 1.0f,1.0f,1.0f };
 			}
 		}
 		else {
-			stickTimer = 5;
-		}
-
-		//DecisionStage
-		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_A)
-		{
-			if (!aButtonPressed)
-			{
-				StateNo = selectStageNo + 1;
-
-				aButtonPressed = true;
-
+			stickTimer--;
+			if (stickTimer <= 0) {
+				if (selectStageNo < 2) {
+					selectStageNo = 3;
+					stickTimer = 10;
+				}
+				else {
+					selectStageNo -= 1;
+					stickTimer = 10;
+				}
 			}
 		}
-		else
+		
+	}
+	else {
+		stickTimer = 5;
+	}
+	if (selectStageNo == 1) {
+		worldTransform_Stage1Sprite.translation_ = { 30.0f,0.0f,0.0f };
+		worldTransform_Stage2Sprite.translation_ = { 600.0f,100.0f,0.0f };
+		worldTransform_Stage3Sprite.translation_ = { -300.0f,100.0f,0.0f };
+		worldTransform_Stage1Sprite.scale_ = { 1.0f,1.0f,1.0f };
+		worldTransform_Stage2Sprite.scale_ = { 0.8f,0.8f,1.0f };
+		worldTransform_Stage3Sprite.scale_ = { 0.8f,0.8f,1.0f };
+	}
+	else if (selectStageNo == 2) {
+		worldTransform_Stage1Sprite.translation_ = { -300.0f,100.0f,0.0f };
+		worldTransform_Stage2Sprite.translation_ = { 30.0f,0.0f,0.0f };
+		worldTransform_Stage3Sprite.translation_ = { 600.0f,100.0f,0.0f };
+		worldTransform_Stage1Sprite.scale_ = { 0.8f,0.8f,1.0f };
+		worldTransform_Stage2Sprite.scale_ = { 1.0f,1.0f,1.0f };
+		worldTransform_Stage3Sprite.scale_ = { 0.8f,0.8f,1.0f };
+	}
+	else if (selectStageNo == 3) {
+		worldTransform_Stage1Sprite.translation_ = { 600.0f,100.0f,0.0f };
+		worldTransform_Stage2Sprite.translation_ = { -300.0f,100.0f,0.0f };
+		worldTransform_Stage3Sprite.translation_ = { 30.0f,0.0f,0.0f };
+		worldTransform_Stage1Sprite.scale_ = { 0.8f,0.8f,1.0f };
+		worldTransform_Stage2Sprite.scale_ = { 0.8f,0.8f,1.0f };
+		worldTransform_Stage3Sprite.scale_ = { 1.0f,1.0f,1.0f };
+	}
+	//DecisionStage
+	if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_A||Input::GetInstance()->IsTreggerKey(DIK_SPACE))
+	{
+		if (!aButtonPressed)
 		{
-			aButtonPressed = false;
+			StateNo = selectStageNo + 1;
+
+			aButtonPressed = true;
+
 		}
+	}
+	else
+	{
+		aButtonPressed = false;
 	}
 }
 
