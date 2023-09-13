@@ -83,5 +83,8 @@ private:
 
 	Vector3 move;
 
+	Vector2 moveLimitX = { -33,33 };
+	Vector2 moveLimitY = { 23,-15 };
+
 };
 

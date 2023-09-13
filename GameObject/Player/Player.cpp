@@ -95,6 +95,23 @@ void Player::Update()
 
 			}
 
+			//LeftMoveLimit
+			if (worldTransform_.translation_.x <= moveLimitX.x) {
+				worldTransform_.translation_.x = moveLimitX.x + 0.1f;
+			}
+			//RightMoveLimit
+			if (worldTransform_.translation_.x >= moveLimitX.y) {
+				worldTransform_.translation_.x = moveLimitX.y - 0.1f;
+			}
+			//TopMoveLimit
+			if (worldTransform_.translation_.z >= moveLimitY.x) {
+				worldTransform_.translation_.z = moveLimitY.x - 0.1f;
+			}
+			//BottomMoveLimit
+			if (worldTransform_.translation_.z <= moveLimitY.y) {
+				worldTransform_.translation_.z = moveLimitY.y + 0.1f;
+			}
+
 			//else if (isTouchObject == true)
 			//{
 			//	collisionDirection = { 0,0,0 };

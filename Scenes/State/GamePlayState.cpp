@@ -28,11 +28,7 @@ void GamePlayState::Initialize()
 	switchModel_ = Model::CreateModelFromObj("resources", "Switch.obj");
 
 
-	WallSpawn(Vector3(8, 0, 4));
-	WallSpawn(Vector3(5, 0, -5));
-
-	WallSpawn(Vector3(-2, 0, 5));
-	WallSpawn(Vector3(-5, 0, -5));
+	WallSpawn(Vector3(8, 0, 5));
 
 
 	player = new Player();
@@ -45,13 +41,13 @@ void GamePlayState::Initialize()
 	ground = new Ground();
 	ground->Initialize(groundModel);
 	switch_ = new Switch();
-	switch_->Initialize(switchModel_, Vector3(0, 0, 0));
+	switch_->Initialize(switchModel_, Vector3(29, 0, -14));
 
-	EnemySpawn(Vector3(10, -1, 0));
+	EnemySpawn(Vector3(8, -1, 10));
 
-	EnemySpawn(Vector3(20, -1, 12));
+	EnemySpawn(Vector3(-10, -1, -8));
 
-	EnemySpawn(Vector3(-12, -1, -10));
+	EnemySpawn(Vector3(-26, -1, 16));
 
 	enemyCountMax = enemyCount;
 
@@ -158,11 +154,11 @@ void GamePlayState::Update()
 	}
 
 	if (clearTimer >= 90) {
-		EnemySpawn(Vector3(10, -1, 0));
+		EnemySpawn(Vector3(8, -1, 10));
 
-		EnemySpawn(Vector3(20, -1, 12));
+		EnemySpawn(Vector3(-10, -1, -8));
 
-		EnemySpawn(Vector3(-12, -1, -10));
+		EnemySpawn(Vector3(-30, -1, 20));
 		player->Reset();
 		StateNo = 5;//StageClear
 	}
@@ -172,11 +168,11 @@ void GamePlayState::Update()
 			enemy->SetDead(true);
 		}
 
-		EnemySpawn(Vector3(10, -1, 0));
+		EnemySpawn(Vector3(8, -1, 10));
 
-		EnemySpawn(Vector3(20, -1, 12));
+		EnemySpawn(Vector3(-10, -1, -8));
 
-		EnemySpawn(Vector3(-12, -1, -10));
+		EnemySpawn(Vector3(-30, -1, 20));
 		player->Reset();
 		StateNo = 6;//GameOver
 	}
