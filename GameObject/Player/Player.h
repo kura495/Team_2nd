@@ -41,8 +41,6 @@ private:
 	void ApplyGlobalVariables();
 	void ImGui();
 
-	Vector3 CollisionDirection();
-
 	/// <summary>
 	/// 爆弾の処理
 	/// </summary>
@@ -50,6 +48,7 @@ private:
 
 	float Lerp(const float& a, const float& b, float t);
 	float LerpShortAngle(float a, float b, float t);
+	Vector3 Subtract(const Vector3& v1, const Vector3& v2);
 
 	Input* input = nullptr;
 	Model* model = nullptr;
@@ -72,14 +71,13 @@ private:
 	bool xButtonPressed = false;	//xボタンを押したか	//false : 押していない
 	bool isTouchObject = false;	//プレイヤーが他オブジェクトと接触しているか	//false : 接触していない
 
-	Vector3 collisionDirection;	//当たった方向
-
 	const float threshold = 0.7f;	//しきい値
 	float angle_;	//目標角度
 
 	const int MaxBomb_ = 5;
 	int BombNum_ = 0;
-	Vector3 direction;
+
+	Vector3 savePosition;
 
 	Vector3 move;
 

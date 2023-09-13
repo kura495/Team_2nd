@@ -60,38 +60,13 @@ void Player::Update()
 				worldTransform_.translation_.y = worldTransform_.translation_.y + move.y;
 				worldTransform_.translation_.z = worldTransform_.translation_.z + move.z;
 
+				savePosition = worldTransform_.translation_;
 
 			}
 
 			else if (isTouchObject == true)
 			{
-				collisionDirection = CollisionDirection();
-
-				if (collisionDirection.x >= 0)
-				{
-					//移動量
-					worldTransform_.translation_.x -= 0.1f;
-					isTouchObject = false;
-				}
-				else
-				{
-					//移動量
-					worldTransform_.translation_.x += 0.1f;
-					isTouchObject = false;
-				}
-
-				if (collisionDirection.z >= 0)
-				{
-					//移動量
-					worldTransform_.translation_.z -= 0.1f;
-					isTouchObject = false;
-				}
-				else
-				{
-					//移動量
-					worldTransform_.translation_.z += 0.1f;
-					isTouchObject = false;
-				}
+				
 
 			}
 
@@ -112,120 +87,7 @@ void Player::Update()
 				worldTransform_.translation_.z = moveLimitY.y + 0.1f;
 			}
 
-			//else if (isTouchObject == true)
-			//{
-			//	collisionDirection = { 0,0,0 };
-			//	collisionDirection = CollisionDirection();
-
-			//	//x:プラス && z:プラス
-			//	if (GetWorldPosition().x > 0)
-			//	{
-			//		if (GetWorldPosition().z > 0)// z座標が中心より大さい場合&&x座標が中心より大きい場合
-			//		{
-			//			if (collisionDirection.x <= 0 )
-			//			{
-			//				// 左下から当たっている場合
-			//				worldTransform_.translation_.x -= 0.1f;
-			//				isTouchObject = false;
-			//			}
-			//			else
-			//			{
-			//				// 右上から当たっている場合
-			//				worldTransform_.translation_.x += 0.1f;
-			//				isTouchObject = false;
-			//			}
-
-			//			if (collisionDirection.z <= 0)
-			//			{
-
-			//				worldTransform_.translation_.z -= 0.1f;
-			//				isTouchObject = false;
-			//			}
-			//			else
-			//			{
-			//				worldTransform_.translation_.z += 0.1f;
-			//				isTouchObject = false;
-			//			}
-
-			//		}
-			//		else //x:プラス && z:マイナス
-			//		{
-			//			
-			//			if (collisionDirection.x <= 0 && collisionDirection.z <= 0) {
-			//				// 左下から当たっている場合
-			//				worldTransform_.translation_.x += 0.1f;
-			//				worldTransform_.translation_.z += 0.1f;
-			//				isTouchObject = false;
-			//			}
-			//			else {
-			//				// 右上から当たっている場合
-			//				worldTransform_.translation_.x += 0.1f;
-			//				worldTransform_.translation_.z += 0.1f;
-			//				isTouchObject = false;
-			//			}
-			//		}
-			//	}
-			//	else
-			//	{
-			//		if (GetWorldPosition().z > 0)// z座標が中心より小さい場合&&x座標が中心より小さい場合
-			//		{
-			//			//x:マイナス　z:プラス
-			//			if (collisionDirection.x <= 0 )
-			//			{
-			//				//  右下から当たっている場合
-			//				worldTransform_.translation_.x += 0.1f;
-			//				isTouchObject = false;
-			//			}
-			//			else
-			//			{
-			//				// 左上から当たっている場合
-			//				worldTransform_.translation_.x -= 0.1f;
-			//				isTouchObject = false;
-			//			}
-			//			if (collisionDirection.z <= 0)
-			//			{
-			//				worldTransform_.translation_.z += 0.1f;
-			//				isTouchObject = false;
-			//			}
-			//			else
-			//			{
-			//				worldTransform_.translation_.z -= 0.1f;
-			//				isTouchObject = false;
-			//			}
-			//		}
-			//		else
-			//		{
-			//			//x:マイナス　z:マイナス
-			//			if (collisionDirection.x <= 0 ){
-			//				// 右から当たっている場合
-			//				worldTransform_.translation_.x += 0.1f;
-			//				isTouchObject = false;
-			//			}
-			//			else {
-			//				// 左から当たっている場合
-			//				worldTransform_.translation_.x -= 0.1f;
-			//				isTouchObject = false;
-			//			}
-			//			if (collisionDirection.z <= 0)
-			//			{
-			//				
-			//				worldTransform_.translation_.z += 0.1f;
-			//				isTouchObject = false;
-			//			}
-			//			else {
-			//				// 上から当たっている場合
-			//				worldTransform_.translation_.z -= 0.1f;
-			//				isTouchObject = false;
-			//			}
-
-			//		}
-			//	}
-
-
-			//	isTouchObject = false;
-			//}
-
-
+			
 			//// Y軸周り角度(θy)	歩いている方向に顔を向ける
 			//worldTransform_.rotation_.y = LerpShortAngle(worldTransform_.rotation_.y, angle_, 0.1f);
 
@@ -286,6 +148,57 @@ void Player::OnCollision(const uint32_t& Attribute)
 {
 	if (Attribute == kCollitionAttributeWall) {
 		isTouchObject = true;
+
+		if (isTouchObject == true)
+		{
+			std::list<Wall*>::iterator itrA = walls_.begin();
+
+			for (; itrA != walls_.end(); ++itrA)
+			{
+				Wall* wallA = *itrA;
+				float distance = Length(Subtract(wallA->GetWorldPosition(), GetWorldPosition()));
+
+				if (distance < wallA->GetRadius() + GetRadius())
+				{
+					//矩形の当たり判定
+					if (wallA->GetWorldPosition().x - wallA->GetRadius() <= GetWorldPosition().x + GetRadius() && GetWorldPosition().x - GetRadius() <= wallA->GetWorldPosition().x + wallA->GetRadius())
+					{
+						if (wallA->GetWorldPosition().z - wallA->GetRadius() <= GetWorldPosition().z + GetRadius() && GetWorldPosition().z - GetRadius() <= wallA->GetWorldPosition().z + wallA->GetRadius())
+						{
+
+							//向き
+							if (wallA->GetWorldPosition().x > savePosition.x)
+							{
+								worldTransform_.translation_.x = savePosition.x - 0.3f;
+								isTouchObject = false;
+							}
+							else if (wallA->GetWorldPosition().x < savePosition.x)
+							{
+								worldTransform_.translation_.x = savePosition.x + 0.3f;
+								isTouchObject = false;
+							}
+
+							if (wallA->GetWorldPosition().z > savePosition.z)
+							{
+								worldTransform_.translation_.z = savePosition.z - 0.3f;
+								isTouchObject = false;
+							}
+							else if (wallA->GetWorldPosition().z < savePosition.z)
+							{
+								worldTransform_.translation_.z = savePosition.z + 0.3f;
+								isTouchObject = false;
+							}
+
+
+						}
+					}
+
+
+					break;
+				}
+			}
+		}
+
 	}
 	else {
 		return;
@@ -306,9 +219,7 @@ void Player::ImGui()
 	ImGui::SliderFloat3("translation", &worldTransform_.translation_.x, -10, 10);
 	ImGui::SliderFloat3("rotation", &worldTransform_.rotation_.x, -10, 10);
 	ImGui::SliderFloat3("scale", &worldTransform_.scale_.x, -10, 10);
-	ImGui::SliderFloat("direction", &collisionDirection.x, -10, 10);
 	ImGui::Text("isTouchObject : %d", &isTouchObject);
-	ImGui::SliderFloat3("direction", &direction.x, -1, 1);
 
 	ImGui::End();
 }
@@ -366,55 +277,6 @@ void Player::Attack()
 
 }
 
-Vector3 Player::CollisionDirection()
-{
-
-	for (Wall* wall : walls_) {
-		direction.x = wall->GetWorldPosition().x - GetWorldPosition().x;
-		direction.y = wall->GetWorldPosition().y - GetWorldPosition().y;
-		direction.z = wall->GetWorldPosition().z - GetWorldPosition().z;
-
-
-		// x軸方向の修正
-		if (direction.x > 0) {
-			direction.x = 1.0f;
-		}
-		else {
-			direction.x = -1.0f;
-		}
-
-		// y軸方向の修正
-		if (direction.y > 0) {
-			direction.y = 1.0f;
-		}
-		else {
-			direction.y = -1.0f;
-		}
-
-		// z軸方向の修正
-		if (direction.z > 0) {
-			direction.z = 1.0f;
-		}
-		else {
-			direction.z = -1.0f;
-		}
-
-
-
-		float magnitude = sqrt(direction.x * direction.x + direction.y * direction.y + direction.z * direction.z);
-		if (magnitude != 0) {
-			direction.x /= magnitude;
-			direction.y /= magnitude;
-			direction.z /= magnitude;
-		}
-
-
-	}
-
-
-	return direction;
-
-}
 
 float Player::Lerp(const float& a, const float& b, float t) {
 	float result{};
@@ -451,5 +313,15 @@ float Player::LerpShortAngle(float a, float b, float t)
 	}
 
 	return Lerp(a, diff, t);
+}
+
+//減算
+Vector3 Player::Subtract(const Vector3& v1, const Vector3& v2)
+{
+	Vector3 result;
+	result.x = v1.x - v2.x;
+	result.y = v1.y - v2.y;
+	result.z = v1.z - v2.z;
+	return result;
 }
 
