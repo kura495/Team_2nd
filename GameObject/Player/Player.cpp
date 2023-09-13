@@ -25,75 +25,79 @@ void Player::Initialize(Model* explotionModel, Model* bombModel)
 
 void Player::Update()
 {
-	if (Input::GetInstance()->GetJoystickState(0, joyState)) {
+Input::GetInstance()->GetJoystickState(0,joyState);
+
+	if (input->IspushKey(DIK_W)) {
+		move.z = 10000.0f;
+	}
+	else if (input->IspushKey(DIK_S)) {
+		move.z = -10000.0f;
+	}
+	else {
+		move.z = 0;
+	}
+	if (input->IspushKey(DIK_A)) {
+		move.x = -10000.0f;
+	}
+	else if (input->IspushKey(DIK_D)) {
+		move.x = 10000.0f;
+	}
+	else {
+		move.x = 0;
+	}
+	
+	if (isTouchObject == false)
+	{
+		// 速さ
+		const float moveSpeed = 0.3f;
+		
+		// 移動量
 		if (joyState.Gamepad.sThumbLX != 0 || joyState.Gamepad.sThumbLY != 0) {
+			move = {
+				(float)joyState.Gamepad.sThumbLX / SHRT_MAX, 0.0f,
+				(float)joyState.Gamepad.sThumbLY / SHRT_MAX };
+		}
+		if (Length(move) > threshold)
+		{
+			isMove = true;
+		}
 
-			if (isTouchObject == false)
-			{
-				// 速さ
-				const float moveSpeed = 0.3f;
+		if (isMove == true)
+		{
+			//反映
+			move.x = Normalize(move).x * moveSpeed;
+			move.y = Normalize(move).y * moveSpeed;
+			move.z = Normalize(move).z * moveSpeed;
 
-				// 移動量
-				move = {
-					(float)joyState.Gamepad.sThumbLX / SHRT_MAX, 0.0f,
-					(float)joyState.Gamepad.sThumbLY / SHRT_MAX };
-
-				if (Length(move) > threshold)
-				{
-					isMove = true;
-				}
-
-				if (isMove == true)
-				{
-					//反映
-					move.x = Normalize(move).x * moveSpeed;
-					move.y = Normalize(move).y * moveSpeed;
-					move.z = Normalize(move).z * moveSpeed;
-
-					//目標角度の算出
-					angle_ = std::atan2(move.x, move.z);
-
-				}
-
-				//移動量
-				worldTransform_.translation_.x = worldTransform_.translation_.x + move.x;
-				worldTransform_.translation_.y = worldTransform_.translation_.y + move.y;
-				worldTransform_.translation_.z = worldTransform_.translation_.z + move.z;
-
-				savePosition = worldTransform_.translation_;
-
-			}
-
-			else if (isTouchObject == true)
-			{
-				
-
-			}
-
-			//LeftMoveLimit
-			if (worldTransform_.translation_.x <= moveLimitX.x) {
-				worldTransform_.translation_.x = moveLimitX.x + 0.1f;
-			}
-			//RightMoveLimit
-			if (worldTransform_.translation_.x >= moveLimitX.y) {
-				worldTransform_.translation_.x = moveLimitX.y - 0.1f;
-			}
-			//TopMoveLimit
-			if (worldTransform_.translation_.z >= moveLimitY.x) {
-				worldTransform_.translation_.z = moveLimitY.x - 0.1f;
-			}
-			//BottomMoveLimit
-			if (worldTransform_.translation_.z <= moveLimitY.y) {
-				worldTransform_.translation_.z = moveLimitY.y + 0.1f;
-			}
-
-			
-			//// Y軸周り角度(θy)	歩いている方向に顔を向ける
-			//worldTransform_.rotation_.y = LerpShortAngle(worldTransform_.rotation_.y, angle_, 0.1f);
-
-
+			//目標角度の算出
+			angle_ = std::atan2(move.x, move.z);
 
 		}
+
+		//移動量
+		worldTransform_.translation_.x = worldTransform_.translation_.x + move.x;
+		worldTransform_.translation_.y = worldTransform_.translation_.y + move.y;
+		worldTransform_.translation_.z = worldTransform_.translation_.z + move.z;
+
+		savePosition = worldTransform_.translation_;
+
+	}
+
+	//LeftMoveLimit
+	if (worldTransform_.translation_.x <= moveLimitX.x) {
+		worldTransform_.translation_.x = moveLimitX.x + 0.1f;
+	}
+	//RightMoveLimit
+	if (worldTransform_.translation_.x >= moveLimitX.y) {
+		worldTransform_.translation_.x = moveLimitX.y - 0.1f;
+	}
+	//TopMoveLimit
+	if (worldTransform_.translation_.z >= moveLimitY.x) {
+		worldTransform_.translation_.z = moveLimitY.x - 0.1f;
+	}
+	//BottomMoveLimit
+	if (worldTransform_.translation_.z <= moveLimitY.y) {
+		worldTransform_.translation_.z = moveLimitY.y + 0.1f;
 	}
 
 	//爆弾
@@ -233,9 +237,7 @@ void Player::Attack()
 {
 
 	//コントローラー操作
-	if (Input::GetInstance()->GetJoystickState(0, joyState))
-	{
-		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_X)
+		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_X||input->IsTreggerKey(DIK_C))
 		{
 			if (!xButtonPressed)
 			{
@@ -266,7 +268,7 @@ void Player::Attack()
 
 
 		//爆発させる
-		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_B)
+		if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_B || input->IsTreggerKey(DIK_SPACE))
 		{
 			if (Switch::GetIsCollision() == true) {
 				for (Bomb* bomb : bombs_)
@@ -275,9 +277,6 @@ void Player::Attack()
 				}
 			}
 		}
-	}
-
-
 }
 
 
