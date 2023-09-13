@@ -54,14 +54,33 @@ void GamePlayState::Initialize()
 
 	//
 	//2Dオブジェクト作成
-	sprite = new Sprite();
+	
+
+	enemySay = new Sprite();
+	enemySay->Initialize(EnemySpriteLeftTop[0], EnemySpriteLeftBottom[0], EnemySpriteRightTop[1], EnemySpriteRightBottom[1]);
+	worldTransform_EnemySprite.Initialize();
+	enemySayTexture = textureManager_->LoadTexture("resources/enemySay.png");
+
+	//stage2 = new Sprite();
+	//stage2->Initialize(Stage2SpriteLeftTop[0], Stage2SpriteLeftBottom[0], Stage2SpriteRightTop[1], Stage2SpriteRightBottom[1]);
+	//worldTransform_Stage2Sprite.Initialize();
+	//stage2Tex = textureManager_->LoadTexture("resources/Stage2.png");
+
+	//stage3 = new Sprite();
+	//stage3->Initialize(Stage3SpriteLeftTop[0], Stage3SpriteLeftBottom[0], Stage3SpriteRightTop[1], Stage3SpriteRightBottom[1]);
+	//worldTransform_Stage3Sprite.Initialize();
+	//stage3Tex = textureManager_->LoadTexture("resources/Stage3.png");
+
+	/*sprite = new Sprite();
 	sprite->Initialize(LeftTop[0], LeftBottom[0], RightTop[1], RightBottom[1]);
-	worldTransform_Sprite.Initialize();
+	worldTransform_Sprite.Initialize();*/
+	
 	//
 	//
 	//リソースを作る
 	//テクスチャ
-	Texture = textureManager_->LoadTexture("resources/uvChecker.png");
+
+	/*Texture = textureManager_->LoadTexture("resources/uvChecker.png");*/
 	//サウンド
 	mokugyo = audio->LoadAudio("resources/mokugyo.wav");
 	//
@@ -178,6 +197,11 @@ void GamePlayState::Update()
 		StateNo = 6;//GameOver
 	}
 
+	//2D
+
+	worldTransform_EnemySprite.translation_ = { 600,40,0 };
+
+
 	ImGui::Begin("System");
 	if (input->PushAButton(JoyState)) {
 		ImGui::Text("IsPushA");
@@ -214,6 +238,8 @@ void GamePlayState::Draw()
 
 
 	//Sprite描画ここから
+
+	enemySay->Draw(worldTransform_EnemySprite, enemySayTexture);
 
 	//sprite->Draw(worldTransform_Sprite, Texture);
 

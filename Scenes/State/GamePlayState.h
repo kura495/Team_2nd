@@ -76,9 +76,14 @@ private:
 	Switch* switch_ = nullptr;
 	//2Dオブジェクトたち
 	Sprite* sprite;
+
+	TextureManager* enemySay_ = nullptr;
+
+
 	//
 	//テクスチャハンドルたち
 	int Texture;
+	
 	//
 	//サウンドハンドルたち
 	uint32_t mokugyo;
@@ -86,22 +91,67 @@ private:
 	int Pan = 0;
 	float Volume = 0.0f;
 	//Sprite用の位置
-	Vector4 LeftTop[2] = {
-		{ 0.0f,0.0f,0.0f,1.0f },
+	
+	Sprite* enemySay;
+	int enemySayTexture;
+	WorldTransform worldTransform_EnemySprite;
+	Vector4 EnemySpriteLeftTop[2] = {
+		{ 400.0f,225.0f,0.0f,1.0f },
 		{ 360.0f,0.0f,0.0f,1.0f }
 	};
-	Vector4 LeftBottom[2] = {
-		{ 0.0f,360.0f,0.0f,1.0f },
+	Vector4 EnemySpriteLeftBottom[2] = {
+		{ 400.0f,265.0f,0.0f,1.0f },
 		{ 360.0f,360.0f,0.0f,1.0f }
 	};
-	Vector4 RightTop[2] = {
+	Vector4 EnemySpriteRightTop[2] = {
 		{ 360.0f,0.0f,0.0f,1.0f },
-		{ 640.0f,0.0f,0.0f,1.0f }
+		{ 800.0f,225.0f,0.0f,1.0f }
 	};
-	Vector4 RightBottom[2] = {
+	Vector4 EnemySpriteRightBottom[2] = {
+		{ 360.0f,170.0f,0.0f,1.0f },
+		{ 800.0f,265.0f,0.0f,1.0f }
+	};
+
+	Sprite* stage2;
+	int stage2Tex;
+	WorldTransform worldTransform_Stage2Sprite;
+	Vector4 Stage2SpriteLeftTop[2] = {
+		{ 400.0f,225.0f,0.0f,1.0f },
+		{ 360.0f,0.0f,0.0f,1.0f }
+	};
+	Vector4 Stage2SpriteLeftBottom[2] = {
+		{ 400.0f,495.0f,0.0f,1.0f },
+		{ 360.0f,360.0f,0.0f,1.0f }
+	};
+	Vector4 Stage2SpriteRightTop[2] = {
+		{ 360.0f,0.0f,0.0f,1.0f },
+		{ 800.0f,225.0f,0.0f,1.0f }
+	};
+	Vector4 Stage2SpriteRightBottom[2] = {
 		{ 360.0f,180.0f,0.0f,1.0f },
-		{ 640.0f,360.0f,0.0f,1.0f }
+		{ 800.0f,495.0f,0.0f,1.0f }
 	};
+
+	Sprite* stage3;
+	int stage3Tex;
+	WorldTransform worldTransform_Stage3Sprite;
+	Vector4 Stage3SpriteLeftTop[2] = {
+		{ 400.0f,225.0f,0.0f,1.0f },
+		{ 360.0f,0.0f,0.0f,1.0f }
+	};
+	Vector4 Stage3SpriteLeftBottom[2] = {
+		{ 400.0f,495.0f,0.0f,1.0f },
+		{ 360.0f,360.0f,0.0f,1.0f }
+	};
+	Vector4 Stage3SpriteRightTop[2] = {
+		{ 360.0f,0.0f,0.0f,1.0f },
+		{ 800.0f,225.0f,0.0f,1.0f }
+	};
+	Vector4 Stage3SpriteRightBottom[2] = {
+		{ 360.0f,180.0f,0.0f,1.0f },
+		{ 800.0f,495.0f,0.0f,1.0f }
+	};
+
 	//
 	int enemyCount = 0;
 	int enemyCountMax = 0;
