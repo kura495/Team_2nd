@@ -35,7 +35,7 @@ public:
 	void Update();
 	void Draw();
 
-	void EnemySpawn(const Vector3& position);
+	void EnemySpawn(const Vector3& position, int moveMode, Vector3 moveSpeed);
 	void WallSpawn(const Vector3& position);
 
 private:

@@ -7,7 +7,7 @@
 
 class Enemy : public Collider {
 public:
-	void Initialize(Model* enemyModel);
+	void Initialize(Model* enemyModel, int moveMode, Vector3 moveSpeed);
 
 	void Update();
 
@@ -28,4 +28,8 @@ private:
 	Model* enemyModel_ = nullptr;
 
 	bool isDead_ = false;
+
+	int moveMode_ = 0;
+	Vector3 moveSpeed_ = { 0.0f,0.0f,0.0f };
+	int moveTimer = 0;
 };

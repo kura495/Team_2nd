@@ -56,12 +56,12 @@ void GamePlayState2::Initialize()
 	switch_->Initialize(switchModel_, Vector3(0, 0, 0));
 
 
-	EnemySpawn(Vector3(-20, 0, -12));
-	EnemySpawn(Vector3(-31, 0, -4));
-	EnemySpawn(Vector3(-21, 0, 7));
-	EnemySpawn(Vector3(0, 0, 14));
-	EnemySpawn(Vector3(-5, 0, 0));
-	EnemySpawn(Vector3(-5, 0, -14));
+	EnemySpawn(Vector3(-20, 0, -12), 1, Vector3{ 0.1f,0.0f,0.1f });
+	EnemySpawn(Vector3(-31, 0, -4), 1, Vector3{ 0.1f,0.0f,0.1f });
+	EnemySpawn(Vector3(-21, 0, 7), 1, Vector3{ 0.1f,0.0f,0.1f });
+	EnemySpawn(Vector3(0, 0, 14), 2, Vector3{ 0.1f,0.0f,0.1f });
+	EnemySpawn(Vector3(-5, 0, 0), 2, Vector3{ 0.1f,0.0f,0.1f });
+	EnemySpawn(Vector3(-5, 0, -14), 2, Vector3{ 0.1f,0.0f,0.1f });
 
 
 	enemyCountMax = enemyCount;
@@ -171,12 +171,12 @@ void GamePlayState2::Update()
 	if (clearTimer >= 90) {
 
 
-		EnemySpawn(Vector3(-20, 0, -12));
-		EnemySpawn(Vector3(-31, 0, -4));
-		EnemySpawn(Vector3(-21, 0, 7));
-		EnemySpawn(Vector3(0, 0, 14));
-		EnemySpawn(Vector3(-5, 0, 0));
-		EnemySpawn(Vector3(-5, 0, -14));
+		EnemySpawn(Vector3(-20, 0, -12), 1, Vector3{ 0.1f,0.0f,0.1f });
+		EnemySpawn(Vector3(-31, 0, -4), 1, Vector3{ 0.1f,0.0f,0.1f });
+		EnemySpawn(Vector3(-21, 0, 7), 1, Vector3{ 0.1f,0.0f,0.1f });
+		EnemySpawn(Vector3(0, 0, 14), 2, Vector3{ 0.1f,0.0f,0.1f });
+		EnemySpawn(Vector3(-5, 0, 0), 2, Vector3{ 0.1f,0.0f,0.1f });
+		EnemySpawn(Vector3(-5, 0, -14), 2, Vector3{ 0.1f,0.0f,0.1f });
 
 		player->Reset();
 
@@ -189,12 +189,12 @@ void GamePlayState2::Update()
 		}
 
 
-		EnemySpawn(Vector3(-20, 0, -12));
-		EnemySpawn(Vector3(-31, 0, -4));
-		EnemySpawn(Vector3(-21, 0, 7));
-		EnemySpawn(Vector3(0, 0, 14));
-		EnemySpawn(Vector3(-5, 0, 0));
-		EnemySpawn(Vector3(-5, 0, -14));
+		EnemySpawn(Vector3(-20, 0, -12), 1, Vector3{ 0.1f,0.0f,0.1f });
+		EnemySpawn(Vector3(-31, 0, -4), 1, Vector3{ 0.1f,0.0f,0.1f });
+		EnemySpawn(Vector3(-21, 0, 7), 1, Vector3{ 0.1f,0.0f,0.1f });
+		EnemySpawn(Vector3(0, 0, 14), 2, Vector3{ 0.1f,0.0f,0.1f });
+		EnemySpawn(Vector3(-5, 0, 0), 2, Vector3{ 0.1f,0.0f,0.1f });
+		EnemySpawn(Vector3(-5, 0, -14), 2, Vector3{ 0.1f,0.0f,0.1f });
 
 		player->Reset();
 
@@ -246,10 +246,10 @@ void GamePlayState2::Draw()
 	//描画ここまで
 }
 
-void GamePlayState2::EnemySpawn(const Vector3& position) {
+void GamePlayState2::EnemySpawn(const Vector3& position, int moveMode, Vector3 moveSpeed) {
 	enemyCount += 1;
 	enemy_ = new Enemy();
-	enemy_->Initialize(enemyModel);
+	enemy_->Initialize(enemyModel,moveMode,moveSpeed);
 	enemy_->SetPosition(position);
 	enemys_.push_back(enemy_);
 }
