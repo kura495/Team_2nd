@@ -9,7 +9,7 @@ void Enemy::Initialize(Model* enemyModel,int moveMode, Vector3 moveSpeed) {
 	moveMode_ = moveMode;
 	moveSpeed_ = moveSpeed;
 	SetcollisionAttribute(kCollitionAttributeEnemy);
-	SetcollisionMask(~kCollitionAttributeEnemy );
+	SetcollisionMask(~kCollitionAttributeEnemy & ~kCollitionAttributeBomb);
 }
 
 void Enemy::Update() {
@@ -70,7 +70,7 @@ void Enemy::SetPosition(const Vector3& position) {
 }
 
 void Enemy::OnCollision(const uint32_t& Attribute) { 
-	if (Attribute == kCollitionAttributeBomb) {
+	if (Attribute == kCollitionAttributeBombExplode) {
 		isDead_ = true;
 	}
 	

@@ -11,3 +11,5 @@ const uint32_t kCollitionAttributeWall = 0b1 << 2;
 const uint32_t kCollitionAttributeBomb = 0b1 << 3;
 //Switch
 const uint32_t kCollitionAttributeSwitch = 0b1 << 4;
+//ボム爆発
+const uint32_t kCollitionAttributeBombExplode = 0b1 << 5;

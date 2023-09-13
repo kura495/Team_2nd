@@ -13,12 +13,14 @@ void Bomb::Initialize(Model* bombModel,Model* explosionModel) {
 	worldTransform_.UpdateMatrix();
 	worldTransformExplosion_.UpdateMatrix();
 	SetcollisionAttribute(kCollitionAttributeBomb);
-	SetcollisionMask(~kCollitionAttributeBomb);
+	SetcollisionMask(~kCollitionAttributeBomb & ~kCollitionAttributeBombExplode);
 }
 
 void Bomb::Update() {
 	if (explosionTimer <= 40) {
 		if (isExplosionBomb == true) {
+
+			SetcollisionAttribute(kCollitionAttributeBombExplode);
 			worldTransformExplosion_.scale_.x += 0.2f;
 			worldTransformExplosion_.scale_.y += 0.2f;
 			worldTransformExplosion_.scale_.z += 0.2f;
