@@ -4,6 +4,7 @@
 #include "WorldTransform.h"
 #include "Utility/Collider.h"
 #include "Utility/CollisionConfig.h"
+#include "Circle.h"
 
 class Enemy : public Collider {
 public:
@@ -26,7 +27,7 @@ public:
 private:
 	WorldTransform worldTransform_;
 	Model* enemyModel_ = nullptr;
-
+	Circle* circle = nullptr;
 	bool isDead_ = false;
 
 	int moveMode_ = 0;
