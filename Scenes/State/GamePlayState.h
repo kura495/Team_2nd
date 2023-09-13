@@ -118,40 +118,40 @@ private:
 	int playerSayTexture;
 	WorldTransform worldTransform_PlayerSprite;
 	Vector4 Stage2SpriteLeftTop[2] = {
-		{ 0.0f,0.0f,0.0f,1.0f },
+		{ 600.0f,550.0f,0.0f,1.0f },
 		{ 360.0f,960.0f,0.0f,1.0f }
 	};
 	Vector4 Stage2SpriteLeftBottom[2] = {
-		{ 0.0f,40.0f,0.0f,1.0f },
+		{ 600.0f,580.0f,0.0f,1.0f },
 		{ 360.0f,360.0f,0.0f,1.0f }
 	};
 	Vector4 Stage2SpriteRightTop[2] = {
-		{ 360.0f,200.0f,0.0f,1.0f },
-		{ 200.0f,0.0f,0.0f,1.0f }
+		{ 360.0f,960.0f,0.0f,1.0f },
+		{ 960.0f,550.0f,0.0f,1.0f }
 	};
 	Vector4 Stage2SpriteRightBottom[2] = {
 		{ 360.0f,170.0f,0.0f,1.0f },
-		{ 200.0f,40.0f,0.0f,1.0f }
+		{ 960.0f,580.0f,0.0f,1.0f }
 	};
 
 	Sprite* switchSay;
 	int switchTexture;
 	WorldTransform worldTransform_Stage3Sprite;
 	Vector4 Stage3SpriteLeftTop[2] = {
-		{ 900.0f,0.0f,0.0f,1.0f },
+		{ 600.0f,600.0f,0.0f,1.0f },
 		{ 360.0f,960.0f,0.0f,1.0f }
 	};
 	Vector4 Stage3SpriteLeftBottom[2] = {
-		{ 900.0f,40.0f,0.0f,1.0f },
+		{ 600.0f,640.0f,0.0f,1.0f },
 		{ 360.0f,360.0f,0.0f,1.0f }
 	};
 	Vector4 Stage3SpriteRightTop[2] = {
-		{ 360.0f,200.0f,0.0f,1.0f },
-		{ 1000.0f,0.0f,0.0f,1.0f }
+		{ 360.0f,960.0f,0.0f,1.0f },
+		{ 960.0f,600.0f,0.0f,1.0f }
 	};
 	Vector4 Stage3SpriteRightBottom[2] = {
 		{ 360.0f,170.0f,0.0f,1.0f },
-		{ 1000.0f,40.0f,0.0f,1.0f }
+		{ 960.0f,640.0f,0.0f,1.0f }
 	};
 
 	//
