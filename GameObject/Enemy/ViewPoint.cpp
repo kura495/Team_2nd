@@ -4,10 +4,24 @@ void ViewPoint::Initalize(const WorldTransform& worldTransform)
 {
 	worldTransform_.Initialize();
 	worldTransform_.parent_ = &worldTransform;
+	worldTransform_.matWorld_ = worldTransform.matWorld_;
+	worldTransform_.translation_.y = 1.0f;
+	viewPointworldTransform_.Initialize();
+	viewPointworldTransform_.translation_ = 
+	{
+	worldTransform.translation_.x+2.0f,
+	0,
+	worldTransform.translation_.z+0.0f
+	};
 	//model_
+	model_ = Model::CreateModelFromObj("resources","Fan.obj");
+
 	float Angle = 0.2f;
 	SetAngle(Angle);
+	float Radius = 3.0f;
+	SetRadius(Radius);
 
+	SetDirection(viewPointworldTransform_.translation_);
 }
 
 void ViewPoint::Update()
@@ -15,19 +29,19 @@ void ViewPoint::Update()
 
 	worldTransform_.UpdateMatrix();
 	ImGui::Begin("ViewPoint");
+	ImGui::Text("Length : %f", SaveLength);
 	ImGui::End();
 	CheckCollisions();
 }
 
-void ViewPoint::Draw()
+void ViewPoint::Draw(const ViewProjection& viewProjection)
 {
+	model_->Draw(worldTransform_, viewProjection);
 }
 
 void ViewPoint::SetDirection(const Vector3& Direction)
 {
-	if (Direction.x) {
-		return;
-	}
+	ColliderDirection = Length(Direction);
 }
 
 void ViewPoint::OnCollision(const uint32_t& attribute)
@@ -75,25 +89,30 @@ void ViewPoint::CheckCollisionPair(Collider* collider)
 	float Length = (float)sqrt(
 		(posB.x - posA.x) * (posB.x - posA.x) + 
 		(posB.z - posA.z) * (posB.z - posA.z));
+	SaveLength = Length;
+	
 	//マスクされていたら早期リターン
 	if ((GetcollitionAttribute() & collider->GetcollisionMask()) == 0 && (collider->GetcollitionAttribute() & GetcollisionMask()) == 0) {
 		return;
 	}
+	//範囲内なら処理
+	if (Length < GetRadius() + collider->GetRadius()) {
+		Vector2 fan_dir = { cosf(ColliderDirection),sinf(ColliderDirection) };
+		Vector2 normal_fan_to_point = {
+			posB.x - posA.x / Length,
+			posB.z - posA.z / Length
+		};
+		//内積
+		float dot = normal_fan_to_point.x * fan_dir.x + normal_fan_to_point.y * fan_dir.y;
+		float fan_cos = cosf(GetAngle() / 2.0f);
+		if (fan_cos >= dot) {
+			OnCollision(collider->GetcollitionAttribute());
+			collider->OnCollision(GetcollitionAttribute());
+		}
+		else {
+			return;
+		}
 
-	if (Length > GetRadius() + collider->GetRadius()) {
-		return;
-	}
-	Vector2 fan_dir = {cosf(GetAngle()),sinf(GetAngle())};
-	Vector2 normal_fan_to_point = {
-		posB.x - posA.x / Length,
-		posB.z - posA.z / Length
-	};
-	//内積
-	float dot = normal_fan_to_point.x * fan_dir.x + normal_fan_to_point.y * fan_dir.y;
-	float fan_cos = cosf(GetAngle()/2.0f);
-	if (fan_cos <= dot) {
-		OnCollision(collider->GetcollitionAttribute());
-		collider->OnCollision(GetcollitionAttribute());
 	}
 	else {
 		return;

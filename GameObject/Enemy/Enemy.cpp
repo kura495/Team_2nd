@@ -19,13 +19,14 @@ void Enemy::Update() {
 	ImGui::SliderFloat3("translation", &worldTransform_.translation_.x, -20, 20);
 	ImGui::End();*/
 	viewPoint_->Update();
-	worldTransform_.rotation_.y += 0.2f;
+	//worldTransform_.rotation_.y += 0.2f;
 	worldTransform_.UpdateMatrix();
 }
 
 void Enemy::Draw(const ViewProjection& viewProjection) {
 	if(isDead_ == false){
 		enemyModel_->Draw(worldTransform_, viewProjection);
+		viewPoint_->Draw(viewProjection);
 	}
 }
 

@@ -47,11 +47,11 @@ void GamePlayState::Initialize()
 	switch_ = new Switch();
 	switch_->Initialize(switchModel_, Vector3(0, 0, 0));
 
-	EnemySpawn(Vector3(10, -1, 0));
+	EnemySpawn(Vector3(10, 0, 0));
 
-	EnemySpawn(Vector3(20, -1, 12));
+	EnemySpawn(Vector3(20, 0, 12));
 
-	EnemySpawn(Vector3(-12, -1, -10));
+	EnemySpawn(Vector3(-12, 0, -10));
 
 	enemyCountMax = enemyCount;
 
@@ -120,9 +120,7 @@ void GamePlayState::Update()
 		}
 		return false;
 		});
-	for (Enemy* enemy : enemys_) {
-		enemy->Update();
-	}
+
 
 	for (Wall* wall : walls_) {
 		wall->Update();
@@ -130,11 +128,16 @@ void GamePlayState::Update()
 
 	//Collision
 	collisionManager_->ClearCollider();
+	
 	for (Enemy* enemy : enemys_) {
+		enemy->GetViewPoint()->ClearCollider();
 		enemy->GetViewPoint()->AddCollider(player);
 		for (Wall* wall : walls_) {
 			enemy->GetViewPoint()->AddCollider(wall);
 		}
+	}
+	for (Enemy* enemy : enemys_) {
+		enemy->Update();
 	}
 
 	collisionManager_->AddCollider(player);
