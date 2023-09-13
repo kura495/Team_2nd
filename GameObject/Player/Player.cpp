@@ -11,7 +11,7 @@ void Player::Initialize(Model* explotionModel, Model* bombModel)
 	model = Model::CreateModelFromObj("resources", "Player.obj");
 
 	worldTransform_.Initialize();
-
+	worldTransform_.translation_ = { 26, 0, -11 };
 	const char* groupName = "Player";
 
 	//GlobalVariables::GetInstance()->CreateGroup(groupName);
@@ -132,7 +132,8 @@ void Player::Draw(const ViewProjection& viewProjection)
 void Player::Reset()
 {
 	BombNum_ = 0;
-
+	bombs_.clear();
+	worldTransform_.translation_ = { 26, 0, -11 };
 }
 
 Vector3 Player::GetWorldPosition()

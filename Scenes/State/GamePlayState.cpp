@@ -41,7 +41,7 @@ void GamePlayState::Initialize()
 	ground = new Ground();
 	ground->Initialize(groundModel);
 	switch_ = new Switch();
-	switch_->Initialize(switchModel_, Vector3(29, 0, -14));
+	switch_->Initialize(switchModel_, Vector3(26, 0, -12));
 
 	EnemySpawn(Vector3(8, -1, 10),0,Vector3{0.0f,0.0f,0.0f});
 
@@ -161,6 +161,7 @@ void GamePlayState::Update()
 		EnemySpawn(Vector3(-26, -1, 16), 0, Vector3{ 0.0f,0.0f,0.0f });
 		player->Reset();
 		StateNo = 5;//StageClear
+		clearTimer = 0;
 	}
 
 	if (gameoverTimer >= 90) {
@@ -176,6 +177,7 @@ void GamePlayState::Update()
 		
 		player->Reset();
 		StateNo = 6;//GameOver
+		gameoverTimer = 0;
 	}
 
 	ImGui::Begin("System");
