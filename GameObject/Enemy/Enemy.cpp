@@ -12,6 +12,8 @@ void Enemy::Initialize(Model* enemyModel,int moveMode, Vector3 moveSpeed) {
 	SetcollisionMask(~kCollitionAttributeEnemy & ~kCollitionAttributeBomb);
 	circle = new Circle();
 	circle->Initalize(worldTransform_);
+	float Radius = 1.0f;
+	SetRadius(Radius);
 }
 
 void Enemy::Update() {

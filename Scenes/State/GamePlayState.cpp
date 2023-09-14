@@ -82,7 +82,6 @@ void GamePlayState::Initialize()
 
 	/*Texture = textureManager_->LoadTexture("resources/uvChecker.png");*/
 	//サウンド
-	mokugyo = audio->LoadAudio("resources/mokugyo.wav");
 	//
 	viewProjection_.Initialize();
 	worldTransform_.Initialize();
@@ -153,6 +152,9 @@ void GamePlayState::Update()
 	}
 	else if (enemyCountMax > enemyCount && enemyCount > 0) {
 		gameoverTimer++;
+	}
+	else if (player->GetIsDead()) {
+		gameoverTimer += 40;
 	}
 	else {
 		clearTimer = 0;

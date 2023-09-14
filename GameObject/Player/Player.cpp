@@ -132,6 +132,7 @@ void Player::Draw(const ViewProjection& viewProjection)
 
 void Player::Reset()
 {
+	isDead = false;
 	BombNum_ = 0;
 	bombs_.clear();
 	worldTransform_.translation_ = { 26, 0, -11 };
@@ -204,7 +205,11 @@ void Player::OnCollision(const uint32_t& Attribute)
 		}
 
 	}
+	else if(Attribute == kCollitionAttributeEnemy){
+		isDead = true;
+	}
 	else {
+		isDead = false;
 		return;
 	}
 

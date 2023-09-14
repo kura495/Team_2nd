@@ -27,6 +27,9 @@ public:
 	/// <returns>爆弾のリスト</returns>
 	const std::list<Bomb*>& GetBombs() const { return bombs_; }
 
+	bool GetIsDead() { return isDead; }
+	void SetIsDead() { isDead = false; }
+
 	Vector3 GetWorldPosition() override;
 	void OnCollision(const uint32_t& Attribute)override;
 
@@ -70,6 +73,7 @@ private:
 	bool isMove = false;	//プレイヤーが移動しているか　false:移動していない
 	bool xButtonPressed = false;	//xボタンを押したか	//false : 押していない
 	bool isTouchObject = false;	//プレイヤーが他オブジェクトと接触しているか	//false : 接触していない
+	bool isDead = false;
 
 	const float threshold = 0.0f;	//しきい値
 	float angle_;	//目標角度
