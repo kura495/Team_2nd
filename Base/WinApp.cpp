@@ -1,4 +1,4 @@
-#include"WinApp.h"
+﻿#include"WinApp.h"
 
 WinApp* WinApp::GetInstance()
 {
@@ -33,7 +33,7 @@ void WinApp::Initialize(){
 
 	hwnd_ = CreateWindow(
 		wc.lpszClassName,
-		L"GC2",
+		L"2021_一網打尽",
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
